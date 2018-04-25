@@ -1,9 +1,5 @@
 package com.example.demo.configuration;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +21,10 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
 	@Autowired
 	private RoleRepository roleRepository;
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	//
 	// @Autowired
 	// private PasswordEncoder passwordEncoder;
@@ -38,18 +34,12 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	@Override
 	@Transactional
 	public void onApplicationEvent(final ContextRefreshedEvent event) {
-		
-		
+
 		final Role adminRole = createRoleIfNotFound("ADMIN");
-		
 
 		// == create initial user
 		createUserIfNotFound("test@test.com", "Test", "Test", "test", adminRole);
-		
 
-		
-
-		
 	}
 
 	@Transactional
@@ -75,14 +65,13 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		}
 	}
 
-	
 	@Transactional
 	private final Role createRoleIfNotFound(final String name) {
 		Role role = roleRepository.findByRole(name);
 		if (role == null) {
 			role = new Role(name);
 		}
-		
+
 		role = roleRepository.save(role);
 		return role;
 	}

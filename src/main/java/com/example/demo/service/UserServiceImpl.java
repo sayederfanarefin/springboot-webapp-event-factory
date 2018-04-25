@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +9,9 @@ import org.springframework.stereotype.Service;
 import com.example.demo.Model.Prescription;
 import com.example.demo.Model.Role;
 import com.example.demo.Model.User;
+import com.example.demo.Repository.PrescriptionRepository;
 import com.example.demo.Repository.RoleRepository;
 import com.example.demo.Repository.UserRepository;
-import com.example.demo.Repository.PrescriptionRepository;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
