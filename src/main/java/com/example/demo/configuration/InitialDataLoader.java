@@ -38,7 +38,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		final Role adminRole = createRoleIfNotFound("ADMIN");
 
 		// == create initial user
-		createUserIfNotFound("test@test.com", "Test", "Test", "test", adminRole);
+		createUserIfNotFound("test@test.com", "Test", "Test", "test123", adminRole);
 
 	}
 
