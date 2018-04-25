@@ -37,7 +37,7 @@ public class Service {
 
 	@Column(name = "available")
 	@NotEmpty(message = "*Please provide your availablility of product")
-	private String available;
+	private boolean available;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_service_image")
@@ -58,16 +58,6 @@ public class Service {
 		super();
 	}
 
-	public Service(String name, String description, String available, List<Image> images,
-			ServiceCategory serviceCategory, Vendor vendor) {
-		super();
-		this.name = name;
-		this.description = description;
-		this.available = available;
-		this.images = images;
-		this.serviceCategory = serviceCategory;
-		this.vendor = vendor;
-	}
 
 	public int getId() {
 		return id;
@@ -93,13 +83,7 @@ public class Service {
 		this.description = description;
 	}
 
-	public String getAvailable() {
-		return available;
-	}
-
-	public void setAvailable(String available) {
-		this.available = available;
-	}
+	
 
 	public List<Image> getImages() {
 		return images;
@@ -125,4 +109,27 @@ public class Service {
 		this.vendor = vendor;
 	}
 
+
+	public Service(String name, String description, boolean available, List<Image> images,
+			ServiceCategory serviceCategory, Vendor vendor) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.available = available;
+		this.images = images;
+		this.serviceCategory = serviceCategory;
+		this.vendor = vendor;
+	}
+
+
+	public boolean isAvailable() {
+		return available;
+	}
+
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
+
+	
 }
