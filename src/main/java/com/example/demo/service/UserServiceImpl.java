@@ -1,15 +1,11 @@
 package com.example.demo.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.Model.Prescription;
 import com.example.demo.Model.Role;
 import com.example.demo.Model.User;
-import com.example.demo.Repository.PrescriptionRepository;
 import com.example.demo.Repository.RoleRepository;
 import com.example.demo.Repository.UserRepository;
 
@@ -19,8 +15,6 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Autowired
-	private PrescriptionRepository prescriptionRepository;
 	@Autowired
     private RoleRepository roleRepository;
     @Autowired
@@ -40,29 +34,5 @@ public class UserServiceImpl implements UserService{
 		userRepository.save(user);
 	}
 
-	@Override
-	public void savePrescription(Prescription prescription) {
-		
-		prescriptionRepository.save(prescription);
-	}
-
-	@Override
-	public List<Prescription> findPrescriptionByUserId(int user_id) {
-		
-		return prescriptionRepository.findByUserid(user_id);
-	}
 	
-	@Override
-	public void deletePrescription(Prescription prescription) {
-		
-		//prescriptionRepository.save(prescription);
-		prescriptionRepository.delete(prescription);
-	}
-	
-	@Override
-	public Prescription findByPrescriptionId(int id) {
-		
-		return prescriptionRepository.findById(id);
-	}
-
 }

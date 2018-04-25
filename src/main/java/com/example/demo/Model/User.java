@@ -40,9 +40,9 @@ public class User {
 	
 	
 	
-	@Column(name = "name")
-	@NotEmpty(message = "*Please provide your name")
-	private String name;
+	@Column(name = "first_name")
+	@NotEmpty(message = "*Please provide your first name")
+	private String firstName;
 	
 	
 	@Column(name = "last_name")
@@ -54,42 +54,44 @@ public class User {
 	private int active;
 	
 	
+	@Column(columnDefinition="LONGTEXT")
+	private String address;
+	
+	
+	private String phone;
+	
+	
+	@Column(name = "city")
+	@NotEmpty(message = "*Please provide your city")
+	private String city;
+	
+	@Column(name = "country")
+	@NotEmpty(message = "*Please provide your country")
+	private String country;
+	
+	
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Role role;
 
-	
-	
-	public int getId() {
-		return id;
+	public User() {
+		super();
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
+	public User(String email, String password, String firstName, String lastName, int active, String address,
+			String phone, String city, String country, Role role) {
+		super();
+		this.email = email;
 		this.password = password;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
+		this.firstName = firstName;
 		this.lastName = lastName;
+		this.active = active;
+		this.address = address;
+		this.phone = phone;
+		this.city = city;
+		this.country = country;
+		this.role = role;
 	}
 
 	public String getEmail() {
@@ -100,6 +102,30 @@ public class User {
 		this.email = email;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	public int getActive() {
 		return active;
 	}
@@ -108,7 +134,37 @@ public class User {
 		this.active = active;
 	}
 
-	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
 	public Role getRole() {
 		return role;
@@ -116,11 +172,6 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
-	}
-
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	

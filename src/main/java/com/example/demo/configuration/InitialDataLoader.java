@@ -46,12 +46,11 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	private final void createUserIfNotFound(final String email, final String firstName, final String lastName,
 			final String password, final Role roles) {
 
-		System.out.println("---------------adding user init--------------");
 		try {
 			User user = userRepository.findByEmail(email);
 			if (user == null) {
 				user = new User();
-				user.setName(firstName);
+				user.setFirstName(firstName);
 				user.setLastName(lastName);
 				user.setPassword(passwordEncoder.encode(password));
 				user.setEmail(email);
