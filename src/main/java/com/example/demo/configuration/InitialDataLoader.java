@@ -38,7 +38,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		final Role adminRole = createRoleIfNotFound("ADMIN");
 
 		// == create initial user
-		createUserIfNotFound("test@test.com", "Test", "Test", "test123", adminRole);
+		//createUserIfNotFound("test@test.com", "Test", "Test", "test123", adminRole);
 
 	}
 
@@ -55,10 +55,11 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 				user.setPassword(passwordEncoder.encode(password));
 				user.setEmail(email);
 				user.setActive(1);
-			}
-			user.setRole(roles);
-			user = userRepository.save(user);
+				user.setRole(roles);
+				user = userRepository.save(user);
 
+			}
+			
 		} catch (Exception e) {
 			System.out.println(e.getStackTrace());
 		}
