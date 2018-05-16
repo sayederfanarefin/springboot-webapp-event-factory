@@ -1,15 +1,22 @@
 package com.example.demo.controller;
 
+import java.util.Iterator;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import com.example.demo.Model.Role;
 import com.example.demo.Model.User;
+import com.example.demo.configuration.Constants;
 import com.example.demo.service.UserService;
 
 @Controller
@@ -56,7 +63,30 @@ public class LoginController {
 		return modelAndView;
 	}
 	
-	
+	@RequestMapping(value="/home", method = RequestMethod.GET)
+	public RedirectView home(){
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		
+		String sb = "";
+		Iterator<Role> roles = user.getRoles().iterator();
+		while (roles.hasNext()) {
+			Role r = roles.next();
+			sb = r.getName();
+		}
+		
+		
+		if(sb.equals(Constants.SUPER_ADMIN)) {
+			return new RedirectView("superAdmin/home");
+		}else if(sb.equals(Constants.ADMIN)) {
+			return new RedirectView("admin/home");
+		}else {
+			return new RedirectView("customer/home");
+		}
+		
+		
+	}
 	
 		
 }

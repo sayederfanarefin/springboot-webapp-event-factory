@@ -71,8 +71,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/login").permitAll()
 				.antMatchers("/registration").permitAll()
 				
-				.antMatchers("/customer/**").access("hasRole('ROLE_USER')")
-				.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+				.antMatchers("/customer/**").access("hasRole('" + Constants.USER + "')")
+				.antMatchers("/admin/**").access("hasRole('" + Constants.ADMIN + "')")
+				.antMatchers("/superAdmin/**").access("hasRole('" + Constants.SUPER_ADMIN + "')")
 				
 				.and().csrf().disable()
 				

@@ -12,7 +12,8 @@ import com.example.demo.Model.User;
 import com.example.demo.service.UserService;
 
 @Controller
-public class DashController {
+@RequestMapping("/admin")
+public class AdminDashController {
 	
 	@Autowired
 	private UserService userService;

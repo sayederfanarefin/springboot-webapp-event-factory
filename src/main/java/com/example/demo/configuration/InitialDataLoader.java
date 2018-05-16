@@ -106,7 +106,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		
 		final Role superAdminRole = createRoleIfNotFound(Constants.SUPER_ADMIN, allPrivileges);
 		final Role adminRole = createRoleIfNotFound(Constants.ADMIN, adminPrivileges);
-		final Role employeeRole = createRoleIfNotFound(Constants.EMPLOYEE, employeePrivileges);
+		final Role employeeRole = createRoleIfNotFound(Constants.USER, employeePrivileges);
 
 		createUserIfNotFound("superadmin@avnrsol.com", "Super Admin avnrsol", "avnrsol", "test",
 				new ArrayList<Role>(Arrays.asList(superAdminRole)));
@@ -114,7 +114,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		
 		createUserIfNotFound("admin@avnrsol.com", "Just Admin avnrsol", "avnrsol", "test",
 				new ArrayList<Role>(Arrays.asList(adminRole)));
-		createUserIfNotFound("employee@avnrsol.com", "Employee avnrsol", "avnrsol", "test",
+		createUserIfNotFound("user@avnrsol.com", "User avnrsol", "avnrsol", "test",
 				new ArrayList<Role>(Arrays.asList(employeeRole)));
 		
 	}
