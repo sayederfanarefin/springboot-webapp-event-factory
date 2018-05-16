@@ -1,12 +1,16 @@
 package com.example.demo.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import com.example.demo.Model.Role;
 
-@Repository("roleRepository")
-public interface RoleRepository extends JpaRepository<Role, Integer>{
-	Role findByRole(String role);
-    
+public interface RoleRepository extends JpaRepository<Role, Long> {
+
+    Role findByName(String name);
+
+    Role findById(Long id);
+    @Override
+    void delete(Role role);
+
+    Role findByUsers_Id(Long userId);
 }

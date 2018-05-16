@@ -1,97 +1,133 @@
 package com.example.demo.Model;
 
-import javax.persistence.CascadeType;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.data.annotation.Transient;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements UserDetails, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "user_id")
-	private int id;
-	
-	
-	@Column(name = "email")
-	@Email(message = "*Please provide a valid Email")
-	@NotEmpty(message = "*Please provide an email")
+	private Long id;
+
+	@Column(name = "created_at")
+	public Date createdAt;
+
 	private String email;
-	
-	
-	@Column(name = "password")
-	@Length(min = 5, message = "*Your password must have at least 5 characters")
-	@NotEmpty(message = "*Please provide your password")
-	@Transient
+
 	private String password;
+
+	private boolean enabled;
+
+	private boolean accountNonExpired;
+
+	private boolean accountNonLocked;
+
+	private boolean credentialsNonExpired;
+
+	private boolean active;
 	
-	
-	
-	@Column(name = "first_name")
-	@NotEmpty(message = "*Please provide your first name")
 	private String firstName;
-	
-	
-	@Column(name = "last_name")
-	@NotEmpty(message = "*Please provide your last name")
 	private String lastName;
-	
-	
-	@Column(name = "active")
-	private int active;
-	
-	
-	@Column(columnDefinition="LONGTEXT")
+
 	private String address;
-	
-	
 	private String phone;
-	
-	
-	@Column(name = "city")
-	@NotEmpty(message = "*Please provide your city")
-	private String city;
-	
-	@Column(name = "country")
-	@NotEmpty(message = "*Please provide your country")
-	private String country;
-	
-	
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Role role;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+
+	private Collection<Role> roles;
+
+	// -----------------methods-----------------//
 
 	public User() {
 		super();
+		this.active = true;
+		this.enabled = true;
+		this.accountNonExpired = true;
+		this.accountNonLocked = true;
+		this.credentialsNonExpired = true;
 	}
 
-	public User(String email, String password, String firstName, String lastName, int active, String address,
-			String phone, String city, String country, Role role) {
-		super();
-		this.email = email;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.active = active;
-		this.address = address;
-		this.phone = phone;
-		this.city = city;
-		this.country = country;
-		this.role = role;
+	@Override
+	public String getUsername() {
+		return this.email;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return this.accountNonExpired;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return this.accountNonLocked;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return this.credentialsNonExpired;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return this.enabled;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		System.out.println("-----------------getAuthorities");
+		return getRoles().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName()))
+				.collect(Collectors.toList());
+	}
+
+	private List<String> getPrivileges(Collection<Role> roles) {
+		List<String> privileges = new ArrayList<>();
+		List<Privilege> collection = new ArrayList<>();
+		for (Role role : roles) {
+			collection.addAll(role.getPrivileges());
+		}
+		for (Privilege item : collection) {
+			privileges.add(item.getName());
+		}
+		return privileges;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getEmail() {
@@ -110,6 +146,44 @@ public class User {
 		this.password = password;
 	}
 
+	public Collection<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
+	}
+
+	@PrePersist
+	void createdAt() {
+		this.createdAt = new Date();
+	}
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.000 ", timezone = "UTC")
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -124,14 +198,6 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public int getActive() {
-		return active;
-	}
-
-	public void setActive(int active) {
-		this.active = active;
 	}
 
 	public String getAddress() {
@@ -150,29 +216,31 @@ public class User {
 		this.phone = phone;
 	}
 
-	public String getCity() {
-		return city;
+	public boolean isActive() {
+		return active;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
-	public String getCountry() {
-		return country;
+	public User(String email, String password, String firstName, String lastName, String address, String phone,
+			Collection<Role> roles) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.phone = phone;
+		this.roles = roles;
+		this.active = true;
+		this.enabled = true;
+		this.accountNonExpired = true;
+		this.accountNonLocked = true;
+		this.credentialsNonExpired = true;
 	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
 	
+	
+
 }

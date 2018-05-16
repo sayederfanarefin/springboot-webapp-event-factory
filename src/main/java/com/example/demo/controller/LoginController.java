@@ -3,8 +3,6 @@ package com.example.demo.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +18,7 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
+	@RequestMapping(value={"/admin", "/login"}, method = RequestMethod.GET)
 	public ModelAndView login(){
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("login");
@@ -49,7 +47,7 @@ public class LoginController {
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("registration");
 		} else {
-			userService.saveUser(user);
+			userService.registerNewUserAccount(user);
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			modelAndView.addObject("user", new User());
 			modelAndView.setViewName("registration");
@@ -58,34 +56,7 @@ public class LoginController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/admin/home", method = RequestMethod.GET)
-	public ModelAndView home(){
-		ModelAndView modelAndView = new ModelAndView();
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findUserByEmail(auth.getName());
-		
-		modelAndView.setViewName("admindash");
-		
-
-//		List<Prescription> p = userService.findPrescriptionByUserId(user.getId());
-//
-//		modelAndView.addObject("results", p);
-		return modelAndView;
-	}
 	
-	
-	@RequestMapping(value="/admin/createPres", method = RequestMethod.GET)
-	public ModelAndView createPres(){
-		ModelAndView modelAndView = new ModelAndView();
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		User user = userService.findUserByEmail(auth.getName());
-//		modelAndView.addObject("userName", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
-		//modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
-		modelAndView.setViewName("admin/createPres");
-		
-		
-		return modelAndView;
-	}
 	
 		
 }

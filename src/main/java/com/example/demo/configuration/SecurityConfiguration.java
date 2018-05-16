@@ -43,20 +43,51 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
+		
+//		http
+//        .authorizeRequests()
+//        	.antMatchers("/").permitAll()
+//            .antMatchers("/customer/**").access("hasRole('ROLE_USER') or hasRole('ROLE_UNAUTH')")
+//            .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+//            .antMatchers("/checkout").access("hasRole('ROLE_USER')")
+//            .and()
+//        .formLogin()
+//            .loginPage("/login")
+//            .failureUrl("/login?error")
+//            .usernameParameter("email")
+//            .passwordParameter("password")
+//            .successHandler(customAuthenticationSuccessHandler)
+//            .permitAll()
+//            .and()
+//        .logout()
+//        	.logoutSuccessUrl("/login?logout")
+//            .permitAll()
+//    		.and()
+//    	.csrf();
+		
 		http.
 			authorizeRequests()
 				.antMatchers("/").permitAll()
 				.antMatchers("/login").permitAll()
 				.antMatchers("/registration").permitAll()
-				.antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
-				.authenticated().and().csrf().disable().formLogin()
-				.loginPage("/login").failureUrl("/login?error=true")
-				.defaultSuccessUrl("/admin/home")
+				
+				.antMatchers("/customer/**").access("hasRole('ROLE_USER')")
+				.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+				
+				.and().csrf().disable()
+				
+				.formLogin()
+				.loginPage("/login")
+				.failureUrl("/login?error=true")
+				.defaultSuccessUrl("/home")
 				.usernameParameter("email")
 				.passwordParameter("password")
-				.and().logout()
+				.permitAll()
+				.and()
+				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/").and().exceptionHandling()
+				.logoutSuccessUrl("/")
+				.and().exceptionHandling()
 				.accessDeniedPage("/access-denied");
 	}
 	
@@ -64,6 +95,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 	    web
 	       .ignoring()
-	       .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+	       .antMatchers("/admin/resources/**", "/admin/static/**", "/admin/css/**", "/admin/js/**", "/admin/images/**");
 	}
 }
