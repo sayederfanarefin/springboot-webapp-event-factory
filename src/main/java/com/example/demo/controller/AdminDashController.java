@@ -19,7 +19,7 @@ public class AdminDashController {
 	private UserService userService;
 
 	
-	@RequestMapping(value="/home", method = RequestMethod.GET)
+	@RequestMapping(value= {"/", "/home"}, method = RequestMethod.GET)
 	public ModelAndView home(){
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
