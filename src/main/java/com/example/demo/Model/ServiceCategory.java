@@ -95,5 +95,7 @@ public class ServiceCategory {
 		Services = services;
 	}
 
-	
+	public void addImage(Image image) {
+		images.add(image);
+	}
 }

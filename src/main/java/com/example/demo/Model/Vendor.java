@@ -206,5 +206,8 @@ public class Vendor {
 		this.services = services;
 	}
 
+	public void addService(Service service) {
+		services.add(service);
+	}
 	
 }

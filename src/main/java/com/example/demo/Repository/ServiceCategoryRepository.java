@@ -8,4 +8,5 @@ import com.example.demo.Model.ServiceCategory;
 @Repository("serviceCategoryRepository")
 public interface ServiceCategoryRepository extends JpaRepository<ServiceCategory, Integer>{
 	ServiceCategory findServiceCategoryById(Long id);
+	ServiceCategory findByName(String name);
 }

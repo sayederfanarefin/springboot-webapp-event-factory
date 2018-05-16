@@ -14,12 +14,20 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.Model.Image;
 import com.example.demo.Model.Privilege;
 import com.example.demo.Model.Role;
+import com.example.demo.Model.Service;
+import com.example.demo.Model.ServiceCategory;
 import com.example.demo.Model.User;
+import com.example.demo.Model.Vendor;
+import com.example.demo.Repository.ImageRepository;
 import com.example.demo.Repository.PrivilegeRepository;
 import com.example.demo.Repository.RoleRepository;
+import com.example.demo.Repository.ServiceCategoryRepository;
+import com.example.demo.Repository.ServiceRepository;
 import com.example.demo.Repository.UsersRepository;
+import com.example.demo.Repository.VendorRepository;
 
 @Component
 public class InitialDataLoader implements ApplicationListener<ContextRefreshedEvent> {
@@ -33,7 +41,17 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	@Autowired
 	private RoleRepository roleRepository;
 	
+	@Autowired
+	private ImageRepository imageRepository;
 	
+	@Autowired
+	private ServiceRepository serviceRepository;
+	
+	@Autowired
+	private VendorRepository vendorRepository;
+	
+	@Autowired
+	private ServiceCategoryRepository serviceCategoryRepository;
 
 	@Autowired
 	private PrivilegeRepository privilegeRepository;
@@ -117,8 +135,83 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		createUserIfNotFound("user@avnrsol.com", "User avnrsol", "avnrsol", "test",
 				new ArrayList<Role>(Arrays.asList(employeeRole)));
 		
+		
+		Image image = createImageIfNotFound("default image", "used for testing", "/images/event_logo.jpg");
+		
+		ServiceCategory serviceCategory  =  createServiceCategoryIfNotFound("default image", "used for testing",image);
+		
+		Vendor vendor = createVendorIfNotFound("avnrsol");
+		Service service = createServiceIfNotFound("service sdfsdf", "sdfsdfsdf dsfsdfsdf dsfsdf", image, serviceCategory, vendor);
+		
+		
+		
 	}
 
+	@Transactional
+	private final Image createImageIfNotFound(final String name, final String description, String url) {
+		
+		Image image = imageRepository.findImageByUrl(url);
+		if(image == null) {
+			image 	= new Image(name, description , url);
+			image = imageRepository.save(image);
+		}
+	
+		return image;
+	}
+	
+	
+	@Transactional
+	private final Service createServiceIfNotFound(final String name, final String description, final Image image,
+			ServiceCategory serviceCategory, Vendor vendor) {
+		
+		
+		Service service  = new Service();
+		service.setDescription("Bla bla bla");
+		service.setName("bla");
+		service.addImage(image);
+		service.setAvailable(true);
+		service.setServiceCategory(serviceCategory);
+		vendor.addService(service);
+		service.setVendor(vendor);
+		service = serviceRepository.save(service);
+		
+		return service;	
+	}
+	
+	
+	@Transactional
+	private final Vendor createVendorIfNotFound(final String name) {
+		
+		
+		Vendor vendor = vendorRepository.findByName(name);
+		if(vendor ==null) {
+			vendor = new Vendor();
+			vendor.setName(name);
+			vendor.setCity("Dhaka");
+			vendor.setCountry("Bangladesh");
+			vendor.setEmail("asfdas@sdf.o");
+			vendor.setPhone("34534534543543");
+			vendorRepository.save(vendor);
+		}
+			return vendor;	
+	}
+	
+	@Transactional
+	private final ServiceCategory createServiceCategoryIfNotFound(final String name, final String description, final Image image) {
+		
+		
+		ServiceCategory serviceCategory  = serviceCategoryRepository.findByName(name);
+		if(serviceCategory ==null) {
+			serviceCategory = new ServiceCategory();
+			serviceCategory.setDescription("Bla bla bla");
+			serviceCategory.setName("bla");
+			serviceCategory.addImage(image);
+			serviceCategory = serviceCategoryRepository.save(serviceCategory);
+		}
+		return serviceCategory;	
+	}
+	
+	
 	@Transactional
 	private final Privilege createPrivilegeIfNotFound(final String name) {
 		Privilege privilege = privilegeRepository.findByName(name);

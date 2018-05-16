@@ -29,14 +29,14 @@ public class Service {
 	private int id;
 
 	@Column(name = "name")
-	@NotEmpty(message = "*Please provide your name")
+	
 	private String name;
 
 	@Column(columnDefinition = "LONGTEXT")
 	private String description;
 
 	@Column(name = "available")
-	@NotEmpty(message = "*Please provide your availablility of product")
+	
 	private boolean available;
 
 	@OneToMany(cascade = CascadeType.ALL)
@@ -130,6 +130,9 @@ public class Service {
 	public void setAvailable(boolean available) {
 		this.available = available;
 	}
-
+	public void addImage(Image image) {
+		images.add(image);
+	}
+	
 	
 }
