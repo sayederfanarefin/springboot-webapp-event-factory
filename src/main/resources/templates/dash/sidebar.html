@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+</head>
+
+ <body>
+    <div class="sidebar" data-background-color="black" data-active-color="warning" th:fragment="sidebar">
+
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="" class="simple-text">
+                    Event Factory
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li class="active">
+                    <a href="/dash/admin/">
+                        <i class="ti-panel"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">
+                        <i class="ti-briefcase"></i>
+                        <p>Vendor Information <b class="caret"></b></p>
+                    </a>
+                    <ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">
+                        <li><a href="#">Add Vendors</a></li>
+                        <li><a href="#">Edit Vendors</a></li>
+                        <li><a href="#">List All Vendors</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" id="btn-2" data-toggle="collapse" data-target="#submenu2" aria-expanded="false">
+                        <i class="ti-shopping-cart"></i>
+                        <p>Category Information <b class="caret"></b></p>
+                    </a>
+                    <ul class="nav collapse" id="submenu2" role="menu" aria-labelledby="btn-2">
+                        <li><a href="#">Add Categories</a></li>
+                        <li><a href="#">Edit Categories</a></li>
+                        <li><a href="#">List All Categories</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" id="btn-3" data-toggle="collapse" data-target="#submenu3" aria-expanded="false">
+                        <i class="ti-shopping-cart"></i>
+                        <p>Item Information <b class="caret"></b></p>
+                    </a>
+                    <ul class="nav collapse" id="submenu3" role="menu" aria-labelledby="btn-3">
+                        <li><a href="#">Add Items</a></li>
+                        <li><a href="#">Edit Items</a></li>
+                        <li><a href="#">List All Items</a></li>
+                    </ul>
+                </li>            
+                <li>
+                    <a href="orders.html">
+                        <i class="ti-money"></i>
+                        <p>ORDERS</p>
+                    </a>
+                </li>
+                
+                <li><a href="/logout"> <i class="ti-money"></i>
+                        <p>Log Out</p></a></li>
+            </ul>
+        </div>
+    </div>
+   </body>
+   </html>
