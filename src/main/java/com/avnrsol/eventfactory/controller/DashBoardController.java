@@ -26,7 +26,7 @@ public class DashBoardController {
 		
 		
 		System.out.println("->->->->->->->->->->->->->->->-> admin dash board");
-		
+		modelAndView.addObject("title", "Dashboard");
 		modelAndView.setViewName("dash/admindash");
 		
 		return modelAndView;

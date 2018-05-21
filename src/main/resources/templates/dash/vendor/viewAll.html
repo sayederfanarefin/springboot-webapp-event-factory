@@ -21,6 +21,22 @@
 
 <div th:replace="dash/header :: header"></div>
 
+
+<style>
+.pagination-centered {
+    text-align: center;
+}
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+.pointer-disabled {
+    pointer-events: none;
+}
+</style>
+
+
+
 </head>
 <body>
 
@@ -46,7 +62,8 @@
 											<th>Name</th>
 											<th>Email</th>
 											<th>Phone</th>
-											<th>City</th>
+											
+											<th>Action</th>
 										</thead>
 										<tbody>
 
@@ -55,22 +72,92 @@
 												<td th:text="${vendor.name}">Dakota Rice</td>
 												<td th:text="${vendor.email}">$36,738</td>
 												<td th:text="${vendor.phone}">Niger</td>
-												<td th:text="${vendor.city}">Oud-Turnhout</td>
+												
 											</tr>
 
-
+ <tr th:each="clientlist : ${clientlist}">
+                        <td th:text="${clientlist.id}">Text ...</td>
+                        <td th:text="${clientlist.name}">Text ...</td>
+                        
+                           <td th:text="${clientlist.email}">Text ...</td>
+                           
+                              <td th:text="${clientlist.phone}">Text ...</td>
+                                
+                                    
+                        <td><button type="button"
+                                class="btn btn-primary btn-condensed">
+                                Edit/Delete
+                            </button></td>
+                    </tr>
 											
 
 										</tbody>
 									</table>
 
 								</div>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								 <div class="row">
+								 
+                <div class="form-group col-md-1"> </div>
+                <div class="form-group col-md-2"> 
+                    <select class="form-control pagination" id="pageSizeSelect">
+                        <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+                            th:value="${pageSize} "
+                            th:selected="${pageSize} == ${selectedPageSize}"></option>
+                    </select>
+                </div>
+                <div th:if="${clientlist.totalPages != 1}"
+                    class="form-group col-md-9 pagination-centered">
+                    <ul class="pagination">
+                        <li th:class="${clientlist.number == 0} ? disabled"><a
+                            class="pageLink"
+                            th:href="@{${baseUrl}(pageSize=${selectedPageSize}, page=1)}">«</a>
+                        </li>
+                        <li th:class="${clientlist.number == 0} ? disabled"><a
+                            class="pageLink"
+                            th:href="@{${baseUrl}(pageSize=${selectedPageSize}, page=${clientlist.number})}">←</a>
+                        </li>
+                        <li
+                            th:class="${clientlist.number == (page - 1)} ? 'active pointer-disabled'"
+                            th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                            <a class="pageLink"
+                            th:href="@{${baseUrl}(pageSize=${selectedPageSize}, page=${page})}"
+                            th:text="${page}"></a>
+                        </li>
+                        <li
+                            th:class="${clientlist.number + 1 == clientlist.totalPages} ? disabled">
+                            <a class="pageLink"
+                            th:href="@{${baseUrl}(pageSize=${selectedPageSize}, page=${clientlist.number + 2})}">→</a>
+                        </li>
+                        <li
+                            th:class="${clientlist.number + 1 == clientlist.totalPages} ? disabled">
+                            <a class="pageLink"
+                            th:href= "@{${baseUrl}(pageSize=${selectedPageSize}, page=${clientlist.totalPages})}">»</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    
+								
+								
+								
+								
 							</div>
+							
 						</div>
-
-
-
-
 
 					</div>
 				</div>
@@ -80,6 +167,28 @@
 		</div>
 
 	</div>
+	
+	
+	
+  
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        $(document).ready(function() {
+    changePageAndSize();
+});
+function changePageAndSize() {
+	
+	
+	
+	
+    $('#pageSizeSelect').change(function(evt) {
+    	var baseUrl = /*[[${baseUrl}]]*/ '';
+        window.location.replace( baseUrl + "?pageSize=" + this.value + "&page=1");
+    });
+}
+        /*]]>*/
+    </script>
+    
 </body>
 
 
