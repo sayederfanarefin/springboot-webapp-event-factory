@@ -18,6 +18,7 @@ import com.avnrsol.eventfactory.Model.Vendor;
 import com.avnrsol.eventfactory.Repository.ServiceCategoryRepository;
 import com.avnrsol.eventfactory.Repository.ServiceoRepository;
 import com.avnrsol.eventfactory.Repository.VendorRepository;
+import com.avnrsol.eventfactory.configuration.Constants;
 import com.avnrsol.eventfactory.service.interfaces.IServiceoService;
 
 @Controller
@@ -26,10 +27,7 @@ public class ServiceController {
 	
 	
 	
-	private static final int BUTTONS_TO_SHOW = 3;
-    private static final int INITIAL_PAGE = 0;
-    private static final int INITIAL_PAGE_SIZE = 2;
-    private static final int[] PAGE_SIZES = { 2, 4};
+	
     
     
     
@@ -102,19 +100,19 @@ public class ServiceController {
 		
 		
 		
-        int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+        int evalPageSize = pageSize.orElse(Constants.INITIAL_PAGE_SIZE);
        
-        int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+        int evalPage = (page.orElse(0) < 1) ? Constants.INITIAL_PAGE : page.get() - 1;
        
         Page<Serviceo> serviceolist = serviceoRepository.findAll(new PageRequest(evalPage, evalPageSize));
     
-        PagerModel pager = new PagerModel(serviceolist.getTotalPages(),serviceolist.getNumber(),BUTTONS_TO_SHOW);
+        PagerModel pager = new PagerModel(serviceolist.getTotalPages(),serviceolist.getNumber(),Constants.BUTTONS_TO_SHOW);
        
         modelAndView.addObject("clientlist",serviceolist);
        
         modelAndView.addObject("selectedPageSize", evalPageSize);
         
-        modelAndView.addObject("pageSizes", PAGE_SIZES);
+        modelAndView.addObject("pageSizes", Constants.PAGE_SIZES);
         modelAndView.addObject("baseUrl", "/dash/serviceo/viewAll");
       
         modelAndView.addObject("pager", pager);

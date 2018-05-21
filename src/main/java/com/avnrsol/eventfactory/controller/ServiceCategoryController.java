@@ -15,18 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.avnrsol.eventfactory.Model.PagerModel;
 import com.avnrsol.eventfactory.Model.ServiceCategory;
 import com.avnrsol.eventfactory.Repository.ServiceCategoryRepository;
+import com.avnrsol.eventfactory.configuration.Constants;
 import com.avnrsol.eventfactory.service.interfaces.IServiceCategoryService;
 
 @Controller
 @RequestMapping(value= "/dash/serviceCategory")
 public class ServiceCategoryController {
 	
-	
-	
-	private static final int BUTTONS_TO_SHOW = 3;
-    private static final int INITIAL_PAGE = 0;
-    private static final int INITIAL_PAGE_SIZE = 2;
-    private static final int[] PAGE_SIZES = { 2, 4};
     
     
     
@@ -85,19 +80,19 @@ public class ServiceCategoryController {
 		
 		
 		
-        int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+        int evalPageSize = pageSize.orElse(Constants.INITIAL_PAGE_SIZE);
        
-        int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+        int evalPage = (page.orElse(0) < 1) ? Constants.INITIAL_PAGE : page.get() - 1;
        
         Page<ServiceCategory> serviceCategorylist = serviceCategoryRepository.findAll(new PageRequest(evalPage, evalPageSize));
     
-        PagerModel pager = new PagerModel(serviceCategorylist.getTotalPages(),serviceCategorylist.getNumber(),BUTTONS_TO_SHOW);
+        PagerModel pager = new PagerModel(serviceCategorylist.getTotalPages(),serviceCategorylist.getNumber(),Constants.BUTTONS_TO_SHOW);
        
         modelAndView.addObject("clientlist",serviceCategorylist);
        
         modelAndView.addObject("selectedPageSize", evalPageSize);
         
-        modelAndView.addObject("pageSizes", PAGE_SIZES);
+        modelAndView.addObject("pageSizes", Constants.PAGE_SIZES);
         modelAndView.addObject("baseUrl", "/dash/serviceCategory/viewAll");
       
         modelAndView.addObject("pager", pager);

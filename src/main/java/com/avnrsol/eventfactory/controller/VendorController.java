@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.avnrsol.eventfactory.Model.PagerModel;
 import com.avnrsol.eventfactory.Model.Vendor;
 import com.avnrsol.eventfactory.Repository.VendorRepository;
+import com.avnrsol.eventfactory.configuration.Constants;
 import com.avnrsol.eventfactory.service.interfaces.IVendorService;
 
 @Controller
@@ -23,10 +24,7 @@ public class VendorController {
 	
 	
 	
-	private static final int BUTTONS_TO_SHOW = 3;
-    private static final int INITIAL_PAGE = 0;
-    private static final int INITIAL_PAGE_SIZE = 2;
-    private static final int[] PAGE_SIZES = { 2, 4};
+	
     
     
     
@@ -85,19 +83,19 @@ public class VendorController {
 		
 		
 		
-        int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+        int evalPageSize = pageSize.orElse(Constants.INITIAL_PAGE_SIZE);
        
-        int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+        int evalPage = (page.orElse(0) < 1) ? Constants.INITIAL_PAGE : page.get() - 1;
        
         Page<Vendor> vendorlist = vendorRepository.findAll(new PageRequest(evalPage, evalPageSize));
     
-        PagerModel pager = new PagerModel(vendorlist.getTotalPages(),vendorlist.getNumber(),BUTTONS_TO_SHOW);
+        PagerModel pager = new PagerModel(vendorlist.getTotalPages(),vendorlist.getNumber(),Constants.BUTTONS_TO_SHOW);
        
         modelAndView.addObject("clientlist",vendorlist);
        
         modelAndView.addObject("selectedPageSize", evalPageSize);
         
-        modelAndView.addObject("pageSizes", PAGE_SIZES);
+        modelAndView.addObject("pageSizes", Constants.PAGE_SIZES);
         modelAndView.addObject("baseUrl", "/dash/vendor/viewAll");
       
         modelAndView.addObject("pager", pager);
