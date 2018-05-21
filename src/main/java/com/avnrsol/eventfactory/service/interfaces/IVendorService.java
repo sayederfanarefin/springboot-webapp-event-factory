@@ -8,7 +8,6 @@ public interface IVendorService {
 	Vendor findById(Long id);
     void delete(Vendor vendor);
     Vendor updateVendor(Vendor vendor);
-    
     Vendor add(Vendor vendor);
     Page<Vendor> findAllVendor( int page);
     

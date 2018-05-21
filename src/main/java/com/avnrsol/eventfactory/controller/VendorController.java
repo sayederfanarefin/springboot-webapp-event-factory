@@ -1,10 +1,12 @@
 package com.avnrsol.eventfactory.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.avnrsol.eventfactory.Model.Vendor;
@@ -15,7 +17,7 @@ import com.avnrsol.eventfactory.service.interfaces.IVendorService;
 @RequestMapping(value= "/dash/vendor")
 public class VendorController {
 	
-//	@Autowired
+	@Autowired
 	private IVendorService vendorService;
 
 	
@@ -49,15 +51,25 @@ public class VendorController {
 			System.out.println(vendor.getEmail());
 			System.out.println(vendor.getDescription());
 		}
-		//vendorRepository.save(vendor);
-		vendorService.add(vendor);
-		//vendorService.add(vendor);
-//		Vendor v = vrepo.findVendorById((long) vv.getId());
-//		if(v !=null) {
-//			modelAndView.addObject("message", "Vendor " + v.getName() +" has been registered successfully");
-//		}else {
-//			modelAndView.addObject("message", "Some thing went wrong. Please try again later.");
-//		}
+
+		Vendor v = vendorService.add(vendor);
+		if(v !=null) {
+			modelAndView.addObject("message", "Vendor " + v.getName() +" has been registered successfully");
+		}else {
+			modelAndView.addObject("message", "Some thing went wrong. Please try again later.");
+		}
+		
+		return modelAndView;
+	}
+	
+	
+	@RequestMapping(value="/viewAll", method = RequestMethod.GET)
+	public ModelAndView viewAll(@RequestParam(value="pageId", required = false, defaultValue = "0") int pageId){
+		ModelAndView modelAndView = new ModelAndView();
+		Page<Vendor> vendors = vendorService.findAllVendor(pageId);
+		
+		modelAndView.setViewName("dash/vendor/viewAll");
+		modelAndView.addObject("vendors", vendors.getContent());
 		
 		return modelAndView;
 	}
