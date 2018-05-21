@@ -14,7 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.avnrsol.eventfactory.Model.PagerModel;
 import com.avnrsol.eventfactory.Model.Serviceo;
+import com.avnrsol.eventfactory.Model.Vendor;
+import com.avnrsol.eventfactory.Repository.ServiceCategoryRepository;
 import com.avnrsol.eventfactory.Repository.ServiceoRepository;
+import com.avnrsol.eventfactory.Repository.VendorRepository;
 import com.avnrsol.eventfactory.service.interfaces.IServiceoService;
 
 @Controller
@@ -38,11 +41,21 @@ public class ServiceController {
 	private ServiceoRepository serviceoRepository;
 	
 	
+	@Autowired
+	private ServiceCategoryRepository serviceCategoryRepository;
+	
+	@Autowired
+	private VendorRepository vendorRepository;
+	
+	
+	
 	@RequestMapping(value="/add", method = RequestMethod.GET)
 	public ModelAndView registration(){
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("serviceo", new Serviceo()); 
-		modelAndView.addObject("title", "Serviceo Information > Add Serviceo");
+		modelAndView.addObject("title", "Service Information > Add Service");
+		modelAndView.addObject("vendors", vendorRepository.findAll());
+		modelAndView.addObject("categories", serviceCategoryRepository.findAll());
 		modelAndView.setViewName("dash/serviceo/add");
 		return modelAndView;
 	}
@@ -56,10 +69,14 @@ public class ServiceController {
 		}else {
 			
 		}
+		
+		Vendor vv = serviceo.getVendor();
+		
+	
 
 		Serviceo v = serviceoService.add(serviceo);
 		if(v !=null) {
-			modelAndView.addObject("message", "Serviceo " + v.getName() +" has been registered successfully");
+			modelAndView.addObject("message", "Service " + v.getName() +" has been registered successfully");
 		}else {
 			modelAndView.addObject("message", "Some thing went wrong. Please try again later.");
 		}
@@ -81,7 +98,7 @@ public class ServiceController {
 		modelAndView.setViewName("dash/serviceo/viewAll");
 		
 	//	modelAndView.addObject("serviceos", serviceos.getContent());
-		modelAndView.addObject("title", "Serviceo Information > All Serviceos");
+		modelAndView.addObject("title", "Service Information > All Services");
 		
 		
 		

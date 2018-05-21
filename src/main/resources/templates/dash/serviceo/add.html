@@ -52,14 +52,27 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Phone</label>
-                                                
+                                                <label>Category</label>
+                                                 <select class="form-control"  th:field="*{serviceCategory}">
+											<option th:each="category : ${categories}"
+												th:text="${category.name}" th:value="${category.id} "
+												></option>
+										</select>
                                             </div>
                                         </div>
                                          <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Email address</label>
-                                               
+                                                <label for="exampleInputEmail1">Vendor</label>
+                                                
+                                                
+                                                
+                                               <select class="form-control"  th:field="*{vendor}">
+											<option th:each="vendor : ${vendors}"
+												th:text="${vendor.name}" th:value="${vendor.id} "
+												></option>
+										</select>
+										
+										
                                             </div>
                                         </div>
                                       
@@ -68,7 +81,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Address</label>
+                                                <label>Available</label>
                                                 
                                                 <select class="form-control" th:field="*{available}" >
 											<option value="true"> Available </option>
