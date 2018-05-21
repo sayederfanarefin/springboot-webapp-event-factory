@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 import com.avnrsol.eventfactory.Model.Image;
 import com.avnrsol.eventfactory.Model.Privilege;
 import com.avnrsol.eventfactory.Model.Role;
-import com.avnrsol.eventfactory.Model.Service;
+import com.avnrsol.eventfactory.Model.Serviceo;
 import com.avnrsol.eventfactory.Model.ServiceCategory;
 import com.avnrsol.eventfactory.Model.User;
 import com.avnrsol.eventfactory.Model.Vendor;
@@ -25,7 +25,7 @@ import com.avnrsol.eventfactory.Repository.ImageRepository;
 import com.avnrsol.eventfactory.Repository.PrivilegeRepository;
 import com.avnrsol.eventfactory.Repository.RoleRepository;
 import com.avnrsol.eventfactory.Repository.ServiceCategoryRepository;
-import com.avnrsol.eventfactory.Repository.ServiceRepository;
+import com.avnrsol.eventfactory.Repository.ServiceoRepository;
 import com.avnrsol.eventfactory.Repository.UsersRepository;
 import com.avnrsol.eventfactory.Repository.VendorRepository;
 
@@ -45,7 +45,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	private ImageRepository imageRepository;
 	
 	@Autowired
-	private ServiceRepository serviceRepository;
+	private ServiceoRepository serviceRepository;
 	
 	@Autowired
 	private VendorRepository vendorRepository;
@@ -141,7 +141,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		ServiceCategory serviceCategory  =  createServiceCategoryIfNotFound("default image", "used for testing",image);
 		
 		Vendor vendor = createVendorIfNotFound("avnrsol");
-		Service service = createServiceIfNotFound("service sdfsdf", "sdfsdfsdf dsfsdfsdf dsfsdf", image, serviceCategory, vendor);
+		Serviceo service = createServiceIfNotFound("service sdfsdf", "sdfsdfsdf dsfsdfsdf dsfsdf", image, serviceCategory, vendor);
 		
 		
 		
@@ -161,11 +161,11 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	
 	
 	@Transactional
-	private final Service createServiceIfNotFound(final String name, final String description, final Image image,
+	private final Serviceo createServiceIfNotFound(final String name, final String description, final Image image,
 			ServiceCategory serviceCategory, Vendor vendor) {
 		
 		
-		Service service  = new Service();
+		Serviceo service  = new Serviceo();
 		service.setDescription("Bla bla bla");
 		service.setName("bla");
 		service.addImage(image);

@@ -54,15 +54,7 @@ public class VendorController {
 		if(vendor == null) {
 			System.out.println("vendor null");
 		}else {
-			System.out.println("vendor not null");
-			System.out.println("address" + vendor.getAddress());
-			System.out.println("name" + vendor.getName());
-			System.out.println("phone" + vendor.getPhone());
-			System.out.println("country" + vendor.getCountry());
-			System.out.println("city" + vendor.getCity());
-			System.out.println("zip" + vendor.getZip());
-			System.out.println(vendor.getEmail());
-			System.out.println(vendor.getDescription());
+			
 		}
 
 		Vendor v = vendorService.add(vendor);

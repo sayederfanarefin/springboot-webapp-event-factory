@@ -59,7 +59,7 @@ public class Vendor {
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name = "fk_service_vendor")
-	private List<Service> services  = new ArrayList<Service>();
+	private List<Serviceo> services  = new ArrayList<Serviceo>();
 	
 
 	public Vendor() {
@@ -70,7 +70,7 @@ public class Vendor {
 
 
 	public Vendor(String email, String name, String address, String phone, String description, String city,
-			String country, List<Service> services) {
+			String country, List<Serviceo> services) {
 		super();
 		this.email = email;
 		this.name = name;
@@ -197,18 +197,18 @@ public class Vendor {
 
 
 
-	public List<Service> getServices() {
+	public List<Serviceo> getServices() {
 		return services;
 	}
 
 
 
 
-	public void setServices(List<Service> services) {
+	public void setServices(List<Serviceo> services) {
 		this.services = services;
 	}
 
-	public void addService(Service service) {
+	public void addService(Serviceo service) {
 		services.add(service);
 	}
 

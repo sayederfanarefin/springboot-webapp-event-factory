@@ -40,7 +40,7 @@ public class ServiceCategory {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_service_service_category")
-	private List<Service> Services = new ArrayList<Service>();
+	private List<Serviceo> Services = new ArrayList<Serviceo>();
 
 	public ServiceCategory() {
 		super();
@@ -79,15 +79,15 @@ public class ServiceCategory {
 		this.images = images;
 	}
 
-	public List<Service> getServices() {
+	public List<Serviceo> getServices() {
 		return Services;
 	}
 
-	public void setServices(List<Service> services) {
+	public void setServices(List<Serviceo> services) {
 		Services = services;
 	}
 
-	public ServiceCategory(String name, String description, List<Image> images, List<Service> services) {
+	public ServiceCategory(String name, String description, List<Image> images, List<Serviceo> services) {
 		super();
 		this.name = name;
 		this.description = description;

@@ -18,7 +18,7 @@ import com.avnrsol.eventfactory.Repository.VendorRepository;
 import com.avnrsol.eventfactory.service.interfaces.IVendorService;
 
 @Controller
-@RequestMapping(value= "/dash/vendor")
+@RequestMapping(value= "/dash/serviceo")
 public class ServiceController {
 	
 	
@@ -31,41 +31,33 @@ public class ServiceController {
     
     
 	@Autowired
-	private IVendorService vendorService;
+	private IVendorService serviceoService;
 
 	
 	@Autowired
-	private VendorRepository vendorRepository;
+	private VendorRepository serviceoRepository;
 	
 	
 	@RequestMapping(value="/add", method = RequestMethod.GET)
 	public ModelAndView registration(){
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("vendor", new Vendor()); 
+		modelAndView.addObject("serviceo", new Vendor()); 
 		modelAndView.addObject("title", "Vendor Information > Add Vendor");
-		modelAndView.setViewName("dash/vendor/add");
+		modelAndView.setViewName("dash/serviceo/add");
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView createNewVendor(@ModelAttribute Vendor vendor) {
+	public ModelAndView createNewVendor(@ModelAttribute Vendor serviceo) {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		if(vendor == null) {
-			System.out.println("vendor null");
+		if(serviceo == null) {
+			System.out.println("serviceo null");
 		}else {
-			System.out.println("vendor not null");
-			System.out.println("address" + vendor.getAddress());
-			System.out.println("name" + vendor.getName());
-			System.out.println("phone" + vendor.getPhone());
-			System.out.println("country" + vendor.getCountry());
-			System.out.println("city" + vendor.getCity());
-			System.out.println("zip" + vendor.getZip());
-			System.out.println(vendor.getEmail());
-			System.out.println(vendor.getDescription());
+			
 		}
 
-		Vendor v = vendorService.add(vendor);
+		Vendor v = serviceoService.add(serviceo);
 		if(v !=null) {
 			modelAndView.addObject("message", "Vendor " + v.getName() +" has been registered successfully");
 		}else {
@@ -84,11 +76,11 @@ public class ServiceController {
 		
 		
 		ModelAndView modelAndView = new ModelAndView();
-		Page<Vendor> vendors = vendorService.findAllVendor(0);
+		Page<Vendor> serviceos = serviceoService.findAllVendor(0);
 		
-		modelAndView.setViewName("dash/vendor/viewAll");
+		modelAndView.setViewName("dash/serviceo/viewAll");
 		
-	//	modelAndView.addObject("vendors", vendors.getContent());
+	//	modelAndView.addObject("serviceos", serviceos.getContent());
 		modelAndView.addObject("title", "Vendor Information > All Vendors");
 		
 		
@@ -97,16 +89,16 @@ public class ServiceController {
        
         int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
        
-        Page<Vendor> vendorlist = vendorRepository.findAll(new PageRequest(evalPage, evalPageSize));
+        Page<Vendor> serviceolist = serviceoRepository.findAll(new PageRequest(evalPage, evalPageSize));
     
-        PagerModel pager = new PagerModel(vendorlist.getTotalPages(),vendorlist.getNumber(),BUTTONS_TO_SHOW);
+        PagerModel pager = new PagerModel(serviceolist.getTotalPages(),serviceolist.getNumber(),BUTTONS_TO_SHOW);
        
-        modelAndView.addObject("clientlist",vendorlist);
+        modelAndView.addObject("clientlist",serviceolist);
        
         modelAndView.addObject("selectedPageSize", evalPageSize);
         
         modelAndView.addObject("pageSizes", PAGE_SIZES);
-        modelAndView.addObject("baseUrl", "/dash/vendor/viewAll");
+        modelAndView.addObject("baseUrl", "/dash/serviceo/viewAll");
       
         modelAndView.addObject("pager", pager);
         

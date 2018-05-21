@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "service")
-public class Service {
+public class Serviceo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,7 +52,7 @@ public class Service {
 	@JsonBackReference
 	private Vendor vendor;
 
-	public Service() {
+	public Serviceo() {
 		super();
 	}
 
@@ -108,7 +108,7 @@ public class Service {
 	}
 
 
-	public Service(String name, String description, boolean available, List<Image> images,
+	public Serviceo(String name, String description, boolean available, List<Image> images,
 			ServiceCategory serviceCategory, Vendor vendor) {
 		super();
 		this.name = name;

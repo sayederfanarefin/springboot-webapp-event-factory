@@ -10,5 +10,6 @@ public interface IServiceCategoryService {
     ServiceCategory updateServiceCategory(ServiceCategory serviceCategory);
     
     Page<ServiceCategory> findAllServiceCategory( int page);
+	ServiceCategory add(ServiceCategory serviceCategory);
     
 }
