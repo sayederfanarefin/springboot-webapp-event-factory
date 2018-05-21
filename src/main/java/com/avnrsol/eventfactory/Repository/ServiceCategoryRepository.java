@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.avnrsol.eventfactory.Model.ServiceCategory;
 
 @Repository("serviceCategoryRepository")
-public interface ServiceCategoryRepository extends JpaRepository<ServiceCategory, Integer>{
+public interface ServiceCategoryRepository extends JpaRepository<ServiceCategory, Long>{
 	ServiceCategory findServiceCategoryById(Long id);
 	ServiceCategory findByName(String name);
 }

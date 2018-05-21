@@ -6,7 +6,7 @@ import com.avnrsol.eventfactory.Model.Role;
 
 public interface IRoleService {
 	Role findByName(String name);
-	Role findById(long id);
+	Role findById(Long id);
     void delete(Role role);
     Role updateRole(Role role);
     

@@ -22,7 +22,7 @@ public class ServiceCategory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "service_category_id")
-	private int id;
+	private Long id;
 	
 	@Column(name = "name")
 	@NotEmpty(message = "*Please provide your name")
@@ -47,11 +47,11 @@ public class ServiceCategory {
 	
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

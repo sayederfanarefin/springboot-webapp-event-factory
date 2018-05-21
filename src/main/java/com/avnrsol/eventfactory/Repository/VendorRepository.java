@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.avnrsol.eventfactory.Model.Vendor;
 
 @Repository("vendorRepository")
-public interface VendorRepository extends JpaRepository<Vendor, Integer>{
-	Vendor findVendorById(Long id);
+public interface VendorRepository extends JpaRepository<Vendor, Long>{
+	Vendor findById(Long id);
     Vendor findVendorByServices_Id(Long ServiceId);
     List<Vendor> findVendorByCity(String city);
     List<Vendor> findVendorByCountry(String country);

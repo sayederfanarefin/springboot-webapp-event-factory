@@ -23,7 +23,7 @@ public class Vendor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "vendor_id")
-	private int id;
+	private Long id;
 	
 	
 	@Column(name = "email")
@@ -42,6 +42,8 @@ public class Vendor {
 	
 	
 	private String phone;
+	
+	private String zip;
 	
 	@Column(columnDefinition="LONGTEXT")
 	private String description;
@@ -83,14 +85,14 @@ public class Vendor {
 
 
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
 
 
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -209,5 +211,20 @@ public class Vendor {
 	public void addService(Service service) {
 		services.add(service);
 	}
+
+
+
+
+	public String getZip() {
+		return zip;
+	}
+
+
+
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+	
 	
 }

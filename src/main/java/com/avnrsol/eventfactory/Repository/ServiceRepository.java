@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.avnrsol.eventfactory.Model.Service;
 
 @Repository("serviceRepository")
-public interface ServiceRepository extends JpaRepository<Service, Integer>{
+public interface ServiceRepository extends JpaRepository<Service, Long>{
 	Service findServiceById(Long id);
     List<Service> findServiceByAvailable(boolean available);
     List<Service> findServiceByServiceCategory_Id(Long serviceCategoryId);

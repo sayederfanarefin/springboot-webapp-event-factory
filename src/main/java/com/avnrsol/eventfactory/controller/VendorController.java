@@ -1,30 +1,20 @@
 package com.avnrsol.eventfactory.controller;
 
-import java.util.Iterator;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
-import com.avnrsol.eventfactory.Model.Role;
-import com.avnrsol.eventfactory.Model.User;
-import com.avnrsol.eventfactory.configuration.Constants;
-import com.avnrsol.eventfactory.service.UserService;
+import com.avnrsol.eventfactory.Model.Vendor;
+import com.avnrsol.eventfactory.service.interfaces.IVendorService;
 
 @Controller
 @RequestMapping(value= "/dash/vendor")
 public class VendorController {
 	
-	@Autowired
-	private UserService userService;
+//	@Autowired
+	private IVendorService vendorService;
 
 	
 	
@@ -32,30 +22,24 @@ public class VendorController {
 	@RequestMapping(value="/add", method = RequestMethod.GET)
 	public ModelAndView registration(){
 		ModelAndView modelAndView = new ModelAndView();
-		User user = new User();
-		modelAndView.addObject("user", user);
+		modelAndView.addObject("vendor", new Vendor()); 
+	   
 		modelAndView.setViewName("dash/vendor/add");
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
+	public ModelAndView createNewVendor(@ModelAttribute Vendor vendor) {
 		ModelAndView modelAndView = new ModelAndView();
-		User userExists = userService.findUserByEmail(user.getEmail());
-		if (userExists != null) {
-			bindingResult
-					.rejectValue("email", "error.user",
-							"There is already a user registered with the email provided");
-		}
-		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("registration");
-		} else {
-			userService.registerNewUserAccount(user);
-			modelAndView.addObject("successMessage", "User has been registered successfully");
-			modelAndView.addObject("user", new User());
-			modelAndView.setViewName("registration");
-			
-		}
+		
+		vendorService.add(vendor);
+//		Vendor v = vrepo.findVendorById((long) vv.getId());
+//		if(v !=null) {
+//			modelAndView.addObject("message", "Vendor " + v.getName() +" has been registered successfully");
+//		}else {
+//			modelAndView.addObject("message", "Some thing went wrong. Please try again later.");
+//		}
+		
 		return modelAndView;
 	}
 	

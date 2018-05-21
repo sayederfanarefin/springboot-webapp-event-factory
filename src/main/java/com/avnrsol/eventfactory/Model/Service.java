@@ -15,8 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
@@ -26,7 +24,7 @@ public class Service {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "service_id")
-	private int id;
+	private Long id;
 
 	@Column(name = "name")
 	
@@ -59,11 +57,11 @@ public class Service {
 	}
 
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
