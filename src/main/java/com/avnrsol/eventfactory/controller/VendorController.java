@@ -20,32 +20,25 @@ import com.avnrsol.eventfactory.configuration.Constants;
 import com.avnrsol.eventfactory.service.UserService;
 
 @Controller
-public class LoginController {
+@RequestMapping(value= "/dash/vendor")
+public class VendorController {
 	
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value= "/login", method = RequestMethod.GET)
-	public ModelAndView login(){
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("logIn");
-		
-		System.out.println("->->->->->->->->->->->->->->->-> login");
-		
-		return modelAndView;
-	}
 	
 	
-	@RequestMapping(value="/registration", method = RequestMethod.GET)
+	
+	@RequestMapping(value="/add", method = RequestMethod.GET)
 	public ModelAndView registration(){
 		ModelAndView modelAndView = new ModelAndView();
 		User user = new User();
 		modelAndView.addObject("user", user);
-		modelAndView.setViewName("registration");
+		modelAndView.setViewName("dash/vendor/add");
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/registration", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
 		User userExists = userService.findUserByEmail(user.getEmail());
@@ -64,31 +57,6 @@ public class LoginController {
 			
 		}
 		return modelAndView;
-	}
-	
-	@RequestMapping(value="/home", method = RequestMethod.GET)
-	public RedirectView home(){
-		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findUserByEmail(auth.getName());
-		
-		String sb = "";
-		Iterator<Role> roles = user.getRoles().iterator();
-		while (roles.hasNext()) {
-			Role r = roles.next();
-			sb = r.getName();
-		}
-		
-		System.out.println("->->->->->->->->->->->->->->->-> redirect method");
-		
-		if(sb.equals(Constants.SUPER_ADMIN)) {
-			return new RedirectView("/dash/superAdmin/");
-		}else if(sb.equals(Constants.ADMIN)) {
-			return new RedirectView("dash/admin/");
-		}else {
-			return new RedirectView("dash/customer/");
-		}
-		
 	}
 	
 }
