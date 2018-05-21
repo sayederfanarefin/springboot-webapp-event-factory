@@ -92,6 +92,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 	    web
 	       .ignoring()
-	       .antMatchers("/admin/resources/**", "/admin/static/**", "/admin/css/**", "/admin/js/**", "/admin/images/**");
+	       .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/adminDash/**");
 	}
 }
