@@ -76,8 +76,10 @@ public class VendorController {
 		
 		if(v !=null) {
 			modelAndView.addObject("message", "Vendor " + v.getName() +" has been registered successfully");
+			modelAndView.addObject("m",  0);
 		}else {
 			modelAndView.addObject("message", "Some thing went wrong. Please try again later.");
+			modelAndView.addObject("m",  1);
 		}
 		
 		
