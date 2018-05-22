@@ -37,7 +37,7 @@
                                 <h4 class="title">Add Vendor</h4>
                             </div>
                             <div class="content">
-                                <form th:action="@{/dash/vendor/add}" th:object="${vendor}" method="post">
+                                <form th:action="@{/dash/vendor/add}" th:object="${vendor}" method="post" enctype="multipart/form-data">
                                     <div class="row">
                                         
                                         <div class="col-md-12">
@@ -103,6 +103,17 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Image</label>
+                                                <input type="file" name="file" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
                                     <div class="text-center">
                                         <button type="submit" value="Submit" class="btn btn-info btn-fill btn-wd">Create</button>
                                     </div>

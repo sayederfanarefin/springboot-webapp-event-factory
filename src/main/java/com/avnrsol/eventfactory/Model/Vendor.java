@@ -61,6 +61,11 @@ public class Vendor {
 	@JoinColumn(name = "fk_service_vendor")
 	private List<Serviceo> services  = new ArrayList<Serviceo>();
 	
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_vendor_image")
+	private List<Image> images = new ArrayList<Image>();
+	
 
 	public Vendor() {
 		super();
@@ -225,6 +230,22 @@ public class Vendor {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
+
+
+
+
+	public List<Image> getImages() {
+		return images;
+	}
+
+
+
+
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
+	
+	
 	
 	
 }

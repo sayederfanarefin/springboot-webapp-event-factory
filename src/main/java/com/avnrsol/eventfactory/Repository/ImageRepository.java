@@ -9,4 +9,5 @@ import com.avnrsol.eventfactory.Model.Image;
 public interface ImageRepository extends JpaRepository<Image, Long>{
 	Image findImageById(Long id);
 	Image findImageByUrl(String url);
+	Image findById(Long id);
 }
