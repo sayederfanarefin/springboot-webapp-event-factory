@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Error &#8211; Event Factory</title>
+
+        <div th:replace="commons :: head"></div>
+    </head>
+
+    <body class="page home page-template-default">
+        <div id="page" class="hfeed site">
+             <div th:replace="commons :: header"></div>
+
+            <div id="content" class="site-content" tabindex="-1">
+            	<div class="container">
+
+                	<nav class="woocommerce-breadcrumb"><a href="home.html">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Error 404</nav>
+                    <div id="primary" class="content-area">
+                		<main id="main" class="site-main">
+                            <div class="center-block">
+                                <div class="info-404">
+                                    <div class="text-xs-center inner-bottom-xs">
+                                        <h2 class="display-3">500!</h2>
+                                        <p class="lead">Internal Server Error!.</p>
+                                        <hr class="m-y-2">
+                                        <div class="sub-form-row inner-bottom-xs">
+                                            <div class="widget woocommerce widget_product_search">
+                                                <form class="woocommerce-product-search" method="get" role="search">
+                                                    <label for="woocommerce-product-search-field" class="screen-reader-text">Search for:</label>
+                                                    <input type="search" title="Search for:" name="s" value="" placeholder="Search Products…" class="search-field" id="woocommerce-product-search-field">
+                                                    <input type="submit" value="Search">
+                                                    <input type="hidden" value="product" name="post_type">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+                </div>
+            </div>
+
+            
+  <div th:replace="commons :: footer"></div>
+
+        </div><!-- #page -->
+
+   
+
+    </body>
+</html>
