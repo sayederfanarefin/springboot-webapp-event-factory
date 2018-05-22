@@ -1,5 +1,8 @@
 package com.avnrsol.eventfactory.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +13,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.avnrsol.eventfactory.Model.Image;
 import com.avnrsol.eventfactory.Model.PagerModel;
 import com.avnrsol.eventfactory.Model.ServiceCategory;
 import com.avnrsol.eventfactory.Repository.ServiceCategoryRepository;
 import com.avnrsol.eventfactory.configuration.Constants;
+import com.avnrsol.eventfactory.service.ImageService;
 import com.avnrsol.eventfactory.service.interfaces.IServiceCategoryService;
 
 @Controller
 @RequestMapping(value= "/dash/serviceCategory")
 public class ServiceCategoryController {
 	
-    
+	@Autowired
+	ImageService imageService;
     
     
 	@Autowired
@@ -43,7 +50,7 @@ public class ServiceCategoryController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView createNewServiceCategory(@ModelAttribute ServiceCategory serviceCategory) {
+	public ModelAndView createNewServiceCategory(@ModelAttribute ServiceCategory serviceCategory, @RequestParam("file") MultipartFile file) {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		if(serviceCategory == null) {
@@ -51,6 +58,19 @@ public class ServiceCategoryController {
 		}else {
 			
 		}
+		
+		List<MultipartFile> files = new ArrayList<MultipartFile>();
+		files.add(file);
+		try {
+			List<Image> i = imageService.saveUploadedFiles(files);
+			
+			serviceCategory.setImages(i);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 		ServiceCategory v = serviceCategoryService.add(serviceCategory);
 		if(v !=null) {

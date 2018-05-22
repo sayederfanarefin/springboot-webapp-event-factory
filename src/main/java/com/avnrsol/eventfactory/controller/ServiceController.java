@@ -1,5 +1,8 @@
 package com.avnrsol.eventfactory.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.avnrsol.eventfactory.Model.Image;
 import com.avnrsol.eventfactory.Model.PagerModel;
 import com.avnrsol.eventfactory.Model.Serviceo;
 import com.avnrsol.eventfactory.Model.Vendor;
@@ -19,6 +24,7 @@ import com.avnrsol.eventfactory.Repository.ServiceCategoryRepository;
 import com.avnrsol.eventfactory.Repository.ServiceoRepository;
 import com.avnrsol.eventfactory.Repository.VendorRepository;
 import com.avnrsol.eventfactory.configuration.Constants;
+import com.avnrsol.eventfactory.service.ImageService;
 import com.avnrsol.eventfactory.service.interfaces.IServiceoService;
 
 @Controller
@@ -30,6 +36,9 @@ public class ServiceController {
 	@Autowired
 	private IServiceoService serviceoService;
 
+	@Autowired
+	ImageService imageService;
+	
 	
 	@Autowired
 	private ServiceoRepository serviceoRepository;
@@ -55,7 +64,7 @@ public class ServiceController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView createNewServiceo(@ModelAttribute Serviceo serviceo) {
+	public ModelAndView createNewServiceo(@ModelAttribute Serviceo serviceo, @RequestParam("file") MultipartFile file) {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		if(serviceo == null) {
@@ -67,6 +76,18 @@ public class ServiceController {
 		Vendor vv = serviceo.getVendor();
 		
 	
+		List<MultipartFile> files = new ArrayList<MultipartFile>();
+		files.add(file);
+		try {
+			List<Image> i = imageService.saveUploadedFiles(files);
+			
+			serviceo.setImages(i);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 		Serviceo v = serviceoService.add(serviceo);
 		if(v !=null) {
