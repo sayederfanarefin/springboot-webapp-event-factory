@@ -87,37 +87,34 @@ public class ImageService implements IImageService {
 			if (file.isEmpty()) {
 				continue; // next pls
 			}
-
-//			byte[] bytes = file.getBytes();
-//			Path path = Paths.get(UPLOADED_FOLDER + getSaltString()+URLEncoder.encode(file.getOriginalFilename(), "UTF-8"));
-//			
-//			System.out.println(path.toString());
-//			
-//			
-//			Files.write(path, bytes);
 			
 			String fileName = storageService.store(file);
 			
-			
 			 Resource fileo = storageService.loadAsResource(fileName);
 			 
-			
 			 System.out.println(fileo.getURL().toString());
 			 
-			
-			 
 			 String url = DOWNLOAD_FOLDER+"/"+fileo.getFilename().toString();
-		//	 System.out.println("demo download url when u add the base url: " + url);
-			 
-			 
-		//	 System.out.println(fileo.getFilename().toString());
-			 
-			 
-			addImage( new Image("a", "a", url));
-			imagesToBeReturned.add(findByUrl(fileo.getFilename().toString()));
+			
+			imagesToBeReturned.add(addImage( new Image("a", "a", url)));
 
 		}
 		return imagesToBeReturned;
+	}
+	
+	@Override
+	public Image saveUploadedFile(MultipartFile file) throws IOException {
+
+			
+			String fileName = storageService.store(file);
+			
+			 Resource fileo = storageService.loadAsResource(fileName);
+			 
+			 System.out.println(fileo.getURL().toString());
+			 
+			 String url = DOWNLOAD_FOLDER+"/"+fileo.getFilename().toString();
+			
+			return addImage( new Image("a", "a", url));
 	}
 	
 	protected String getSaltString() {

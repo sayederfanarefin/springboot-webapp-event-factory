@@ -75,22 +75,37 @@ public class ServiceController {
 		
 		Vendor vv = serviceo.getVendor();
 		
-	
-		List<MultipartFile> files = new ArrayList<MultipartFile>();
-		files.add(file);
 		try {
-			List<Image> i = imageService.saveUploadedFiles(files);
-			
-			serviceo.setImages(i);
-			
-		} catch (IOException e) {
+			Image image = imageService.saveUploadedFile(file);
+			serviceo.addImage(image);
+		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
 		
+//		List<MultipartFile> files = new ArrayList<MultipartFile>();
+//		files.add(file);
+//		try {
+//			List<Image> i = imageService.saveUploadedFiles(files);
+//			
+//			for(int g =0; g < i.size(); g++) {
+//				serviceo.addImage(i.get(g));
+//			}
+//			//System.out.println(i.size());
+//			//System.out.println(i.get(0).getUrl());
+//			//serviceo.setImages(i);
+//			
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
 
 		Serviceo v = serviceoService.add(serviceo);
 		if(v !=null) {
+			
+			System.out.println("size images after add "+v.getImages().size() + " ||| " + v.getImages().get(0).getUrl());
+			
 			modelAndView.addObject("message", "Service " + v.getName() +" has been registered successfully");
 			modelAndView.addObject("m",  0);
 		}else {

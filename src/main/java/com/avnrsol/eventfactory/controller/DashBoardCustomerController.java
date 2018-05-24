@@ -12,8 +12,8 @@ import com.avnrsol.eventfactory.Model.User;
 import com.avnrsol.eventfactory.service.UserService;
 
 @Controller
-@RequestMapping(value= "/dash/admin")
-public class DashBoardController {
+@RequestMapping(value= "/dash/customer")
+public class DashBoardCustomerController {
 	
 	@Autowired
 	private UserService userService;
@@ -27,7 +27,7 @@ public class DashBoardController {
 		
 		System.out.println("->->->->->->->->->->->->->->->-> admin dash board");
 		modelAndView.addObject("title", "Dashboard");
-		modelAndView.setViewName("dash/admindash");
+		modelAndView.setViewName("my-account");
 		
 		return modelAndView;
 	}

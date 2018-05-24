@@ -19,4 +19,5 @@ public interface IImageService {
 	
 	
 	List<Image> saveUploadedFiles(List<MultipartFile> files) throws IOException;
+	Image saveUploadedFile(MultipartFile file) throws IOException;
 }
