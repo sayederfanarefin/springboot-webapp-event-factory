@@ -63,7 +63,7 @@
 
             <header id="masthead" class="site-header header-v1">
                 <div class="container hidden-md-down">
-                    <div class="row">
+                    <div class="row" th:fragment="header-upper">
 
                         <!-- ============================================================= Header Logo ============================================================= -->
                         <div class="header-logo">
@@ -161,7 +161,7 @@
                         
                     </div><!-- /.row -->
 
-                    <div class="row">
+                    <div class="row" th:fragment="header-sidebar">
                         <div class="col-xs-12 col-lg-3">
                             <nav>
                                 <ul class="list-group vertical-menu yamm make-absolute">
@@ -174,7 +174,7 @@
                                     <li id="menu-item-2695" class="menu-item menu-item-has-children animate-dropdown dropdown" th:each="clientlist : ${clientlist}">
                                         <a data-hover="dropdown" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true"  th:text="${clientlist.name}">A</a>
                                         <ul role="menu" class=" dropdown-menu"  th:each="service : ${clientlist.Services}" >
-                                              <li class="menu-item animate-dropdown"><a href="" th:text="${service.name}" >L</a></li>
+                                              <li class="menu-item animate-dropdown"><a th:href="@{/service?id=} + ${service.id}" th:text="${service.name}" >L</a></li>
                                         </ul>
                                     </li>
                                 </ul>
