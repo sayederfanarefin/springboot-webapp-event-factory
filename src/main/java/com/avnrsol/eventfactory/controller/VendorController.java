@@ -120,8 +120,6 @@ public class VendorController {
       
         modelAndView.addObject("pager", pager);
         
-        
-        
 		return modelAndView;
 	}
 	
