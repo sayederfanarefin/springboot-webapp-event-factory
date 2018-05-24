@@ -190,9 +190,9 @@
                                 <div class="related products">
                                     <h2>Related Products</h2>
 
-                                    <ul class="products columns-5" th:each="related : ${related}">
+                                    <ul class="products columns-5" >
 												
-                                        <li class="product" >
+                                        <li class="product" th:each="related : ${related}">
                                             <div class="product-outer">
                                                 <div class="product-inner">
                                                     <span class="loop-product-categories"><a th:href="@{/serviceCategory?id=} + ${related.serviceCategory.id}" rel="tag" th:text="${related.serviceCategory.name}"></a></span>

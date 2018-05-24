@@ -48,7 +48,7 @@
             <a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
             <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
 
-            <div class="top-bar hidden-md-down">
+           <!--   <div class="top-bar hidden-md-down">
                 <div class="container">
                    
                     <nav>
@@ -58,7 +58,7 @@
                         </ul>
                     </nav>
                 </div>
-            </div><!-- /.top-bar -->
+            </div>-->
 
 
             <header id="masthead" class="site-header header-v1">
@@ -173,8 +173,8 @@
 
                                     <li id="menu-item-2695" class="menu-item menu-item-has-children animate-dropdown dropdown" th:each="clientlist : ${clientlist}">
                                         <a data-hover="dropdown" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true"  th:text="${clientlist.name}">A</a>
-                                        <ul role="menu" class=" dropdown-menu"  th:each="service : ${clientlist.Services}" >
-                                              <li class="menu-item animate-dropdown"><a th:href="@{/service?id=} + ${service.id}" th:text="${service.name}" >L</a></li>
+                                        <ul role="menu" class=" dropdown-menu"   >
+                                              <li class="menu-item animate-dropdown" th:each="service : ${clientlist.Services}"><a th:href="@{/service?id=} + ${service.id}" th:text="${service.name}" >L</a></li>
                                         </ul>
                                     </li>
                                 </ul>
