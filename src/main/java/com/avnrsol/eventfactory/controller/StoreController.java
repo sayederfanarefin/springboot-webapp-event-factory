@@ -42,7 +42,7 @@ public class StoreController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("single-product-sidebar");
 		modelAndView.addObject("serv", serviceoRepository.findServiceoById(id));
-		modelAndView.addObject("related", serviceoRepository.findTop5ServiceoByServiceCategory_Id(serviceoRepository.findServiceoById(id).getServiceCategory().getId()));
+		modelAndView.addObject("related", serviceoRepository.findTop4ServiceoByServiceCategory_Id(serviceoRepository.findServiceoById(id).getServiceCategory().getId()));
 		return modelAndView;
 	}
 	

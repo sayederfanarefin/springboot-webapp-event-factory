@@ -136,7 +136,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 				new ArrayList<Role>(Arrays.asList(employeeRole)));
 		
 		
-		Image image = createImageIfNotFound("default image", "used for testing", "/images/event_logo.jpg");
+		Image image = createImageIfNotFound("default image", "used for testing", "a.jpg");
 		
 		ServiceCategory serviceCategory  =  createServiceCategoryIfNotFound("default image", "used for testing",image);
 		

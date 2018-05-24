@@ -29,6 +29,10 @@ public class Serviceo {
 	@Column(name = "name")
 	
 	private String name;
+	
+	private double price;
+	
+	private double discount;
 
 	@Column(columnDefinition = "LONGTEXT")
 	private String description;
@@ -130,6 +134,26 @@ public class Serviceo {
 	}
 	public void addImage(Image image) {
 		images.add(image);
+	}
+
+
+	public double getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+
+	public double getDiscount() {
+		return discount;
+	}
+
+
+	public void setDiscount(double discount) {
+		this.discount = discount;
 	}
 	
 	

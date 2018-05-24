@@ -64,13 +64,14 @@
 
                                 <div class="single-product-wrapper">
                                     <div class="product-images-wrapper">
-                                       <!--  <span class="onsale">Sale!</span> -->
+                                     <span class="onsale" th:if="*{serv.discount > 0}">Sale!</span> 
                                         <div class="images electro-gallery">
                                             
                                             <div class="thumbnails-all columns-5 owl-carousel">
-                                                <a href="assets/images/single-product/single-thumb1.jpg" class="first" title=""><img src="assets/images/blank.gif" data-echo="assets/images/single-product/single-thumb1.jpg" class="wp-post-image" alt=""></a>
+                                               
+                                                <a href="" class="" title="" class="first"> <img class="wp-post-image" th:src="${serv.images[0].url}" th:alt="${serv.images[0].name}"> </a>
 
-                                                <a href="assets/images/single-product/single-thumb2.jpg" class="" title=""><img src="assets/images/blank.gif" data-echo="assets/images/single-product/single-thumb2.jpg" class="wp-post-image" alt=""></a>
+                                                <a href="" class="" title="" th:each="img : ${serv.images}" > <img class="wp-post-image" th:src="${img.url}" th:alt="${img.name}"> </a>
 
 
                                             </div><!-- .thumbnails-all -->
@@ -90,12 +91,18 @@
                                         </span><!-- /.loop-product-categories -->
                                         
                                           <hr class="single-product-title-divider" />
+<div th:switch="${serv.available}"> 
 
-
-                                        <div class="availability in-stock">
-                                            Availablity: <span>In stock</span>
+                                        <div class="availability in-stock" th:case="true">
+                                            Availablity: <span >In stock</span> 
                                         </div><!-- .availability -->
-
+                                        
+                                        <div class="availability out-of-stock" th:case="*">
+                                            Availablity: <span >Out of stock</span> 
+                                        </div>
+                                        
+                                        
+</div>
                                         <hr class="single-product-title-divider" />
 
                                         
@@ -106,9 +113,9 @@
                                             <p> Vendor: <a th:href="@{/vendor?id=} + ${serv.vendor.id}" th:text="${serv.vendor.name}"> mm </a> </p>
                                         </div><!-- .description -->
 
-                                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" th:with="result=${serv.price - (serv.price * (serv.discount / 100 ))}">
 
-                                            <p class="price"><span class="electro-price"><ins><span class="amount">&#36;1,215.00</span></ins> <del><span class="amount">&#36;2,299.00</span></del></span></p>
+                                            <p class="price"><span class="electro-price"><ins><span class="amount" th:text="${result}" ></span></ins> <del><span th:if="*{serv.discount > 0}" class="amount" th:text="${serv.price}"></span></del></span></p>
 
                                             <meta itemprop="price" content="1215" />
                                             <meta itemprop="priceCurrency" content="USD" />
@@ -183,127 +190,36 @@
                                 <div class="related products">
                                     <h2>Related Products</h2>
 
-                                    <ul class="products columns-5">
-
-                                        <li class="product">
+                                    <ul class="products columns-5" th:each="related : ${related}">
+												
+                                        <li class="product" >
                                             <div class="product-outer">
                                                 <div class="product-inner">
-                                                    <span class="loop-product-categories"><a href="product-category.html" rel="tag">Smartphones</a></span>
-                                                    <a href="single-product.html">
-                                                        <h3>Notebook Black Spire V Nitro  VN7-591G</h3>
+                                                    <span class="loop-product-categories"><a th:href="@{/serviceCategory?id=} + ${related.serviceCategory.id}" rel="tag" th:text="${related.serviceCategory.name}"></a></span>
+                                                    <a th:href="@{/service?id=} + ${related.id}">
+                                                        <h3 th:text="${related.name}"></h3>
                                                         <div class="product-thumbnail">
-                                                            <img data-echo="assets/images/products/1.jpg" src="assets/images/blank.gif" alt="">
+                                                            <img th:src="${related.images[0].url}" th:alt="${related.images[0].name}">
                                                         </div>
                                                     </a>
 
                                                     <div class="price-add-to-cart">
                                                         <span class="price">
                                                             <span class="electro-price">
-                                                                <ins><span class="amount">&#036;1,999.00</span></ins>
+                                                                <ins><span class="amount" th:text="${related.price}"></span></ins>
                                                             </span>
                                                         </span>
                                                         <a rel="nofollow" href="single-product.html" class="button add_to_cart_button">Add to cart</a>
                                                     </div><!-- /.price-add-to-cart -->
 
-                                                    <div class="hover-area">
-                                                        <div class="action-buttons">
-                                                            <a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
-                                                            <a href="#" class="add-to-compare-link">Compare</a>
-                                                        </div>
-                                                    </div>
+                                                   
                                                 </div><!-- /.product-inner -->
                                             </div><!-- /.product-outer -->
                                         </li>
 
-                                        <li class="product">
-                                            <div class="product-outer">
-                                                <div class="product-inner">
-                                                    <span class="loop-product-categories"><a href="product-category.html" rel="tag">Smartphones</a></span>
-                                                    <a href="single-product.html">
-                                                        <h3>Notebook Black Spire V Nitro  VN7-591G</h3>
-                                                        <div class="product-thumbnail">
-                                                            <img data-echo="assets/images/products/2.jpg" src="assets/images/blank.gif" alt="">
-                                                        </div>
-                                                    </a>
+                                       
 
-                                                    <div class="price-add-to-cart">
-                                                        <span class="price">
-                                                            <span class="electro-price">
-                                                                <ins><span class="amount">&#036;1,999.00</span></ins>
-                                                            </span>
-                                                        </span>
-                                                        <a rel="nofollow" href="single-product.html" class="button add_to_cart_button">Add to cart</a>
-                                                    </div><!-- /.price-add-to-cart -->
-
-                                                    <div class="hover-area">
-                                                        <div class="action-buttons">
-                                                            <a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
-                                                            <a href="#" class="add-to-compare-link">Compare</a>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- /.product-inner -->
-                                            </div><!-- /.product-outer -->
-                                        </li>
-
-                                        <li class="product">
-                                            <div class="product-outer">
-                                                <div class="product-inner">
-                                                    <span class="loop-product-categories"><a href="product-category.html" rel="tag">Smartphones</a></span>
-                                                    <a href="single-product.html">
-                                                        <h3>Notebook Black Spire V Nitro  VN7-591G</h3>
-                                                        <div class="product-thumbnail">
-                                                            <img data-echo="assets/images/products/3.jpg" src="assets/images/blank.gif" alt="">
-                                                        </div>
-                                                    </a>
-
-                                                    <div class="price-add-to-cart">
-                                                        <span class="price">
-                                                            <span class="electro-price">
-                                                                <ins><span class="amount">&#036;1,999.00</span></ins>
-                                                            </span>
-                                                        </span>
-                                                        <a rel="nofollow" href="single-product.html" class="button add_to_cart_button">Add to cart</a>
-                                                    </div><!-- /.price-add-to-cart -->
-
-                                                    <div class="hover-area">
-                                                        <div class="action-buttons">
-                                                            <a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
-                                                            <a href="#" class="add-to-compare-link">Compare</a>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- /.product-inner -->
-                                            </div><!-- /.product-outer -->
-                                        </li>
-
-                                        <li class="product">
-                                            <div class="product-outer">
-                                                <div class="product-inner">
-                                                    <span class="loop-product-categories"><a href="product-category.html" rel="tag">Smartphones</a></span>
-                                                    <a href="single-product.html">
-                                                        <h3>Notebook Black Spire V Nitro  VN7-591G</h3>
-                                                        <div class="product-thumbnail">
-                                                            <img data-echo="assets/images/products/4.jpg" src="assets/images/blank.gif" alt="">
-                                                        </div>
-                                                    </a>
-
-                                                    <div class="price-add-to-cart">
-                                                        <span class="price">
-                                                            <span class="electro-price">
-                                                                <ins><span class="amount">&#036;1,999.00</span></ins>
-                                                            </span>
-                                                        </span>
-                                                        <a rel="nofollow" href="single-product.html" class="button add_to_cart_button">Add to cart</a>
-                                                    </div><!-- /.price-add-to-cart -->
-
-                                                    <div class="hover-area">
-                                                        <div class="action-buttons">
-                                                            <a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
-                                                            <a href="#" class="add-to-compare-link">Compare</a>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- /.product-inner -->
-                                            </div><!-- /.product-outer -->
-                                        </li>
+                                       
                                     </ul><!-- /.products -->
                                 </div><!-- /.related -->
                             </div>
