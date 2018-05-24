@@ -107,13 +107,13 @@ public class ImageService implements IImageService {
 			
 			 
 			 String url = DOWNLOAD_FOLDER+"/"+fileo.getFilename().toString();
-			 System.out.println("demo download url when u add the base url: " + url);
+		//	 System.out.println("demo download url when u add the base url: " + url);
 			 
 			 
-			 System.out.println(fileo.getFilename().toString());
+		//	 System.out.println(fileo.getFilename().toString());
 			 
 			 
-			addImage( new Image("a", "a", fileo.getFilename().toString()));
+			addImage( new Image("a", "a", url));
 			imagesToBeReturned.add(findByUrl(fileo.getFilename().toString()));
 
 		}
