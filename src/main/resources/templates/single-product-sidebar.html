@@ -69,10 +69,11 @@
                                             
                                             <div class="thumbnails-all columns-5 owl-carousel">
                                                
-                                                <a href="" class="" title="" class="first"> <img class="wp-post-image" th:src="${serv.images[0].url}" th:alt="${serv.images[0].name}"> </a>
+<div th:each="img,iter : ${serv.images}">
+ <a href=""  th:if="*{iter.index == 0}" class="first" title=""  > <img class="wp-post-image" th:src="${img.url}" th:alt="${img.name}"> </a>
 
-                                                <a href="" class="" title="" th:each="img : ${serv.images}" > <img class="wp-post-image" th:src="${img.url}" th:alt="${img.name}"> </a>
-
+                                                <a href=""  th:if="*{iter.index > 0}" class="" title=""  > <img class="wp-post-image" th:src="${img.url}" th:alt="${img.name}"> </a>
+</div>
 
                                             </div><!-- .thumbnails-all -->
                                         </div><!-- .electro-gallery -->

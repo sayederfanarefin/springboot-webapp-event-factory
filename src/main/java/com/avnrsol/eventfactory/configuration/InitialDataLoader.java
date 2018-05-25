@@ -141,7 +141,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		ServiceCategory serviceCategory  =  createServiceCategoryIfNotFound("default image", "used for testing",image);
 		
 		Vendor vendor = createVendorIfNotFound("avnrsol");
-		Serviceo service = createServiceIfNotFound("service sdfsdf", "sdfsdfsdf dsfsdfsdf dsfsdf", image, serviceCategory, vendor);
+		//Serviceo service = createServiceIfNotFound("service sdfsdf", "sdfsdfsdf dsfsdfsdf dsfsdf", image, serviceCategory, vendor);
 		
 		
 		

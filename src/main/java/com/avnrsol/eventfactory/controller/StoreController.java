@@ -41,6 +41,7 @@ public class StoreController {
 	public ModelAndView service(@RequestParam("id") Long id) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("single-product-sidebar");
+		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		modelAndView.addObject("serv", serviceoRepository.findServiceoById(id));
 		modelAndView.addObject("related", serviceoRepository.findTop4ServiceoByServiceCategory_Id(serviceoRepository.findServiceoById(id).getServiceCategory().getId()));
 		return modelAndView;
