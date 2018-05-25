@@ -1,54 +1,63 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org" 
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Event Factory </title>
+<title>Event Factory</title>
 
-  <div th:fragment="head">
+<div th:fragment="head">
 
-        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-        
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"
+		type="text/css" />
 
-         <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
-         
 
-         <link th:href="@{/css/animate.min.css}" rel="stylesheet" type="text/css"/>
-         
+	<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"
+		type="text/css" />
 
-         <link th:href="@{/css/font-electro.css}" rel="stylesheet" type="text/css"/>
-         
 
-         <link th:href="@{/css/owl-carousel.css}" rel="stylesheet" type="text/css"/>
-         
+	<link th:href="@{/css/animate.min.css}" rel="stylesheet"
+		type="text/css" />
 
-         <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
 
-         <link th:href="@{/css/colors/yellow.css}" rel="stylesheet" type="text/css"/>
-         
+	<link th:href="@{/css/font-electro.css}" rel="stylesheet"
+		type="text/css" />
 
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,700italic,800,800italic,600italic,400italic,300italic' rel='stylesheet' type='text/css'>
+
+	<link th:href="@{/css/owl-carousel.css}" rel="stylesheet"
+		type="text/css" />
+
+
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
+
+	<link th:href="@{/css/colors/yellow.css}" rel="stylesheet"
+		type="text/css" />
+
+
+	<link
+		href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,700italic,800,800italic,600italic,400italic,300italic'
+		rel='stylesheet' type='text/css'>
 </div>
-         
-    </head>
 
-    <body >
-    
-    
-     <div class="page home page-template-default">
-     
-        <div id="page" class="hfeed site">
-        
-        
-         <div th:fragment="header">
-            <a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
-            <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+</head>
 
-           <!--   <div class="top-bar hidden-md-down">
+<body>
+
+
+	<div class="page home page-template-default">
+
+		<div id="page" class="hfeed site">
+
+
+			<div th:fragment="header">
+				<a class="skip-link screen-reader-text" href="#site-navigation">Skip
+					to navigation</a> <a class="skip-link screen-reader-text"
+					href="#content">Skip to content</a>
+
+				<!--   <div class="top-bar hidden-md-down">
                 <div class="container">
                    
                     <nav>
@@ -61,266 +70,340 @@
             </div>-->
 
 
-            <header id="masthead" class="site-header header-v1">
-                <div class="container hidden-md-down">
-                    <div class="row" th:fragment="header-upper">
+				<header id="masthead" class="site-header header-v1">
+					<div class="container hidden-md-down">
+						<div class="row" th:fragment="header-upper">
 
-                        <!-- ============================================================= Header Logo ============================================================= -->
-                        <div class="header-logo">
-                        	<a href="/" class="header-logo-link">
-                        		<img th:src="@{/images/event_logo.png}"
-					class="img-responsive center-block" style="height:80px;"
-					alt="Logo" />
-                        	</a>
-                        </div>
-                        <!-- ============================================================= Header Logo : End============================================================= -->
+							<!-- ============================================================= Header Logo ============================================================= -->
+							<div class="header-logo">
+								<a href="/" class="header-logo-link"> <img
+									th:src="@{/images/event_logo.png}"
+									class="img-responsive center-block" style="height: 80px;"
+									alt="Logo" />
+								</a>
+							</div>
+							<!-- ============================================================= Header Logo : End============================================================= -->
 
-                        <form class="navbar-search" method="get" action="/">
-                        	<label class="sr-only screen-reader-text" for="search">Search for:</label>
-                        	<div class="input-group">
-                        		<input type="text" id="search" class="form-control search-field" dir="ltr" value="" name="s" placeholder="Search for services" />
-                        		<div class="input-group-addon search-categories">
-                        			
-                        			<select >
-											<option th:each="clientlist : ${clientlist}" 
-												th:text="${clientlist.name}" th:value="${clientlist.id} "
-												></option>
+							<form class="navbar-search" method="get" action="/">
+								<label class="sr-only screen-reader-text" for="search">Search
+									for:</label>
+								<div class="input-group">
+									<input type="text" id="search"
+										class="form-control search-field" dir="ltr" value="" name="s"
+										placeholder="Search for services" />
+									<div class="input-group-addon search-categories">
+
+										<select>
+											<option th:each="clientlist : ${clientlist}"
+												th:text="${clientlist.name}" th:value="${clientlist.id} "></option>
 										</select>
-                        			
-                        			
-                        			
-                        		</div>
-                        		<div class="input-group-btn">
-                        			<input type="hidden" id="search-param" name="post_type" value="product" />
-                        			<button type="submit" class="btn btn-secondary"><i class="ec ec-search"></i></button>
-                        		</div>
-                        	</div>
-                        </form>
-                        <ul class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
-                        	<li class="nav-item dropdown">
-                        		<a href="cart.html" class="nav-link" data-toggle="dropdown">
-                        			<i class="ec ec-shopping-bag"></i>
-                        			<span class="cart-items-count count">4</span>
-                        			<span class="cart-items-total-price total-price"><span class="amount">&#36;1,215.00</span></span>
-                        		</a>
-                        		<ul class="dropdown-menu dropdown-menu-mini-cart">
-                        			<li>
-                        				<div class="widget_shopping_cart_content">
-
-                        					<ul class="cart_list product_list_widget ">
 
 
-                        						<li class="mini_cart_item">
-                        							<a title="Remove this item" class="remove" href="#">×</a>
-                        							<a href="single-product.html">
-                        								<img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="assets/images/products/mini-cart1.jpg" alt="">White lumia 9001&nbsp;
-                        							</a>
 
-                        							<span class="quantity">2 × <span class="amount">£150.00</span></span>
-                        						</li>
+									</div>
+									<div class="input-group-btn">
+										<input type="hidden" id="search-param" name="post_type"
+											value="product" />
+										<button type="submit" class="btn btn-secondary">
+											<i class="ec ec-search"></i>
+										</button>
+									</div>
+								</div>
+							</form>
+							<ul
+								class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
+								<li class="nav-item dropdown"><a href="cart.html"
+									class="nav-link" data-toggle="dropdown"> <i
+										class="ec ec-shopping-bag"></i> <span
+										class="cart-items-count count" id="inside-cart-quantity">0</span>
+										<span class="cart-items-total-price total-price"><span
+											class="amount" id="inside-cart-total">0</span></span>
+								</a>
+									<ul class="dropdown-menu dropdown-menu-mini-cart">
+										<li>
+											<div class="widget_shopping_cart_content">
 
-
-                        						<li class="mini_cart_item">
-                        							<a title="Remove this item" class="remove" href="#">×</a>
-                        							<a href="single-product.html">
-                        								<img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="assets/images/products/mini-cart2.jpg" alt="">PlayStation 4&nbsp;
-                        							</a>
-
-                        							<span class="quantity">1 × <span class="amount">£399.99</span></span>
-                        						</li>
-
-                        						<li class="mini_cart_item">
-                        							<a data-product_sku="" data-product_id="34" title="Remove this item" class="remove" href="#">×</a>
-                        							<a href="single-product.html">
-                        							<img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="assets/images/products/mini-cart3.jpg" alt="">POV Action Cam HDR-AS100V&nbsp;
-
-                        							</a>
-
-                        							<span class="quantity">1 × <span class="amount">£269.99</span></span>
-                        						</li>
+												<ul id="cart_fucking" class="cart_list product_list_widget ">
 
 
-                        					</ul><!-- end product list -->
 
 
-                        					<p class="total"><strong>Subtotal:</strong> <span class="amount">£969.98</span></p>
+
+												</ul>
+												<!-- end product list -->
 
 
-                        					<p class="buttons">
-                        						<a class="button wc-forward" href="cart.html">View Cart</a>
-                        						<a class="button checkout wc-forward" href="checkout.html">Checkout</a>
-                        					</p>
+												<p class="total">
+													<strong>Subtotal:</strong> <span class="amount">£969.98</span>
+												</p>
 
 
-                        				</div>
-                        			</li>
-                        		</ul>
-                        	</li>
-                        </ul>
-
-                        
-                    </div><!-- /.row -->
-
-                    <div class="row" th:fragment="header-sidebar">
-                        <div class="col-xs-12 col-lg-3">
-                            <nav>
-                                <ul class="list-group vertical-menu yamm make-absolute">
-                                    <li class="list-group-item"><span><i class="fa fa-list-ul"></i> All Services</span></li>
-
-                                    
-                                  
-                                   
-
-                                    <li id="menu-item-2695" class="menu-item menu-item-has-children animate-dropdown dropdown" th:each="clientlist : ${clientlist}">
-                                        <a data-hover="dropdown" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true"  th:text="${clientlist.name}">A</a>
-                                        <ul role="menu" class=" dropdown-menu"   >
-                                              <li class="menu-item animate-dropdown" th:each="service : ${clientlist.Services}"><a th:href="@{/service?id=} + ${service.id}" th:text="${service.name}" >L</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                        
-                        <div class="col-xs-12 col-lg-9">
-                            <nav>
-                                <ul id="menu-secondary-nav" class="secondary-nav">
-                                    <li class="highlight menu-item"><a href="/">Home</a></li>
-                                    <li class="menu-item"><a href="/about">About</a></li>
-                                    <li class="menu-item"><a href="/faq">FAQs</a></li>
-                                    <!-- Only show if logged in --><li class="menu-item"><a href="my-account.html">My Account</a></li>
-                                    <li class="pull-right menu-item">24 Hour service!</li> <!-- Any message from Admin goes here -->
-                                </ul>
-                            </nav>
-                        </div>
-
-                       
-                    </div>
-                </div>
-
-                <div class="container hidden-lg-up">
-                    <div class="handheld-header">
-
-                        <!-- ============================================================= Header Logo ============================================================= -->
-                        <div class="header-logo">
-                            <a href="home.html" class="header-logo-link">
-                               
-                            </a>
-                        </div>
-                        <!-- ============================================================= Header Logo : End============================================================= -->
-
-                        
-                    </div>
-                </div>
-
-            </header><!-- #masthead -->
-
-            </div>
-             </div>
-</div>
-           <div th:fragment="footer">
-
-             <footer id="colophon" class="site-footer">
-               
-
-                <div class="footer-newsletter">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12">
-                                <h6 class="newsletter-title">#TeamEF</h6>
-                                <span class="newsletter-marketing-text">We deliver <strong>all over</strong> Bangladesh!</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="footer-bottom-widgets">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-7 col-md-push-5">
-                                <div class="columns">
-                                    <aside id="nav_menu-2" class="widget clearfix widget_nav_menu">
-                                        <div class="body">
-                                            <h4 class="widget-title">Customer Care</h4>
-                                            <div class="menu-footer-menu-3-container">
-                                                <ul id="menu-footer-menu-3" class="menu">
-                                                    <li class="menu-item"><a href="/myAccount">My Account</a></li>
-                                                    <li class="menu-item"><a href="/faq">FAQs</a></li>
-                                                    <li class="menu-item"><a href="/about">About EF</a></li>
-                                                    <li class="menu-item"><a href="/termsAndConditions">Terms and Conditions</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </aside>
-                                </div><!-- /.columns -->
-
-                            </div><!-- /.col -->
-
-                            <div class="footer-contact col-xs-12 col-sm-12 col-md-5 col-md-pull-7">
-                                <div class="footer-logo">
-                                    <!-- Logo goes here -->
-                                </div><!-- /.footer-contact -->
-
-                                <div class="footer-call-us">
-                                    <div class="media">
-                                        <span class="media-left call-us-icon media-middle"><i class="ec ec-support"></i></span>
-                                        <div class="media-body">
-                                            <span class="call-us-text">Got Questions ? Call us 24/7!</span>
-                                            <span class="call-us-number"></span>
-                                        </div>
-                                    </div>
-                                </div><!-- /.footer-call-us -->
+												<p class="buttons">
+													<a class="button wc-forward" href="cart.html">View Cart</a>
+													<a class="button checkout wc-forward" href="checkout.html">Checkout</a>
+												</p>
 
 
-                                <div class="footer-address">
-                                    <strong class="footer-address-title">Contact Info</strong>
-                                    <address>Dhaka, Bangladesh</address>
-                                </div><!-- /.footer-address -->
+											</div>
+										</li>
+									</ul></li>
+							</ul>
 
-                                <div class="footer-social-icons">
-                                    <ul class="social-icons list-unstyled">
-                                        <li><a class="fa fa-facebook" href="https://www.facebook.com/e.factory.bd"></a></li>
-                                    </ul>
-                                </div>
-                            </div>
 
-                        </div>
-                    </div>
-                </div>
+						</div>
+						<!-- /.row -->
 
-                <div class="copyright-bar">
-                    <div class="container">
-                        <div class="pull-left flip copyright">&copy; <a href="./">EventFactory</a> - All Rights Reserved</div>
-                        <div class="pull-right flip payment">
-                            <div class="footer-payment-logo">
-                                <ul class="cash-card card-inline">
-                                    <li class="card-item"><img src="assets/images/footer/payment-icon/1.png" alt="" width="52"></li>
-                                    <li class="card-item"><img src="assets/images/footer/payment-icon/2.png" alt="" width="52"></li>
-                                    <li class="card-item"><img src="assets/images/footer/payment-icon/3.png" alt="" width="52"></li>
-                                    <li class="card-item"><img src="assets/images/footer/payment-icon/4.png" alt="" width="52"></li>
-                                    <li class="card-item"><img src="assets/images/footer/payment-icon/5.png" alt="" width="52"></li>
-                                </ul>
-                            </div><!-- /.payment-methods -->
-                        </div>
-                    </div><!-- /.container -->
-                </div><!-- /.copyright-bar -->
-            </footer><!-- #colophon -->
+						<div class="row" th:fragment="header-sidebar">
+							<div class="col-xs-12 col-lg-3">
+								<nav>
+									<ul class="list-group vertical-menu yamm make-absolute">
+										<li class="list-group-item"><span><i
+												class="fa fa-list-ul"></i> All Services</span></li>
 
-  <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
-        <script type="text/javascript" th:src="@{/js/tether.min.js}"></script>
-        <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-        <script type="text/javascript" th:src="@{/js/bootstrap-hover-dropdown.min.js}"></script>
-        <script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
-        <script type="text/javascript" th:src="@{/js/echo.min.js}"></script>
-        <script type="text/javascript" th:src="@{/js/wow.min.js}"></script>
-        <script type="text/javascript" th:src="@{/js/jquery.easing.min.js}"></script>
-        <script type="text/javascript" th:src="@{/js/jquery.waypoints.min.js}"></script>
-        <script type="text/javascript" th:src="@{/js/electro.js}"></script>
-        
-        </div><!-- #page -->
 
-      
-        
-        
 
-    </body>
+
+
+										<li id="menu-item-2695"
+											class="menu-item menu-item-has-children animate-dropdown dropdown"
+											th:each="clientlist : ${clientlist}"><a
+											data-hover="dropdown" href="product-category.html"
+											data-toggle="dropdown" class="dropdown-toggle"
+											aria-haspopup="true" th:text="${clientlist.name}">A</a>
+											<ul role="menu" class=" dropdown-menu">
+												<li class="menu-item animate-dropdown"
+													th:each="service : ${clientlist.Services}"><a
+													th:href="@{/service?id=} + ${service.id}"
+													th:text="${service.name}">L</a></li>
+											</ul></li>
+									</ul>
+								</nav>
+							</div>
+
+							<div class="col-xs-12 col-lg-9">
+								<nav>
+									<ul id="menu-secondary-nav" class="secondary-nav">
+										<li class="highlight menu-item"><a href="/">Home</a></li>
+										<li class="menu-item"><a href="/about">About</a></li>
+										<li class="menu-item"><a href="/faq">FAQs</a></li>
+										<!-- Only show if logged in -->
+										<li class="menu-item"><a href="my-account.html">My
+												Account</a></li>
+										<li class="pull-right menu-item">24 Hour service!</li>
+										<!-- Any message from Admin goes here -->
+									</ul>
+								</nav>
+							</div>
+
+
+						</div>
+					</div>
+
+					<div class="container hidden-lg-up">
+						<div class="handheld-header">
+
+							<!-- ============================================================= Header Logo ============================================================= -->
+							<div class="header-logo">
+								<a href="home.html" class="header-logo-link"> </a>
+							</div>
+							<!-- ============================================================= Header Logo : End============================================================= -->
+
+
+						</div>
+					</div>
+
+				</header>
+				<!-- #masthead -->
+
+			</div>
+		</div>
+	</div>
+	<div th:fragment="footer">
+
+		<footer id="colophon" class="site-footer">
+
+
+			<div class="footer-newsletter">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12">
+							<h6 class="newsletter-title">#TeamEF</h6>
+							<span class="newsletter-marketing-text">We deliver <strong>all
+									over</strong> Bangladesh!
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer-bottom-widgets">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-7 col-md-push-5">
+							<div class="columns">
+								<aside id="nav_menu-2" class="widget clearfix widget_nav_menu">
+									<div class="body">
+										<h4 class="widget-title">Customer Care</h4>
+										<div class="menu-footer-menu-3-container">
+											<ul id="menu-footer-menu-3" class="menu">
+												<li class="menu-item"><a href="/myAccount">My
+														Account</a></li>
+												<li class="menu-item"><a href="/faq">FAQs</a></li>
+												<li class="menu-item"><a href="/about">About EF</a></li>
+												<li class="menu-item"><a href="/termsAndConditions">Terms
+														and Conditions</a></li>
+											</ul>
+										</div>
+									</div>
+								</aside>
+							</div>
+							<!-- /.columns -->
+
+						</div>
+						<!-- /.col -->
+
+						<div
+							class="footer-contact col-xs-12 col-sm-12 col-md-5 col-md-pull-7">
+							<div class="footer-logo">
+								<!-- Logo goes here -->
+							</div>
+							<!-- /.footer-contact -->
+
+							<div class="footer-call-us">
+								<div class="media">
+									<span class="media-left call-us-icon media-middle"><i
+										class="ec ec-support"></i></span>
+									<div class="media-body">
+										<span class="call-us-text">Got Questions ? Call us
+											24/7!</span> <span class="call-us-number"></span>
+									</div>
+								</div>
+							</div>
+							<!-- /.footer-call-us -->
+
+
+							<div class="footer-address">
+								<strong class="footer-address-title">Contact Info</strong>
+								<address>Dhaka, Bangladesh</address>
+							</div>
+							<!-- /.footer-address -->
+
+							<div class="footer-social-icons">
+								<ul class="social-icons list-unstyled">
+									<li><a class="fa fa-facebook"
+										href="https://www.facebook.com/e.factory.bd"></a></li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="copyright-bar">
+				<div class="container">
+					<div class="pull-left flip copyright">
+						&copy; <a href="./">EventFactory</a> - All Rights Reserved
+					</div>
+					<div class="pull-right flip payment">
+						<div class="footer-payment-logo">
+							<ul class="cash-card card-inline">
+								<li class="card-item"><img
+									src="assets/images/footer/payment-icon/1.png" alt="" width="52"></li>
+								<li class="card-item"><img
+									src="assets/images/footer/payment-icon/2.png" alt="" width="52"></li>
+								<li class="card-item"><img
+									src="assets/images/footer/payment-icon/3.png" alt="" width="52"></li>
+								<li class="card-item"><img
+									src="assets/images/footer/payment-icon/4.png" alt="" width="52"></li>
+								<li class="card-item"><img
+									src="assets/images/footer/payment-icon/5.png" alt="" width="52"></li>
+							</ul>
+						</div>
+						<!-- /.payment-methods -->
+					</div>
+				</div>
+				<!-- /.container -->
+			</div>
+			<!-- /.copyright-bar -->
+		</footer>
+		<!-- #colophon -->
+
+		<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/tether.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+		<script type="text/javascript"
+			th:src="@{/js/bootstrap-hover-dropdown.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/echo.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/wow.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.easing.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.waypoints.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/electro.js}"></script>
+
+
+		<script type="text/javascript">
+
+function removeRow(input) {
+   
+    
+    
+    var current_total = Number(document.getElementById("inside-cart-total").innerHTML);
+    
+    document.getElementById("inside-cart-total").innerHTML = current_total - (Number(document.getElementById( 'quantity_in_cart_xxx_' + input.id ).innerHTML) * Number( document.getElementById( 'amount_in_cart_xxx_' + input.id ).innerHTML));
+    var current_item_count = Number(document.getElementById("inside-cart-quantity").innerHTML);
+    document.getElementById("inside-cart-quantity").innerHTML = current_item_count -  Number(document.getElementById( 'quantity_in_cart_xxx_' + input.id ).innerHTML);
+    
+ //  document.getElementById( 'quantity_in_cart_xxx_' + input.id ).innerHTML;
+ //  document.getElementById( 'amount_in_cart_xxx_' + input.id ).innerHTML;
+   
+    
+    document.getElementById('cart_fucking').removeChild(input.parentNode);
+    
+}
+
+var form = document.getElementById("add_to_fucking_cart");
+
+//your function
+var my_func = function(event) {
+    event.preventDefault();
+    
+    
+    
+    var node = document.createElement("LI");
+    
+    node.className = 'mini_cart_item';
+    node.innerHTML = '<a id= "'+form.product_id.value+'" title="Remove this item" onclick="removeRow(this)" class="remove" href="javascript:void(0);">×</a><a href=""><img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="assets/images/products/mini-cart1.jpg" alt="">'+ form.product_name.value +'&nbsp;</a><span class="quantity" id="quantity_in_cart_xxx_'+ form.product_id.value +'">'+form.quantity.value+'</span> × <span class="amount" id="amount_in_cart_xxx_'+ form.product_id.value +'" >'+form.unit_price.value+'</span>';
+
+    document.getElementById("cart_fucking").appendChild(node);
+    
+   var current_total = Number(document.getElementById("inside-cart-total").innerHTML);
+   
+   document.getElementById("inside-cart-total").innerHTML = current_total + (Number(form.unit_price.value) * Number(form.quantity.value));
+   var current_item_count = Number(document.getElementById("inside-cart-quantity").innerHTML);
+   document.getElementById("inside-cart-quantity").innerHTML = current_item_count +  Number(form.quantity.value);
+   
+  
+    
+};
+
+// your form
+
+
+// attach event listener
+form.addEventListener("submit", my_func, true);
+
+
+
+</script>
+
+
+	</div>
+	<!-- #page -->
+
+
+
+
+
+</body>
 </html>
