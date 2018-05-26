@@ -364,24 +364,16 @@
 			while (len--) {
 				
 				
-				var splitaaa= the_cookies[len].split('=')[0];
+				var splitaaa= the_cookies[len].split('=');
 				
 				
-				var o =splitaaa.localeCompare(name);
-				console.log('====================');
-				console.log(splitaaa);
-				console.log(name);
-				console.log(o);
-				console.log('====================');
+				var o =splitaaa[0].localeCompare(name);
+				
 				if( o == 0){
-					return the_cookies[len];
+					return splitaaa[1];
 					
 				}
 			}
-			
-		//	 var result = document.cookie.match(new RegExp(name + '=([^;]+)'));
-		//	 result && (result = JSON.parse(result[1]));
-		//	 return result;
 			}
 		
 		
@@ -425,7 +417,7 @@ var my_func = function(event) {
    
    
    
-   var cart = read_cookie('cart');
+   var cart = JSON.parse(read_cookie('cart'));
    
    if(cart == null){
 	  cart = [];
@@ -439,7 +431,7 @@ var my_func = function(event) {
    item ["quantity"] = form.quantity.value;
    item ["price"] = form.unit_price.value;
    
-   //cart.push(item);
+   cart.push(item);
    
    bake_cookie('cart', cart);
    
