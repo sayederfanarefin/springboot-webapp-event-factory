@@ -410,8 +410,6 @@ var form = document.getElementById("add_to_fucking_cart");
 var my_func = function(event) {
     event.preventDefault();
     
-    
-    
     var node = document.createElement("LI");
     
     node.className = 'mini_cart_item';
@@ -425,30 +423,29 @@ var my_func = function(event) {
    var current_item_count = Number(document.getElementById("inside-cart-quantity").innerHTML);
    document.getElementById("inside-cart-quantity").innerHTML = current_item_count +  Number(form.quantity.value);
    
-   var products = [{
-	   "name": "Pizza",
-	   "price": "10",
-	   "quantity": "7"
-	 }, {
-	   "name": "Cerveja",
-	   "price": "12",
-	   "quantity": "5"
-	 }, {
-	   "name": "Hamburguer",
-	   "price": "10",
-	   "quantity": "2"
-	 }, {
-	   "name": "Fraldas",
-	   "price": "6",
-	   "quantity": "2"
-	 }];
-   bake_cookie('test_cookie1', products);
-   bake_cookie('test_cookie', 90);
-   bake_cookie('test_cookie2', 32);
    
- //  var mydata = JSON.parse(read_cookie('test_cookie'));
+   
+   var cart = read_cookie('cart');
+   
+   if(cart == null){
+	  cart = [];
+   }
+   
+   console.log(cart);
+   
+   item = {}
+   item ["id"] = form.product_id.value;
+   item ["name"] = form.product_name.value;
+   item ["quantity"] = form.quantity.value;
+   item ["price"] = form.unit_price.value;
+   
+   //cart.push(item);
+   
+   bake_cookie('cart', cart);
+   
+   
 
-  console.log( read_cookie('test_cookie1') );
+ // console.log( read_cookie('test_cookie1') );
     
 };
 
