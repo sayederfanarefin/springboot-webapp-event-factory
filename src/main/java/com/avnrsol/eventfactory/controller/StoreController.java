@@ -2,6 +2,7 @@ package com.avnrsol.eventfactory.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,22 +29,27 @@ public class StoreController {
 	private VendorService vendorService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView index() {
+	public ModelAndView index(@CookieValue(value = "test_cookie", defaultValue = "hello") String fooCookie) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("home");
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		modelAndView.addObject("vendors", vendorService.findAllVendor(0));
 		
+		System.out.println("cookie ->->->->->->->->->->->->-> "+ fooCookie);
+		
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/service", method = RequestMethod.GET)
-	public ModelAndView service(@RequestParam("id") Long id) {
+	public ModelAndView service(@RequestParam("id") Long id, @CookieValue(value = "test_cookie", defaultValue = "hello") String fooCookie) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("single-product-sidebar");
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		modelAndView.addObject("serv", serviceoRepository.findServiceoById(id));
 		modelAndView.addObject("related", serviceoRepository.findTop4ServiceoByServiceCategory_Id(serviceoRepository.findServiceoById(id).getServiceCategory().getId()));
+		
+		System.out.println("cookie ->->->->->->->->->->->->-> "+ fooCookie);
+		
 		return modelAndView;
 	}
 	

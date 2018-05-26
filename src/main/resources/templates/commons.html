@@ -343,6 +343,27 @@
 
 
 		<script type="text/javascript">
+		
+		
+		
+		function bake_cookie(name, value) {
+			  var cooookie = [name, '=', JSON.stringify(value)].join('');
+			  
+			  console.log('writing...');
+			  console.log(cooookie);
+			  
+			  
+			  document.cookie = "name=oeschger";
+			  document.cookie = cooookie;
+			}
+		
+		function read_cookie(name) {
+			 var result = document.cookie.match(new RegExp(name + '=([^;]+)'));
+			 result && (result = JSON.parse(result[1]));
+			 return result;
+			}
+		
+		
 
 function removeRow(input) {
    
@@ -383,7 +404,11 @@ var my_func = function(event) {
    var current_item_count = Number(document.getElementById("inside-cart-quantity").innerHTML);
    document.getElementById("inside-cart-quantity").innerHTML = current_item_count +  Number(form.quantity.value);
    
-  
+   document.cookie = "love=tuti";
+   bake_cookie("test_cookie", "value nmldfgm");
+   
+   var mydata = JSON.parse(read_cookie('test_cookie'));
+  alert( read_cookie("test_cookie"));
     
 };
 
