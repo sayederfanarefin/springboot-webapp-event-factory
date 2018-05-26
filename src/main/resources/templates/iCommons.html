@@ -12,9 +12,11 @@
 
                         <!-- ============================================================= Header Logo ============================================================= -->
                         <div class="header-logo">
-                            <a href="/" class="header-logo-link">
-                                
-                            </a>
+                            <a href="/" class="header-logo-link"> <img
+									th:src="@{/images/event_logo.png}"
+									class="img-responsive center-block" style="height: 80px;"
+									alt="Logo" />
+								</a>
                         </div>
                         <!-- ============================================================= Header Logo : End============================================================= -->
 
@@ -43,8 +45,8 @@
                             <div class="media">
                                 <span class="media-left support-icon media-middle"><i class="ec ec-support"></i></span>
                                 <div class="media-body">
-                                    <span class="support-number"><strong>Support</strong> (+800) 856 800 604</span><br/>
-                                    <span class="support-email">Email: info@electro.com</span>
+                                    <span class="support-number"><strong>Support</strong> (+800)1521107480</span><br/>
+                                    <span class="support-email">Email: info@eventfactory.com.bd</span>
                                 </div>
                             </div>
                         </div>
@@ -57,9 +59,11 @@
 
                         <!-- ============================================================= Header Logo ============================================================= -->
                         <div class="header-logo">
-                            <a href="/" class="header-logo-link">
-                                
-                            </a>
+                            <a href="/" class="header-logo-link"> <img
+									th:src="@{/images/event_logo.png}"
+									class="img-responsive center-block" style="height: 80px;"
+									alt="Logo" />
+								</a>
                         </div>
                         <!-- ============================================================= Header Logo : End============================================================= -->
 
@@ -123,56 +127,24 @@
                         <li class="nav-item dropdown">
                             <a href="cart.html" class="nav-link" data-toggle="dropdown">
                                 <i class="ec ec-shopping-bag"></i>
-                                <span class="cart-items-count count">4</span>
-                                <span class="cart-items-total-price total-price"><span class="amount">&#36;1,215.00</span></span>
+                               <!--  <span class="cart-items-count count">4</span> -->
+                               <span class="cart-items-total-price total-price"><span
+											class="amount" id="inside-cart-total">0</span></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-mini-cart">
                                 <li>
                                     <div class="widget_shopping_cart_content">
 
-                                        <ul class="cart_list product_list_widget ">
+                                        	<ul id="cart_fucking" class="cart_list product_list_widget "></ul>
 
 
-                                            <li class="mini_cart_item">
-                                                <a title="Remove this item" class="remove" href="#">×</a>
-                                                <a href="single-product.html">
-                                                    <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="assets/images/products/mini-cart1.jpg" alt="">White lumia 9001&nbsp;
-                                                </a>
-
-                                                <span class="quantity">2 × <span class="amount">£150.00</span></span>
-                                            </li>
-
-
-                                            <li class="mini_cart_item">
-                                                <a title="Remove this item" class="remove" href="#">×</a>
-                                                <a href="single-product.html">
-                                                    <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="assets/images/products/mini-cart2.jpg" alt="">PlayStation 4&nbsp;
-                                                </a>
-
-                                                <span class="quantity">1 × <span class="amount">£399.99</span></span>
-                                            </li>
-
-                                            <li class="mini_cart_item">
-                                                <a data-product_sku="" data-product_id="34" title="Remove this item" class="remove" href="#">×</a>
-                                                <a href="single-product.html">
-                                                <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="assets/images/products/mini-cart3.jpg" alt="">POV Action Cam HDR-AS100V&nbsp;
-
-                                                </a>
-
-                                                <span class="quantity">1 × <span class="amount">£269.99</span></span>
-                                            </li>
-
-
-                                        </ul><!-- end product list -->
-
-
-                                        <p class="total"><strong>Subtotal:</strong> <span class="amount">£969.98</span></p>
+                                       
 
 
                                         <p class="buttons">
-                                            <a class="button wc-forward" href="cart.html">View Cart</a>
-                                            <a class="button checkout wc-forward" href="checkout.html">Checkout</a>
-                                        </p>
+													<a class="button wc-forward" href="/cart">View Cart</a> <a
+														class="button checkout wc-forward" href="/checkout">Checkout</a>
+												</p>
 
 
                                     </div>

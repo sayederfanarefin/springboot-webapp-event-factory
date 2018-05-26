@@ -112,10 +112,10 @@
 							</form>
 							<ul
 								class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
-								<li class="nav-item dropdown"><a href="cart.html"
+								<li class="nav-item dropdown"><a href="/cart"
 									class="nav-link" data-toggle="dropdown"> <i
-										class="ec ec-shopping-bag"></i> <span
-										class="cart-items-count count" id="inside-cart-quantity">0</span>
+										class="ec ec-shopping-bag"></i> <!-- <span
+										class="cart-items-count count" id="inside-cart-quantity">0</span>-->
 										<span class="cart-items-total-price total-price"><span
 											class="amount" id="inside-cart-total">0</span></span>
 								</a>
@@ -123,24 +123,18 @@
 										<li>
 											<div class="widget_shopping_cart_content">
 
-												<ul id="cart_fucking" class="cart_list product_list_widget ">
-
-
-
-
-
-												</ul>
+												<ul id="cart_fucking" class="cart_list product_list_widget "></ul>
 												<!-- end product list -->
 
 
-												<p class="total">
+												<!-- <p class="total">
 													<strong>Subtotal:</strong> <span class="amount">£969.98</span>
-												</p>
+												</p>-->
 
 
 												<p class="buttons">
-													<a class="button wc-forward" href="cart.html">View Cart</a>
-													<a class="button checkout wc-forward" href="checkout.html">Checkout</a>
+													<a class="button wc-forward" href="/cart">View Cart</a> <a
+														class="button checkout wc-forward" href="/checkout">Checkout</a>
 												</p>
 
 
@@ -343,113 +337,133 @@
 
 
 		<script type="text/javascript">
-		
-		
-		
-		function bake_cookie(name, value) {
-			  var cooookie = [name, '=', JSON.stringify(value)].join('');
-			  
-			  console.log('writing...');
-			  console.log(cooookie);
-			  document.cookie = cooookie;
+			
+
+			function removeRow(input) {
+
+				var current_total = Number(document
+						.getElementById("inside-cart-total").innerHTML);
+
+				document.getElementById("inside-cart-total").innerHTML = current_total
+						- (Number(document
+								.getElementById('quantity_in_cart_xxx_'
+										+ input.id).innerHTML) * Number(document
+								.getElementById('amount_in_cart_xxx_'
+										+ input.id).innerHTML));
+				
+
+				document.getElementById('cart_fucking').removeChild(
+						input.parentNode);
+
 			}
+
+			var form = document.getElementById("add_to_fucking_cart");
+
 		
-		function read_cookie(name) {
-			
-			 console.log('reading cookie... named ' +name);
-			 
-			var the_cookies = document.cookie.split(';');
-			
-			var len = the_cookies.length;
-			while (len--) {
+			var my_func = function(event) {
+				event.preventDefault();
+
+				var node = document.createElement("LI");
+
+				node.className = 'mini_cart_item';
+				node.innerHTML = '<a id= "'
+						+ form.product_id.value
+						+ '" title="Remove this item" onclick="removeRow(this)" class="remove" href="javascript:void(0);">×</a><a href=""><img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="assets/images/products/mini-cart1.jpg" alt="">'
+						+ form.product_name.value
+						+ '&nbsp;</a><span class="quantity" id="quantity_in_cart_xxx_'+ form.product_id.value +'">'
+						+ form.quantity.value
+						+ '</span> × <span class="amount" id="amount_in_cart_xxx_'+ form.product_id.value +'" >'
+						+ form.unit_price.value + '</span>';
+
+				document.getElementById("cart_fucking").appendChild(node);
+
+				var current_total = Number(document
+						.getElementById("inside-cart-total").innerHTML);
+				var final_total = current_total
+						+ (Number(form.unit_price.value) * Number(form.quantity.value));
+				document.getElementById("inside-cart-total").innerHTML = final_total;
+
+				localStorage.setItem('amount', final_total);
 				
 				
-				var splitaaa= the_cookies[len].split('=');
 				
-				
-				var o =splitaaa[0].localeCompare(name);
-				
-				if( o == 0){
-					return splitaaa[1];
-					
+				//cart stuff on new item add
+				var cartRaw = localStorage.getItem('cartx');
+				var cart;
+
+				if (cartRaw == null) {
+					cart = [];
+				} else {
+					cart = JSON.parse(cartRaw);
 				}
-			}
+
+				//console.log(cart);
+
+				item = {}
+				item["id"] = form.product_id.value;
+				item["name"] = form.product_name.value;
+				item["quantity"] = form.quantity.value;
+				item["price"] = form.unit_price.value;
+
+				cart.push(item);
+				
+				console.log(cart);
+				localStorage.setItem('cartx', JSON.stringify(cart));
+				
+
+			};
+
+			if (form != null) {
+				form.addEventListener("submit", my_func, true);
 			}
 		
+			
+		//initial population things
 		
+			function codeAddress() {
 
-function removeRow(input) {
-   
-    
-    
-    var current_total = Number(document.getElementById("inside-cart-total").innerHTML);
-    
-    document.getElementById("inside-cart-total").innerHTML = current_total - (Number(document.getElementById( 'quantity_in_cart_xxx_' + input.id ).innerHTML) * Number( document.getElementById( 'amount_in_cart_xxx_' + input.id ).innerHTML));
-    var current_item_count = Number(document.getElementById("inside-cart-quantity").innerHTML);
-    document.getElementById("inside-cart-quantity").innerHTML = current_item_count -  Number(document.getElementById( 'quantity_in_cart_xxx_' + input.id ).innerHTML);
-    
- //  document.getElementById( 'quantity_in_cart_xxx_' + input.id ).innerHTML;
- //  document.getElementById( 'amount_in_cart_xxx_' + input.id ).innerHTML;
-   
-    
-    document.getElementById('cart_fucking').removeChild(input.parentNode);
-    
-}
+				var cartJson;
 
-var form = document.getElementById("add_to_fucking_cart");
+				console.log('initial data');
 
-//your function
-var my_func = function(event) {
-    event.preventDefault();
-    
-    var node = document.createElement("LI");
-    
-    node.className = 'mini_cart_item';
-    node.innerHTML = '<a id= "'+form.product_id.value+'" title="Remove this item" onclick="removeRow(this)" class="remove" href="javascript:void(0);">×</a><a href=""><img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="assets/images/products/mini-cart1.jpg" alt="">'+ form.product_name.value +'&nbsp;</a><span class="quantity" id="quantity_in_cart_xxx_'+ form.product_id.value +'">'+form.quantity.value+'</span> × <span class="amount" id="amount_in_cart_xxx_'+ form.product_id.value +'" >'+form.unit_price.value+'</span>';
+				var cartRaw = localStorage.getItem('cartx');
+				if (cartRaw != null) {
+					cartJson = JSON.parse(cartRaw);
+					
+					console.log(cartJson);
+					
+					var i;
+					for (i = 0; i < cartJson.length; i++) { 
+						var cartItem = cartJson[i];
+						console.log(cartItem);
+						var node = document.createElement("LI");
+						node.className = 'mini_cart_item';
+						node.innerHTML = '<a id= "'
+								+ cartItem.id
+								+ '" title="Remove this item" onclick="removeRow(this)" class="remove" href="javascript:void(0);">×</a><a href=""><img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="assets/images/products/mini-cart1.jpg" alt="">'
+								+ cartItem.name
+								+ '&nbsp;</a><span class="quantity" id="quantity_in_cart_xxx_'+ cartItem.id +'">'
+								+ cartItem.quantity
+								+ '</span> × <span class="amount" id="amount_in_cart_xxx_'+ cartItem.id +'" >'
+								+ cartItem.price + '</span>';
 
-    document.getElementById("cart_fucking").appendChild(node);
-    
-   var current_total = Number(document.getElementById("inside-cart-total").innerHTML);
-   
-   document.getElementById("inside-cart-total").innerHTML = current_total + (Number(form.unit_price.value) * Number(form.quantity.value));
-   var current_item_count = Number(document.getElementById("inside-cart-quantity").innerHTML);
-   document.getElementById("inside-cart-quantity").innerHTML = current_item_count +  Number(form.quantity.value);
-   
-   
-   
-   var cart = JSON.parse(read_cookie('cart'));
-   
-   if(cart == null){
-	  cart = [];
-   }
-   
-   console.log(cart);
-   
-   item = {}
-   item ["id"] = form.product_id.value;
-   item ["name"] = form.product_name.value;
-   item ["quantity"] = form.quantity.value;
-   item ["price"] = form.unit_price.value;
-   
-   cart.push(item);
-   
-   bake_cookie('cart', cart);
-   
-   
+						document.getElementById("cart_fucking").appendChild(node);
+						
+					}
+				} 
 
- // console.log( read_cookie('test_cookie1') );
-    
-};
+				var total_amount = localStorage.getItem('amount');
 
-// your form
+				if (total_amount != null) {
+					document.getElementById("inside-cart-total").innerHTML = total_amount;
+				} else {
+					document.getElementById("inside-cart-total").innerHTML = 0;
+				}
 
-
-// attach event listener
-form.addEventListener("submit", my_func, true);
-
-
-
-</script>
+				//alert('ok');
+			}
+			window.onload = codeAddress;
+		</script>
 
 
 	</div>
