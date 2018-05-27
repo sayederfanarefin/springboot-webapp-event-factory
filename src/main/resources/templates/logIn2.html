@@ -75,31 +75,53 @@
                                                     <form method="post" class="register" th:action="@{/registration}" th:object="${user}">
 
                                                         <p class="before-register-text">Create your very own account</p>
-
- <p class="form-row form-row-wide">
+                                                        <div class="row">
+                                                        <div class="col-md-6">
+                                                         <p class="form-row form-row-wide">
                                                             <label for="reg_email">First Name<span class="required">*</span></label>
                                                             <input type="text" th:field="*{firstName}" class="input-text" name="firstName" />
                                                         </p>
-                                                        
+                                                        </div>
+                                                        <div class="col-md-6">
                                                          <p class="form-row form-row-wide">
                                                             <label for="reg_email">Last Name<span class="required">*</span></label>
                                                             <input type="text" th:field="*{lastName}" class="input-text" name="lastName" />
                                                         </p>
+                                                        </div>
+                                                        </div>
                                                         
-                                                         <p class="form-row form-row-wide">
+                                                        <p class="form-row form-row-wide">
+                                                            <label >Company Name<span class="required">*</span></label>
+                                                            <input type="text" th:field="*{companyName}" class="input-text" name="Company Name" />
+                                                        </p>
+                                                        <div class="row">
+                                                        <div class="col-md-6">
+                                                        <p class="form-row form-row-wide">
                                                             <label >Email address<span class="required">*</span></label>
                                                             <input type="email" th:field="*{email}" class="input-text" name="email" />
                                                         </p>
-                                                        
+                                                        </div>
+                                                        <div class="col-md-6">
                                                         <p class="form-row form-row-wide">
                                                             <label >Phone<span class="required">*</span></label>
                                                             <input type="text" th:field="*{phone}" class="input-text" name="phone" />
                                                         </p>
+                                                        </div>
+                                                        </div>
+
 
  <p class="form-row form-row-wide">
                                                             <label for="reg_email">Password<span class="required">*</span></label>
                                                             <input type="password" th:field="*{password}" class="input-text" name="password" />
                                                         </p>
+                                                        
+                                                         
+                                                        
+                                                         <p class="form-row form-row-wide">
+                                                            <label >Address<span class="required">*</span></label>
+                                                            <input type="text" th:field="*{address}" class="input-text" name="Address" />
+                                                        </p>
+                                                        
                                                         
                                                         <p class="form-row"><input type="submit" class="button" name="register" value="Register" /></p>
 

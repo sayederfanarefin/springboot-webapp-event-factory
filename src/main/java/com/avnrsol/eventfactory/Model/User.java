@@ -44,6 +44,8 @@ public class User implements UserDetails, Serializable {
 
 	private String email;
 
+	private String companyName;
+	
 	private String password;
 
 	private boolean enabled;
@@ -239,6 +241,14 @@ public class User implements UserDetails, Serializable {
 		this.accountNonExpired = true;
 		this.accountNonLocked = true;
 		this.credentialsNonExpired = true;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 	
 	
