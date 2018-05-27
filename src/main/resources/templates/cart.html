@@ -38,8 +38,8 @@
                                     <table class="shop_table shop_table_responsive cart" id="mytable">
                                         <thead>
                                             <tr>
-                                                <th class="product-remove">&nbsp;</th>
-                                                <th class="product-thumbnail">&nbsp;</th>
+                                                
+                                                <th class="">No.</th>
                                                 <th class="product-name">Product</th>
                                                 <th class="product-price">Price</th>
                                                 <th class="product-quantity">Quantity</th>
@@ -74,26 +74,18 @@
                                     </table>
                                 </form>
             					<div class="cart-collaterals">
-
                                     <div class="cart_totals ">
-
                                         <h2>Cart Totals</h2>
-
                                         <table class="shop_table shop_table_responsive">
-
                                             <tbody>
-                                            
-                                        
                                                 <tr class="cart-subtotal">
                                                     <th>Subtotal</th>
-                                                    <td data-title="Subtotal"><span class="amount">$3,299.00</span></td>
+                                                    <td data-title="Subtotal"><span class="amount" id="sub-total">0</span></td>
                                                 </tr>
-
-
 
                                                 <tr class="order-total">
                                                     <th>Total</th>
-                                                    <td data-title="Total"><strong><span class="amount">$3,599.00</span></strong> </td>
+                                                    <td data-title="Total"><strong><span class="amount" id="final-total">0</span></strong> </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -133,13 +125,14 @@ function iniata() {
 
 	var cartJson;
 
-	console.log('initial data sdfgsdfsdf');
 
 	var cartRaw = localStorage.getItem('cartx');
 	if (cartRaw != null) {
 		cartJson = JSON.parse(cartRaw);
 		
 		console.log(cartJson);
+		
+		var total = 0;
 		
 		var i;
 		for (i = 0; i < cartJson.length; i++) { 
@@ -149,22 +142,27 @@ function iniata() {
 			console.log(cartItem);
 			
 			
-			//document.getElementById("cart_fucking").appendChild(nodeo);
-			
-			 var tr="<tr>";
-        var td1="<td>"+cartItem.id+"</td>";
-        var td2="<td>"+cartItem.name+"</td>";
-        var td3="<td>"+cartItem.price+"</td>";
-        var td4="<td>"+cartItem.quantity+"</td></tr>";
+        var tableRef = document.getElementById("mytable").getElementsByTagName('tbody')[0];
+     var newRow   = tableRef.insertRow(tableRef.rows.length-1);
 
-     document.getElementById("mytable").append(tr+td1+td2+td3+td4); 
-       
-			
+     newRow.insertCell(0).appendChild(document.createTextNode(i+1));
+     newRow.insertCell(1).appendChild(document.createTextNode(cartItem.name));
+     newRow.insertCell(2).appendChild(document.createTextNode(cartItem.price+ ' BDT'));
+     newRow.insertCell(3).appendChild(document.createTextNode(cartItem.quantity));
+     
+     newRow.insertCell(4).appendChild(document.createTextNode(Number(cartItem.quantity) * Number(cartItem.price)+ ' BDT'));
+     
+     total += Number(cartItem.quantity) * Number(cartItem.price);
+     document.getElementById("sub-total").innerHTML = total + ' BDT';
+     document.getElementById("final-total").innerHTML = total + ' BDT';
+     
 		}
 	} 
 }
 
 window.onload = iniata;
+
+codeAddress();
 </script>
     </body>
 </html>
