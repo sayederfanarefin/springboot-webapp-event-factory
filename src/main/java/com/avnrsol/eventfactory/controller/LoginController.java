@@ -37,6 +37,8 @@ public class LoginController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		modelAndView.setViewName("logIn2");
+		User user = new User();
+		modelAndView.addObject("user", user);
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;
 	}
@@ -61,12 +63,12 @@ public class LoginController {
 							"There is already a user registered with the email provided");
 		}
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("registration");
+			modelAndView.setViewName("logIn2");
 		} else {
 			userService.registerNewUserAccount(user);
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			modelAndView.addObject("user", new User());
-			modelAndView.setViewName("registration");
+			modelAndView.setViewName("logIn2");
 			
 		}
 		return modelAndView;
