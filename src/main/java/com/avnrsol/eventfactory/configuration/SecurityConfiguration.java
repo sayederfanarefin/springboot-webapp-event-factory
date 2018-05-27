@@ -70,7 +70,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/").permitAll()
 				.antMatchers("/login").permitAll()
 				.antMatchers("/registration").permitAll()
-				
+				.anyRequest().authenticated()
 				.and().csrf().disable()
 				
 				.formLogin()
@@ -92,6 +92,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 	    web
 	       .ignoring()
-	       .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/adminDash/**");
+	       .antMatchers("/service/**", "/serviceCategory/**", "/about/**", "/faq/**", "/cart/**", 
+	    		   "/resources/**", "/static/**", "/css/**", "/css/colors/**", "/js/**", "/images/**", "/adminDash/**");
 	}
 }

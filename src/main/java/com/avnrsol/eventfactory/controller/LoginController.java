@@ -16,6 +16,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.avnrsol.eventfactory.Model.Role;
 import com.avnrsol.eventfactory.Model.User;
+import com.avnrsol.eventfactory.Repository.ServiceCategoryRepository;
+import com.avnrsol.eventfactory.Repository.ServiceoRepository;
 import com.avnrsol.eventfactory.configuration.Constants;
 import com.avnrsol.eventfactory.service.UserService;
 
@@ -24,14 +26,18 @@ public class LoginController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ServiceCategoryRepository serviceCategoryRepository;
+
+	
 
 	@RequestMapping(value= "/login", method = RequestMethod.GET)
 	public ModelAndView login(){
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("logIn");
 		
-		System.out.println("->->->->->->->->->->->->->->->-> login");
-		
+		modelAndView.setViewName("logIn2");
+		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;
 	}
 	

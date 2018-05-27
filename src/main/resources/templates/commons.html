@@ -63,7 +63,7 @@
                     <nav>
                         <ul id="menu-top-bar-right" class="nav nav-inline pull-right animate-dropdown flip">
                             
-                            <li class="menu-item animate-dropdown"><a title="My Account" href="my-account.html"><i class="ec ec-user"></i>My Account</a></li>
+                            <li class="menu-item animate-dropdown"><a title="My Account" href="/myAccount"><i class="ec ec-user"></i>My Account</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -94,6 +94,7 @@
 									<div class="input-group-addon search-categories">
 
 										<select>
+										 <option value='0' selected='selected'>All Categories</option>
 											<option th:each="clientlist : ${clientlist}"
 												th:text="${clientlist.name}" th:value="${clientlist.id} "></option>
 										</select>
@@ -155,13 +156,10 @@
 												class="fa fa-list-ul"></i> All Services</span></li>
 
 
-
-
-
 										<li id="menu-item-2695"
 											class="menu-item menu-item-has-children animate-dropdown dropdown"
 											th:each="clientlist : ${clientlist}"><a
-											data-hover="dropdown" href="product-category.html"
+											data-hover="dropdown" href="/productCategory"
 											data-toggle="dropdown" class="dropdown-toggle"
 											aria-haspopup="true" th:text="${clientlist.name}">A</a>
 											<ul role="menu" class=" dropdown-menu">
@@ -181,7 +179,7 @@
 										<li class="menu-item"><a href="/about">About</a></li>
 										<li class="menu-item"><a href="/faq">FAQs</a></li>
 										<!-- Only show if logged in -->
-										<li class="menu-item"><a href="my-account.html">My
+										<li class="menu-item"><a href="/myAccount">My
 												Account</a></li>
 										<li class="pull-right menu-item">24 Hour service!</li>
 										<!-- Any message from Admin goes here -->
@@ -198,7 +196,7 @@
 
 							<!-- ============================================================= Header Logo ============================================================= -->
 							<div class="header-logo">
-								<a href="home.html" class="header-logo-link"> </a>
+								<a href="/" class="header-logo-link"> </a>
 							</div>
 							<!-- ============================================================= Header Logo : End============================================================= -->
 

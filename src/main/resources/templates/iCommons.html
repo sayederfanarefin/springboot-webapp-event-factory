@@ -35,7 +35,8 @@
 
                                         
                                         <li class="menu-item"><a title="Features" href="/faq">FAQ</a></li>
-                                        <li class="menu-item"><a title="Contact Us" href="/myAccount">My Account</a></li>
+                                        <li class="menu-item"><a title="My Account" href="/myAccount">My Account</a></li>
+                                        
                                     </ul>
                                 </nav>   
                             </div>
@@ -79,9 +80,18 @@
                             <div class="handheld-navigation hidden-lg-up" id="default-hh-header"> 
                                 <span class="ehm-close">Close</span>
                                 <ul id="menu-all-departments-menu-1" class="nav nav-inline yamm">
-                                    <li class="highlight menu-item animate-dropdown ">
-                                        <a title="Value of the Day" href="home-v2.html">Value of the Day</a>
-                                    </li>
+                                   <li id="menu-item-2695"
+											class="menu-item menu-item-has-children animate-dropdown dropdown"
+											th:each="clientlist : ${clientlist}"><a
+											data-hover="dropdown" href="/productCategory"
+											data-toggle="dropdown" class="dropdown-toggle"
+											aria-haspopup="true" th:text="${clientlist.name}">A</a>
+											<ul role="menu" class=" dropdown-menu">
+												<li class="menu-item animate-dropdown"
+													th:each="service : ${clientlist.Services}"><a
+													th:href="@{/service?id=} + ${service.id}"
+													th:text="${service.name}">L</a></li>
+											</ul></li>
                                     
                                 </ul>
                             </div>
@@ -97,10 +107,21 @@
                     <ul class="nav navbar-nav departments-menu animate-dropdown">
                         <li class="nav-item dropdown ">
 
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="departments-menu-toggle" >Services</a>
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="departments-menu-toggle" >All Services</a>
                             <ul id="menu-vertical-menu" class="dropdown-menu yamm departments-menu-dropdown">
-                                <li class="highlight menu-item animate-dropdown active"><a title="Value of the Day" href="product-category.html">Value of the Day</a></li>
-                              
+                                
+                                <li id="menu-item-2695"
+											class="menu-item menu-item-has-children animate-dropdown dropdown"
+											th:each="clientlist : ${clientlist}"><a
+											data-hover="dropdown" href="/productCategory"
+											data-toggle="dropdown" class="dropdown-toggle"
+											aria-haspopup="true" th:text="${clientlist.name}">A</a>
+											<ul role="menu" class=" dropdown-menu">
+												<li class="menu-item animate-dropdown"
+													th:each="service : ${clientlist.Services}"><a
+													th:href="@{/service?id=} + ${service.id}"
+													th:text="${service.name}">L</a></li>
+											</ul></li>
 
                                
                             </ul>
@@ -111,10 +132,15 @@
                         <div class="input-group">
                             <input type="text" id="search" class="form-control search-field" dir="ltr" value="" name="s" placeholder="Search for products" />
                             <div class="input-group-addon search-categories">
-                                <select name='product_cat' id='product_cat' class='postform resizeselect' >
-                                    <option value='0' selected='selected'>All Categories</option>
-                                    
-                                </select>
+                               
+                                <select name='product_cat' id='product_cat' class='postform resizeselect'>
+                                
+                                <option value='0' selected='selected'>All Categories</option>
+                                
+											<option th:each="clientlist : ${clientlist}"
+												th:text="${clientlist.name}" th:value="${clientlist.id} "></option>
+										</select>
+										
                             </div>
                             <div class="input-group-btn">
                                 <input type="hidden" id="search-param" name="post_type" value="product" />
@@ -125,7 +151,7 @@
 
                     <ul class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
                         <li class="nav-item dropdown">
-                            <a href="cart.html" class="nav-link" data-toggle="dropdown">
+                            <a href="/cart" class="nav-link" data-toggle="dropdown">
                                 <i class="ec ec-shopping-bag"></i>
                                <!--  <span class="cart-items-count count">4</span> -->
                                <span class="cart-items-total-price total-price"><span

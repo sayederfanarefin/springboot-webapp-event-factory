@@ -58,7 +58,7 @@ public class StoreController {
 	public ModelAndView myProfile() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("my-account");
-		
+		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;
 	}
 	
@@ -67,7 +67,7 @@ public class StoreController {
 	public ModelAndView faq() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("faq");
-		
+		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;
 	}
 	
@@ -75,7 +75,7 @@ public class StoreController {
 	public ModelAndView termsAndCondition() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("terms-and-conditions");
-		
+		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;
 	}
 
@@ -83,22 +83,22 @@ public class StoreController {
 	public ModelAndView cart() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("cart");
-		
+		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/checkOut", method = RequestMethod.GET)
+	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
 	public ModelAndView checkOut() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("checkout");
-		
+		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;
 	}
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
 	public ModelAndView about() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("about");
-		
+		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;
 	}
 }
