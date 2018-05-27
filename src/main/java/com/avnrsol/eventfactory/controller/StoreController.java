@@ -53,6 +53,24 @@ public class StoreController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value = "/serviceCategory", method = RequestMethod.GET)
+	public ModelAndView serviceCategory(@RequestParam("id") Long id, @CookieValue(value = "test_cookie", defaultValue = "hello") String fooCookie) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("service-category");
+		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
+			
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/directory", method = RequestMethod.GET)
+	public ModelAndView dategory(@RequestParam("id") Long id, @CookieValue(value = "test_cookie", defaultValue = "hello") String fooCookie) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("store-directory");
+		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
+			
+		return modelAndView;
+	}
+	
 	
 	@RequestMapping(value = "/myAccount", method = RequestMethod.GET)
 	public ModelAndView myProfile() {
