@@ -1,5 +1,8 @@
 package com.avnrsol.eventfactory.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
 
 import javax.validation.Valid;
@@ -16,6 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.avnrsol.eventfactory.Model.Role;
 import com.avnrsol.eventfactory.Model.User;
+import com.avnrsol.eventfactory.Repository.RoleRepository;
 import com.avnrsol.eventfactory.Repository.ServiceCategoryRepository;
 import com.avnrsol.eventfactory.Repository.ServiceoRepository;
 import com.avnrsol.eventfactory.configuration.Constants;
@@ -26,6 +30,9 @@ public class LoginController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RoleRepository roleRepository;
 	
 	@Autowired
 	private ServiceCategoryRepository serviceCategoryRepository;
@@ -44,14 +51,7 @@ public class LoginController {
 	}
 	
 	
-	@RequestMapping(value="/registration", method = RequestMethod.GET)
-	public ModelAndView registration(){
-		ModelAndView modelAndView = new ModelAndView();
-		User user = new User();
-		modelAndView.addObject("user", user);
-		modelAndView.setViewName("registration");
-		return modelAndView;
-	}
+
 	
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
@@ -65,6 +65,10 @@ public class LoginController {
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("logIn2");
 		} else {
+			
+			Role customerRole = roleRepository.findByName(Constants.USER);
+			Collection<Role> roles = new ArrayList<Role>(Arrays.asList(customerRole));
+			user.setRoles(roles);
 			userService.registerNewUserAccount(user);
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			modelAndView.addObject("user", new User());
