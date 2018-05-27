@@ -343,9 +343,7 @@
 
 		<script type="text/javascript">
 			
-
 			function removeRow(input) {
-
 				var current_total = Number(document
 						.getElementById("inside-cart-total").innerHTML);
 
@@ -356,10 +354,26 @@
 								.getElementById('amount_in_cart_xxx_'
 										+ input.id).innerHTML));
 				
-
 				document.getElementById('cart_fucking').removeChild(
 						input.parentNode);
-
+				
+				var cartJson;
+				var cartRaw = localStorage.getItem('cartx');
+				if (cartRaw != null) {
+					cartJson = JSON.parse(cartRaw);
+				}
+				
+				var newTotal = 0;
+				var i;
+				var cartJsonNew = [];
+				for (i = 0; i < cartJson.length; i++) { 
+					if(cartJson[i].id != input.id){
+						cartJsonNew.append(cartJson[i]);
+						newTotal += cartJson[i].price;
+					}
+				}
+				localStorage.setItem('cartx', JSON.stringify(cartJsonNew));
+				localStorage.setItem('amount', newTotal);
 			}
 
 			var form = document.getElementById("add_to_fucking_cart");
@@ -428,14 +442,9 @@
 			function codeAddress() {
 
 				var cartJson;
-
-				console.log('initial data');
-
 				var cartRaw = localStorage.getItem('cartx');
 				if (cartRaw != null) {
 					cartJson = JSON.parse(cartRaw);
-					
-					console.log(cartJson);
 					
 					var i;
 					for (i = 0; i < cartJson.length; i++) { 
