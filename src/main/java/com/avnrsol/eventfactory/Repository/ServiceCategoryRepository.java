@@ -9,4 +9,5 @@ import com.avnrsol.eventfactory.Model.ServiceCategory;
 public interface ServiceCategoryRepository extends JpaRepository<ServiceCategory, Long>{
 	ServiceCategory findServiceCategoryById(Long id);
 	ServiceCategory findByName(String name);
+	ServiceCategory findById(Long id);
 }

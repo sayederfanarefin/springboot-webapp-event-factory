@@ -58,6 +58,7 @@ public class StoreController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("service-category");
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
+		modelAndView.addObject("category", serviceCategoryRepository.findById(id));
 			
 		return modelAndView;
 	}
