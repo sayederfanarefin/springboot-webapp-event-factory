@@ -60,27 +60,17 @@
 
                                                 <div class="clear"></div>
 
-                                                <p class="form-row form-row-wide create-account"><input type="checkbox" value="1" name="createaccount" id="createaccount" class="input-checkbox"> <label class="checkbox" for="createaccount">Create an account?</label></p>
+                                               <p id="order_comments_field" class="form-row form-row notes"><label class="" for="order_comments">Order Notes</label><textarea cols="5" rows="2" placeholder="Notes about your order, e.g. special notes for delivery." id="order_comments" class="input-text " name="order_comments"></textarea></p>
 
                                             </div>
                                         </div>
 
                                         <div class="col-2">
-                                            <h3>Shipping Details</h3>
+                                            <h3>Your order</h3>
                                             <div class="woocommerce-shipping-fields">
-                                                <h3 id="ship-to-different-address">
-                                                    <label class="checkbox" for="ship-to-different-address-checkbox">Ship to a different address?</label>
-                                                    <input type="checkbox" value="1" name="ship_to_different_address" class="input-checkbox" id="ship-to-different-address-checkbox">
-                                                </h3>
-                                         
-                                                <p id="order_comments_field" class="form-row form-row notes"><label class="" for="order_comments">Order Notes</label><textarea cols="5" rows="2" placeholder="Notes about your order, e.g. special notes for delivery." id="order_comments" class="input-text " name="order_comments"></textarea></p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <h3 id="order_review_heading">Your order</h3>
-
-                                    <div class="woocommerce-checkout-review-order" id="order_review">
+                                               
+                                               
+                                               <div class="woocommerce-checkout-review-order" id="order_review">
                                         <table class="shop_table woocommerce-checkout-review-order-table">
                                             <thead>
                                                 <tr>
@@ -151,14 +141,7 @@
                                                         <p>Pay with cash upon delivery.</p>
                                                     </div>
                                                 </li>
-                                                <li class="wc_payment_method payment_method_paypal">
-                                                    <input type="radio" data-order_button_text="Proceed to PayPal" value="paypal" name="payment_method" class="input-radio" id="payment_method_paypal">
-
-                                                    <label for="payment_method_paypal">PayPal <img alt="PayPal Acceptance Mark" src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg"><a title="What is PayPal?" onclick="javascript:window.open('https://www.paypal.com/us/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;" class="about_paypal" href="https://www.paypal.com/us/webapps/mpp/paypal-popup">What is PayPal?</a></label>
-                                                    <div style="display:none;" class="payment_box payment_method_paypal">
-                                                        <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
-                                                    </div>
-                                                </li>
+                                                
                                             </ul>
                                             <div class="form-row place-order">
 
@@ -172,6 +155,15 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+
+                                    
                                 </form>
                             </article>
 

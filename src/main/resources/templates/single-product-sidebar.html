@@ -1,175 +1,200 @@
 <!DOCTYPE html>
-<html lang="en-US" itemscope="itemscope" itemtype="http://schema.org/WebPage">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en-US" itemscope="itemscope"
+	itemtype="http://schema.org/WebPage">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Service | Event Factory</title>
-        
-        <div th:replace="commons :: head"></div>
-    </head>
+<title>Service | Event Factory</title>
 
-    <body class="single-product">
-        <div id="page" class="hfeed site">
-        
-        
-            <a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
-            <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+<div th:replace="commons :: head"></div>
+</head>
 
-            <div class="top-bar hidden-md-down">
-                <div class="container">
-                   
-                    <nav>
-                        <ul id="menu-top-bar-right" class="nav nav-inline pull-right animate-dropdown flip">
-                            
-                            <li class="menu-item animate-dropdown"><a title="My Account" href="my-account.html"><i class="ec ec-user"></i>My Account</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div><!-- /.top-bar -->
+<body class="single-product">
+	<div id="page" class="hfeed site">
 
 
-            <header id="masthead" class="site-header header-v1">
-                <div class="container hidden-md-down">
-                     <div th:replace="commons :: header-upper"></div>
+		<a class="skip-link screen-reader-text" href="#site-navigation">Skip
+			to navigation</a> <a class="skip-link screen-reader-text" href="#content">Skip
+			to content</a>
 
-                    
-                </div>
-
-                
-
-            </header><!-- #masthead -->
-
-             </div>
-            
-           
-
-            <div id="content" class="site-content" tabindex="-1">
-                <div class="container">
-
-                    <nav class="woocommerce-breadcrumb">
-                        <a href="/">Home</a>
-                        <span class="delimiter"><i class="fa fa-angle-right"></i></span>
-                        
-                        <a th:href="@{/serviceCategory?id=} + ${serv.serviceCategory.id}" th:text="${serv.serviceCategory.name}" >serv</a>
-                        <span class="delimiter"><i class="fa fa-angle-right"></i></span>
-                        
-                        <span class="delimiter" th:text="${serv.name}"><i class="fa fa-angle-right"></i></span>
-                    </nav><!-- /.woocommerce-breadcrumb -->
-
-                    <div id="primary" class="content-area">
-                        <main id="main" class="site-main">
-
-                            <div class="product">
-
-                                <div class="single-product-wrapper">
-                                    <div class="product-images-wrapper">
-                                     <span class="onsale" th:if="*{serv.discount > 0}">Sale!</span> 
-                                        <div class="images electro-gallery">
-                                            
-                                            <div class="thumbnails-all columns-5 owl-carousel">
-                                               
-<div th:each="img,iter : ${serv.images}">
- <a href=""  th:if="*{iter.index == 0}" class="first" title=""  > <img class="wp-post-image" th:src="${img.url}" th:alt="${img.name}"> </a>
-
-                                                <a href=""  th:if="*{iter.index > 0}" class="" title=""  > <img class="wp-post-image" th:src="${img.url}" th:alt="${img.name}"> </a>
-</div>
-
-                                            </div><!-- .thumbnails-all -->
-                                        </div><!-- .electro-gallery -->
-                                    </div><!-- /.product-images-wrapper -->
-
-                                    <div class="summary entry-summary" th:with="result=${serv.price - (serv.price * (serv.discount / 100 ))}">
-
-                                        
-
-                                        <h1 itemprop="name" class="product_title entry-title" th:text="${serv.name}">U</h1>
-                                        
-                                          <hr class="single-product-title-divider" />
-                                          
-<span class="loop-product-categories">
-                                           <p>  Category: <a th:href="@{/serviceCategory?id=} + ${serv.serviceCategory.id}" rel="tag" th:text="${serv.serviceCategory.name}"></a> </p>
-                                        </span><!-- /.loop-product-categories -->
-                                        
-                                          <hr class="single-product-title-divider" />
-<div th:switch="${serv.available}"> 
-
-                                        <div class="availability in-stock" th:case="true">
-                                            Availablity: <span >In stock</span> 
-                                        </div><!-- .availability -->
-                                        
-                                        <div class="availability out-of-stock" th:case="*">
-                                            Availablity: <span >Out of stock</span> 
-                                        </div>
-                                        
-                                        
-</div>
-                                        <hr class="single-product-title-divider" />
-
-                                        
-
-                                        <div itemprop="description">
-                                           
-
-                                            <p> Vendor: <a th:href="@{/vendor?id=} + ${serv.vendor.id}" th:text="${serv.vendor.name}"> mm </a> </p>
-                                        </div><!-- .description -->
-
-                                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" >
-
-                                            <p class="price"><span class="electro-price"><ins><span class="amount" th:text="${result}" ></span></ins> <del><span th:if="*{serv.discount > 0}" class="amount" th:text="${serv.price}"></span></del></span></p>
-
-                                            <meta itemprop="price" content="1215" />
-                                            <meta itemprop="priceCurrency" content="USD" />
-                                            <link itemprop="availability" href="http://schema.org/InStock" />
-
-                                        </div><!-- /itemprop -->
-
-                                        <form  id="add_to_fucking_cart" class="variations_form cart" >
-
-                                          
+		
+		<!-- /.top-bar -->
 
 
-                                            <div class="single_variation_wrap">
-                                                <div class="woocommerce-variation single_variation"></div>
-                                                <div class="woocommerce-variation-add-to-cart variations_button">
-                                                    <div class="quantity">
-                                                        <label>Quantity:</label>
-                                                        <input type="number" name="quantity" value="1" title="Qty" class="input-text qty text"/>
-                                                    </div> 
-                                                    <button type="submit" class="single_add_to_cart_button button">Add to cart</button>
-                                                    <input type="hidden" name="unit_price" th:value="${result}"  />
-                                                    <input type="hidden" name="product_id" th:value="${serv.id}" />
-                                                    <input type="hidden" name="product_name" th:value="${serv.name}" />
-                                                    <input type="hidden" name="product_image_url" th:value="${serv.images[0].url}" />
-                                                    
-                                                </div>
-                                            </div>
-                                        </form>
-
-                                    </div><!-- .summary -->
-                                </div><!-- /.single-product-wrapper -->
+		<header id="masthead" class="site-header header-v1">
+			<div class="container hidden-md-down">
+				<div th:replace="commons :: header-upper"></div>
 
 
-                                <div class="woocommerce-tabs wc-tabs-wrapper">
-                                    <ul class="nav nav-tabs electro-nav-tabs tabs wc-tabs" role="tablist">
-                                       
+			</div>
 
-                                        <li class="nav-item description_tab">
-                                            <a href="#tab-description" class="active" data-toggle="tab">Description</a>
-                                        </li>
 
-                                       
-                                    </ul>
 
-                                    <div class="tab-content">
-                                        
-                                        <div class="tab-pane active in panel entry-content wc-tab" id="tab-description">
-                                            <div class="electro-description">
-                                            <p th:text="${serv.description}"></p>
-                                              
-                                            </div><!-- /.electro-description -->
+		</header>
+		<!-- #masthead -->
 
-                                            <!-- <div class="product_meta">
+	</div>
+
+
+
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="container">
+
+			<nav class="woocommerce-breadcrumb">
+				<a href="/">Home</a> <span class="delimiter"><i
+					class="fa fa-angle-right"></i></span> <a
+					th:href="@{/serviceCategory?id=} + ${serv.serviceCategory.id}"
+					th:text="${serv.serviceCategory.name}">serv</a> <span
+					class="delimiter"><i class="fa fa-angle-right"></i></span> <span
+					class="delimiter" th:text="${serv.name}"><i
+					class="fa fa-angle-right"></i></span>
+			</nav>
+			<!-- /.woocommerce-breadcrumb -->
+
+			<div id="primary" class="content-area">
+				<main id="main" class="site-main">
+
+				<div class="product">
+
+					<div class="single-product-wrapper">
+						<div class="product-images-wrapper">
+							<span class="onsale" th:if="*{serv.discount > 0}">Sale!</span>
+							<div class="images electro-gallery">
+
+								<div class="thumbnails-all columns-5 owl-carousel">
+
+									<div th:each="img,iter : ${serv.images}">
+										<a href="" th:if="*{iter.index == 0}" class="first" title="">
+											<img class="wp-post-image" th:src="${img.url}"
+											th:alt="${img.name}">
+										</a> <a href="" th:if="*{iter.index > 0}" class="" title="">
+											<img class="wp-post-image" th:src="${img.url}"
+											th:alt="${img.name}">
+										</a>
+									</div>
+
+								</div>
+								<!-- .thumbnails-all -->
+							</div>
+							<!-- .electro-gallery -->
+						</div>
+						<!-- /.product-images-wrapper -->
+
+						<div class="summary entry-summary"
+							th:with="result=${serv.price - (serv.price * (serv.discount / 100 ))}">
+
+
+
+							<h1 itemprop="name" class="product_title entry-title"
+								th:text="${serv.name}">U</h1>
+
+							<hr class="single-product-title-divider" />
+
+							<span class="loop-product-categories">
+								<p>
+									Category: <a
+										th:href="@{/serviceCategory?id=} + ${serv.serviceCategory.id}"
+										rel="tag" th:text="${serv.serviceCategory.name}"></a>
+								</p>
+							</span>
+							<!-- /.loop-product-categories -->
+
+							<hr class="single-product-title-divider" />
+							<div th:switch="${serv.available}">
+
+								<div class="availability in-stock" th:case="true">
+									Availablity: <span>In stock</span>
+								</div>
+								<!-- .availability -->
+
+								<div class="availability out-of-stock" th:case="*">
+									Availablity: <span>Out of stock</span>
+								</div>
+
+
+							</div>
+							<hr class="single-product-title-divider" />
+
+							<div itemprop="description">
+
+
+								<p>
+									Vendor: <a th:href="@{/vendor?id=} + ${serv.vendor.id}"
+										th:text="${serv.vendor.name}"> mm </a>
+								</p>
+							</div>
+							<!-- .description -->
+
+							<div itemprop="offers" itemscope
+								itemtype="http://schema.org/Offer">
+
+								<p class="price">
+									<span class="electro-price"><ins>
+											<span class="amount" th:text="${result}"></span>
+										</ins> <del>
+											<span th:if="*{serv.discount > 0}" class="amount"
+												th:text="${serv.price}"></span>
+										</del></span>
+								</p>
+
+								<meta itemprop="price" content="1215" />
+								<meta itemprop="priceCurrency" content="USD" />
+								<link itemprop="availability" href="http://schema.org/InStock" />
+
+							</div>
+							<!-- /itemprop -->
+
+							<form id="add_to_fucking_cart" class="variations_form cart">
+								<div class="single_variation_wrap">
+									<div class="woocommerce-variation single_variation"></div>
+									<div
+										class="woocommerce-variation-add-to-cart variations_button">
+										<div class="quantity">
+											<label>Quantity:</label> <input type="number" name="quantity"
+												value="1" title="Qty" class="input-text qty text" />
+										</div>
+										<button type="submit" class="single_add_to_cart_button button">Add
+											to cart</button>
+										<input type="hidden" name="unit_price" th:value="${result}" />
+										<input type="hidden" name="product_id" th:value="${serv.id}" />
+										<input type="hidden" name="product_name"
+											th:value="${serv.name}" /> <input type="hidden"
+											name="product_image_url" th:value="${serv.images[0].url}" />
+
+									</div>
+								</div>
+							</form>
+
+						</div>
+						<!-- .summary -->
+					</div>
+					<!-- /.single-product-wrapper -->
+
+
+					<div class="woocommerce-tabs wc-tabs-wrapper">
+						<ul class="nav nav-tabs electro-nav-tabs tabs wc-tabs"
+							role="tablist">
+
+
+							<li class="nav-item description_tab"><a
+								href="#tab-description" class="active" data-toggle="tab">Description</a>
+							</li>
+
+
+						</ul>
+
+						<div class="tab-content">
+
+							<div class="tab-pane active in panel entry-content wc-tab"
+								id="tab-description">
+								<div class="electro-description">
+									<p th:text="${serv.description}"></p>
+
+								</div>
+								<!-- /.electro-description -->
+
+								<!-- <div class="product_meta">
                                                 <span class="sku_wrapper">SKU: <span class="sku" itemprop="sku">FW511948218</span></span>
 
                                                 <span class="posted_in">Category:
@@ -181,70 +206,64 @@
                                                     <a href="product-category.html" rel="tag">Gaming</a>, <a href="product-category.html" rel="tag">Strong</a>
                                                 </span>
 
-                                            </div> --><!-- /.product_meta -->
-                                        </div>
+                                            </div> -->
+								<!-- /.product_meta -->
+							</div>
 
-                                       
+						</div>
+					</div>
+					<!-- /.woocommerce-tabs -->
 
-                                        
-                                    </div>
-                                </div><!-- /.woocommerce-tabs -->
+					<div class="related products">
+						<h2>Related Products</h2>
 
-                                <div class="related products">
-                                    <h2>Related Products</h2>
+						<ul class="products columns-5">
 
-                                    <ul class="products columns-5" >
-												
-                                        <li class="product" th:each="related : ${related}">
-                                            <div class="product-outer">
-                                                <div class="product-inner">
-                                                    <span class="loop-product-categories"><a th:href="@{/serviceCategory?id=} + ${related.serviceCategory.id}" rel="tag" th:text="${related.serviceCategory.name}"></a></span>
-                                                    <a th:href="@{/service?id=} + ${related.id}">
-                                                        <h3 th:text="${related.name}"></h3>
-                                                        <div class="product-thumbnail">
-                                                            <img th:src="${related.images[0].url}" th:alt="${related.images[0].name}">
-                                                        </div>
-                                                    </a>
+							<li class="product" th:each="related : ${related}">
+								<div class="product-outer">
+									<div class="product-inner">
+										<span class="loop-product-categories"><a
+											th:href="@{/serviceCategory?id=} + ${related.serviceCategory.id}"
+											rel="tag" th:text="${related.serviceCategory.name}"></a></span> <a
+											th:href="@{/service?id=} + ${related.id}">
+											<h3 th:text="${related.name}"></h3>
+											<div class="product-thumbnail">
+												<img th:src="${related.images[0].url}"
+													th:alt="${related.images[0].name}">
+											</div>
+										</a>
 
-                                                    <div class="price-add-to-cart">
-                                                        <span class="price">
-                                                            <span class="electro-price">
-                                                                <ins><span class="amount" th:text="${related.price}"></span></ins>
-                                                            </span>
-                                                        </span>
-                                                        <a rel="nofollow" href="single-product.html" class="button add_to_cart_button">Add to cart</a>
-                                                    </div><!-- /.price-add-to-cart -->
+										<div class="price-add-to-cart">
+											<span class="price"> <span class="electro-price">
+													<ins>
+														<span class="amount" th:text="${related.price}"></span>
+													</ins>
+											</span>
+											</span> <a rel="nofollow" href="single-product.html"
+												class="button add_to_cart_button">Add to cart</a>
+										</div>
+										<!-- /.price-add-to-cart -->
 
-                                                   
-                                                </div><!-- /.product-inner -->
-                                            </div><!-- /.product-outer -->
-                                        </li>
-
-                                       
-
-                                       
-                                    </ul><!-- /.products -->
-                                </div><!-- /.related -->
-                            </div>
-                        </main><!-- /.site-main -->
-                    </div><!-- /.content-area -->
-
-                    
-
-                </div><!-- .col-full -->
-            </div><!-- #content -->
-
-          
-
-            			
-
-
-             <div th:replace="commons :: footer"></div>
-
-
-        </div><!-- #page -->
-
-      
-
-    </body>
+									</div>
+									<!-- /.product-inner -->
+								</div>
+								<!-- /.product-outer -->
+							</li>
+						</ul>
+						<!-- /.products -->
+					</div>
+					<!-- /.related -->
+				</div>
+				</main>
+				<!-- /.site-main -->
+			</div>
+			<!-- /.content-area -->
+		</div>
+		<!-- .col-full -->
+	</div>
+	<!-- #content -->
+	<div th:replace="commons :: footer"></div>
+	</div>
+	<!-- #page -->
+</body>
 </html>

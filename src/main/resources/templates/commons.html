@@ -381,7 +381,23 @@
 		
 			var my_func = function(event) {
 				event.preventDefault();
-
+				
+				var flag = false;
+				var i;
+				var cartJson;
+				var cartRaw = localStorage.getItem('cartx');
+				if (cartRaw != null) {
+					cartJson = JSON.parse(cartRaw);
+					for (i = 0; i < cartJson.length; i++) { 
+						if(cartJson[i].id == form.product_id.value){
+							flag = true;
+						}
+					}
+				}
+				
+				if(flag){
+					
+				}else{
 				var node = document.createElement("LI");
 
 				node.className = 'mini_cart_item';
@@ -403,8 +419,6 @@
 				document.getElementById("inside-cart-total").innerHTML = final_total;
 
 				localStorage.setItem('amount', final_total);
-				
-				
 				
 				//cart stuff on new item add
 				var cartRaw = localStorage.getItem('cartx');
@@ -428,7 +442,7 @@
 				
 				console.log(cart);
 				localStorage.setItem('cartx', JSON.stringify(cart));
-				
+				}
 
 			};
 
