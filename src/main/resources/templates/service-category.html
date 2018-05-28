@@ -28,74 +28,20 @@
             				
             				<section>
                                 <header>
-                                    <h2 class="h1">Laptops &amp; Computers Categories</h2>
+                                    <h2 style="padding-top:50px"" class="h1" th:text="${category.name}">Laptops</h2>
                                 </header>
 
                                 <div class="woocommerce columns-6">
                                     <ul class="product-loop-categories">
 
-                                        <li class="product-category product">
-                                            <a href="shop.html">
-                                                <img src="assets/images/product-category/5.jpg" class="img-responsive" alt="">
-                                                <h3>Mac Computers<mark class="count">(2)</mark></h3>
+                                        <li class="product-category product" th:each="category : ${category.Services}">
+                                            <a th:href="@{/service?id=} + ${category.id}">
+                                                <img th:src="@{/service?id=} + ${category.images[0].url}" class="img-responsive" alt="">
+                                                <h3  th:text="${category.name}">Mac Computers</h3>
                                             </a>
                                         </li><!-- /.item -->
 
-                                        <li class="product-category product">
-                                            <a href="shop.html">
-                                                <img src="assets/images/product-category/2.jpg" class="img-responsive" alt="">
-                                                <h3>All in One<mark class="count">(2)</mark></h3>
-                                            </a>
-
-                                        </li><!-- /.item -->
-
-                                        <li class="product-category product">
-                                            <a href="shop.html">
-                                                <img src="assets/images/product-category/4.jpg" class="img-responsive" alt="">
-                                                <h3>Laptops<mark class="count">(2)</mark></h3>
-                                            </a>
-
-                                        </li><!-- /.item -->
-
-                                        <li class="product-category product">
-                                            <a href="shop.html">
-                                                <img src="assets/images/product-category/6.jpg" class="img-responsive" alt="">
-                                                <h3>Peripherals<mark class="count">(2)</mark></h3>
-                                            </a>
-
-                                        </li><!-- /.item -->
-
-                                        <li class="product-category product">
-                                            <a href="shop.html">
-                                                <img src="assets/images/product-category/2.jpg" class="img-responsive" alt="">
-                                                <h3>Ultrabooks<mark class="count">(2)</mark></h3>
-                                            </a>
-
-                                        </li><!-- /.item -->
-
-                                        <li class="product-category product">
-                                            <a href="shop.html">
-                                                <img src="assets/images/product-category/1.jpg" class="img-responsive" alt="">
-                                                <h3>Accessories<mark class="count">(2)</mark></h3>
-                                            </a>
-
-                                        </li><!-- /.item -->
-
-                                        <li class="product-category product">
-                                            <a href="shop.html">
-                                                <img src="assets/images/product-category/3.jpg" class="img-responsive" alt="">
-                                                <h3>Gaming<mark class="count">(2)</mark></h3>
-                                            </a>
-
-                                        </li><!-- /.item -->
-
-                                        <li class="product-category product">
-                                            <a href="shop.html">
-                                                <img src="assets/images/product-category/4.jpg" class="img-responsive" alt="">
-                                                <h3>Servers<mark class="count">(2)</mark></h3>
-                                            </a>
-
-                                        </li><!-- /.item -->
+                                        
 
                                     </ul>
                                 </div>
