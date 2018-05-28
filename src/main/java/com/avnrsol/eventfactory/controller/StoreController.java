@@ -124,6 +124,10 @@ public class StoreController {
 	public ModelAndView checkOut(@Valid Principal principal) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("checkout");
+		
+		Order order = new Order();
+		modelAndView.addObject("order", order);
+		
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		modelAndView.addObject("userx", userService.findUserByEmail(principal.getName()));
 		

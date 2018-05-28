@@ -42,6 +42,8 @@ public class Order {
 	
 	public Long total;
 	
+	public String paymentType;
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_order")
@@ -151,6 +153,18 @@ public class Order {
 
 	public void setOrderItems(List<OrderItem> orderItems) {
 		this.orderItems = orderItems;
+	}
+
+
+
+	public String getPaymentType() {
+		return paymentType;
+	}
+
+
+
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
 	}
 
 	
