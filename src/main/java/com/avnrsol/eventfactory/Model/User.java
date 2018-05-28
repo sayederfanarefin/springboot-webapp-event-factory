@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
@@ -63,6 +64,11 @@ public class User implements UserDetails, Serializable {
 
 	public String address;
 	public String phone;
+	
+	@OneToMany
+    @JoinColumn(name = "fk_order")
+	public List<Order> orders;
+	
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
@@ -249,6 +255,14 @@ public class User implements UserDetails, Serializable {
 
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 	
 	

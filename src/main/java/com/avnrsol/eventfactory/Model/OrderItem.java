@@ -1,88 +1,118 @@
-//package com.avnrsol.eventfactory.Model;
-//
-//import javax.persistence.Column;
-//import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//import javax.persistence.Id;
-//import javax.persistence.Table;
-//
-//import org.hibernate.validator.constraints.NotEmpty;
-//import org.springframework.beans.factory.annotation.Value;
-//
-//@Entity
-//
-//public class OrderItem {
-//	
-//	
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
-//	private Long id;
-//	
-//	@Column(name = "name")
-//	@NotEmpty(message = "*Please provide your name")
-//	private String name;
-//	
-//	
-//	@Column(columnDefinition="LONGTEXT")
-//	private String description;
-//	
-//	@Column(columnDefinition="LONGTEXT")
-//	private String url;
-//	
-//	
-//	
-//	public OrderItem() {
-//		super();
-//	}
-//
-//	public String getName() {
-//		return name;
-//	}
-//
-//	public void setName(String name) {
-//		this.name = name;
-//	}
-//
-//	public String getDescription() {
-//		return description;
-//	}
-//
-//	public void setDescription(String description) {
-//		this.description = description;
-//	}
-//
-//	public String getUrl() {
-//		return url;
-//	}
-//
-//
-//
-//	public void setUrl(String url) {
-//		this.url = url;
-//	}
-//
-//
-//
-//	public OrderItem(String name, String description, String url) {
-//		super();
-//		this.name = name;
-//		this.description = description;
-//		this.url = url;
-//	}
-//
-//
-//
-//	public Long getId() {
-//		return id;
-//	}
-//
-//
-//
-//	public void setId(Long id) {
-//		this.id = id;
-//	}
-//
-//	
-//	
-//}
+package com.avnrsol.eventfactory.Model;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Value;
+
+@Entity
+
+public class OrderItem {
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long id;
+	
+	public Long quantity;
+	
+	public Long amount;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_order_item_service")
+	public Serviceo service;
+
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_order_item")
+	public Order order;
+	
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+	public Long getQuantity() {
+		return quantity;
+	}
+
+
+
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
+	}
+
+
+
+	public Long getAmount() {
+		return amount;
+	}
+
+
+
+	public void setAmount(Long amount) {
+		this.amount = amount;
+	}
+
+
+
+	public Serviceo getService() {
+		return service;
+	}
+
+
+
+	public void setService(Serviceo service) {
+		this.service = service;
+	}
+
+
+
+	public OrderItem(Long quantity, Long amount, Serviceo service) {
+		super();
+		this.quantity = quantity;
+		this.amount = amount;
+		this.service = service;
+	}
+
+
+
+	public OrderItem() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public Order getOrder() {
+		return order;
+	}
+
+
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	
+	
+}

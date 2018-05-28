@@ -1,20 +1,27 @@
 package com.avnrsol.eventfactory.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.avnrsol.eventfactory.Model.Order;
+import com.avnrsol.eventfactory.Model.Role;
 import com.avnrsol.eventfactory.Model.User;
 import com.avnrsol.eventfactory.Repository.ServiceCategoryRepository;
 import com.avnrsol.eventfactory.Repository.ServiceoRepository;
+import com.avnrsol.eventfactory.configuration.Constants;
 import com.avnrsol.eventfactory.service.UserService;
 import com.avnrsol.eventfactory.service.VendorService;
 
@@ -127,6 +134,15 @@ public class StoreController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("about");
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
+		return modelAndView;
+	}
+	
+	
+	
+	@RequestMapping(value = "/placeOrder", method = RequestMethod.POST)
+	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult, Order order) {
+		ModelAndView modelAndView = new ModelAndView();
+		
 		return modelAndView;
 	}
 }

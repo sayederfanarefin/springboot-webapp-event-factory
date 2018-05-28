@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>My Account  | Event Factory</title>
+        <title>Service  | Event Factory</title>
 
 <div th:replace="commons :: head"></div>
     </head>
@@ -50,13 +50,15 @@
 							<span class="onsale" th:if="*{serv.discount > 0}">Sale!</span>
 							<div class="images electro-gallery">
 
-								<div class="thumbnails-all columns-5 owl-carousel">
+								<div class="thumbnails-single owl-carousel">
 
 									<div th:each="img,iter : ${serv.images}">
-										<a href="" th:if="*{iter.index == 0}" class="first" title="">
-											<img class="wp-post-image" th:src="${img.url}"
+										<a href="" th:if="*{iter.index == 0}" class="zoom" title="" data-rel="prettyPhoto[product-gallery]">
+											<img class="wp-post-image" th:data-echo="${img.url}" th:src="${img.url}"
 											th:alt="${img.name}">
-										</a> <a href="" th:if="*{iter.index > 0}" class="" title="">
+										</a> 
+										
+										<a href="" th:if="*{iter.index > 0}" class="" title="">
 											<img class="wp-post-image" th:src="${img.url}"
 											th:alt="${img.name}">
 										</a>

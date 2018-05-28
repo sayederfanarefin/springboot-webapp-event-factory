@@ -33,6 +33,11 @@ public class Serviceo {
 	private double price;
 	
 	private double discount;
+	
+	@OneToMany
+    @JoinColumn(name = "fk_order_item_service")
+	public List<OrderItem> orderItems;
+	
 
 	@Column(columnDefinition = "LONGTEXT")
 	private String description;
@@ -154,6 +159,16 @@ public class Serviceo {
 
 	public void setDiscount(double discount) {
 		this.discount = discount;
+	}
+
+
+	public List<OrderItem> getOrderItems() {
+		return orderItems;
+	}
+
+
+	public void setOrderItems(List<OrderItem> orderItems) {
+		this.orderItems = orderItems;
 	}
 	
 	
