@@ -1,5 +1,9 @@
 package com.avnrsol.eventfactory.controller;
 
+import java.security.Principal;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -8,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.avnrsol.eventfactory.Model.User;
 import com.avnrsol.eventfactory.Repository.ServiceCategoryRepository;
 import com.avnrsol.eventfactory.Repository.ServiceoRepository;
 import com.avnrsol.eventfactory.service.UserService;
@@ -73,9 +78,12 @@ public class StoreController {
 	
 	
 	@RequestMapping(value = "/myAccount", method = RequestMethod.GET)
-	public ModelAndView myProfile() {
+	public ModelAndView myProfile(@Valid Principal principal) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("my-account");
+		User u = userService.findUserByEmail(principal.getName());
+		System.out.println(u.getFirstName());
+		modelAndView.addObject("userx", u);
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;
 	}
@@ -106,10 +114,12 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
-	public ModelAndView checkOut() {
+	public ModelAndView checkOut(@Valid Principal principal) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("checkout");
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
+		modelAndView.addObject("userx", userService.findUserByEmail(principal.getName()));
+		
 		return modelAndView;
 	}
 	@RequestMapping(value = "/about", method = RequestMethod.GET)

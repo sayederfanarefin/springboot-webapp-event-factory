@@ -32,42 +32,42 @@ public class User implements UserDetails, Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	public Long id;
 
 	@Column(name = "created_at")
 	public Date createdAt;
 
-	private String email;
+	public String email;
 
-	private String companyName;
+	public String companyName;
 	
-	private String password;
+	public String password;
 
-	private boolean enabled;
+	public boolean enabled;
 
-	private boolean accountNonExpired;
+	public boolean accountNonExpired;
 
-	private boolean accountNonLocked;
+	public boolean accountNonLocked;
 
-	private boolean credentialsNonExpired;
+	public boolean credentialsNonExpired;
 
-	private boolean active;
+	public boolean active;
 	
-	private String firstName;
-	private String lastName;
+	public String firstName;
+	public String lastName;
 
-	private String address;
-	private String phone;
+	public String address;
+	public String phone;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 
-	private Collection<Role> roles;
+	public Collection<Role> roles;
 
 	// -----------------methods-----------------//
 
@@ -112,7 +112,7 @@ public class User implements UserDetails, Serializable {
 				.collect(Collectors.toList());
 	}
 
-	private List<String> getPrivileges(Collection<Role> roles) {
+	public List<String> getPrivileges(Collection<Role> roles) {
 		List<String> privileges = new ArrayList<>();
 		List<Privilege> collection = new ArrayList<>();
 		for (Role role : roles) {
