@@ -48,7 +48,7 @@ public class StoreController {
 	@RequestMapping(value = "/service", method = RequestMethod.GET)
 	public ModelAndView service(@RequestParam("id") Long id, @CookieValue(value = "test_cookie", defaultValue = "hello") String fooCookie) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("single-product-sidebar");
+		modelAndView.setViewName("single-product");
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		modelAndView.addObject("serv", serviceoRepository.findServiceoById(id));
 		modelAndView.addObject("related", serviceoRepository.findTop4ServiceoByServiceCategory_Id(serviceoRepository.findServiceoById(id).getServiceCategory().getId()));

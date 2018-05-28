@@ -308,15 +308,20 @@
 						<div class="footer-payment-logo">
 							<ul class="cash-card card-inline">
 								<li class="card-item"><img
-									src="assets/images/footer/payment-icon/1.png" alt="" width="52"></li>
+								th:src="@{/images/footer/payment-icon/1.png}"
+									 alt="" width="52"></li>
 								<li class="card-item"><img
-									src="assets/images/footer/payment-icon/2.png" alt="" width="52"></li>
+									th:src="@{/images/footer/payment-icon/2.png}"
+									 alt="" width="52"></li>
 								<li class="card-item"><img
-									src="assets/images/footer/payment-icon/3.png" alt="" width="52"></li>
+									th:src="@{/images/footer/payment-icon/3.png}"
+									 alt="" width="52"></li>
 								<li class="card-item"><img
-									src="assets/images/footer/payment-icon/4.png" alt="" width="52"></li>
+									th:src="@{/images/footer/payment-icon/4.png}"
+									 alt="" width="52"></li>
 								<li class="card-item"><img
-									src="assets/images/footer/payment-icon/5.png" alt="" width="52"></li>
+									th:src="@{/images/footer/payment-icon/5.png}"
+									 alt="" width="52"></li>
 							</ul>
 						</div>
 						<!-- /.payment-methods -->
@@ -403,7 +408,7 @@
 				node.className = 'mini_cart_item';
 				node.innerHTML = '<a id= "'
 						+ form.product_id.value
-						+ '" title="Remove this item" onclick="removeRow(this)" class="remove" href="javascript:void(0);">×</a><a href=""><img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="assets/images/products/mini-cart1.jpg" alt="">'
+						+ '" title="Remove this item" onclick="removeRow(this)" class="remove" href="javascript:void(0);">×</a><a href=""><img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="" alt="">'
 						+ form.product_name.value
 						+ '&nbsp;</a><span class="quantity" id="quantity_in_cart_xxx_'+ form.product_id.value +'">'
 						+ form.quantity.value
@@ -468,7 +473,7 @@
 						node.className = 'mini_cart_item';
 						node.innerHTML = '<a id= "'
 								+ cartItem.id
-								+ '" title="Remove this item" onclick="removeRow(this)" class="remove" href="javascript:void(0);">×</a><a href=""><img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="assets/images/products/mini-cart1.jpg" alt="">'
+								+ '" title="Remove this item" onclick="removeRow(this)" class="remove" href="javascript:void(0);">×</a><a href=""><img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="" alt="">'
 								+ cartItem.name
 								+ '&nbsp;</a><span class="quantity" id="quantity_in_cart_xxx_'+ cartItem.id +'">'
 								+ cartItem.quantity
