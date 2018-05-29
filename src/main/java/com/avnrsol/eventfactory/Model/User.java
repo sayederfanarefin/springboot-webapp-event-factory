@@ -44,6 +44,8 @@ public class User implements UserDetails, Serializable {
 	public Date createdAt;
 
 	public String email;
+	
+	public String type;
 
 	public String companyName;
 	
@@ -263,6 +265,14 @@ public class User implements UserDetails, Serializable {
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

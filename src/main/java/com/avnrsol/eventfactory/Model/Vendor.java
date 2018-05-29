@@ -31,6 +31,7 @@ public class Vendor {
 	@NotEmpty(message = "*Please provide an email")
 	private String email;
 	
+	public double commision;
 	
 	@Column(name = "name")
 	@NotEmpty(message = "*Please provide your name")
@@ -238,11 +239,19 @@ public class Vendor {
 		return images;
 	}
 
-
-
-
 	public void setImages(List<Image> images) {
 		this.images = images;
+	}
+
+	public double getCommision() {
+		return commision;
+	}
+
+
+
+
+	public void setCommision(double commision) {
+		this.commision = commision;
 	}
 	
 	

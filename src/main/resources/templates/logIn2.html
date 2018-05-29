@@ -1,166 +1,247 @@
 <!DOCTYPE html>
-<html lang="en-US" itemscope="itemscope" itemtype="http://schema.org/WebPage">
-    <head>
+<html lang="en-US" itemscope="itemscope"
+	itemtype="http://schema.org/WebPage">
+<head>
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>My Account  | Event Factory</title>
+<title>My Account | Event Factory</title>
 
 <div th:replace="commons :: head"></div>
-    </head>
+</head>
 
-    <body class="page home page-template-default">
-        <div id="page" class="hfeed site">
-            <a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
-            <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
-
-   
-            <div th:replace="iCommons :: header"></div>
-           
-           
-
-             <div id="content" class="site-content" tabindex="-1">
-            	<div class="container">
-            		<div id="primary" class="content-area">
-            			<main id="main" class="site-main">
-            				
- <article id="post-8" class="hentry">
-
-                                <div class="entry-content">
-                                    <div class="woocommerce">
-                                        <div class="customer-login-form">
-                                            <span class="or-text">or</span>
-
-                                            <div class="col2-set" id="customer_login">
-
-                                                <div class="col-1">
+<body class="page home page-template-default">
+	<div id="page" class="hfeed site">
+		<a class="skip-link screen-reader-text" href="#site-navigation">Skip
+			to navigation</a> <a class="skip-link screen-reader-text" href="#content">Skip
+			to content</a>
 
 
-                                                    <h2>Login</h2>
+		<div th:replace="iCommons :: header"></div>
 
-                                                    <form th:action="@{/login}" method="post" class="login">
 
-                                                        <p class="before-login-text">Welcome back! Sign in to your account</p>
 
-                                                        <p class="form-row form-row-wide">
-                                                            <label for="username">Email address<span class="required">*</span></label>
-                                                            <input class="input-text" type="email" name="email"  id="email" required="required" />
-                                                        </p>
+		<div id="content" class="site-content" tabindex="-1">
+			<div class="container">
+				<div id="primary" class="content-area">
+					<main id="main" class="site-main">
 
-                                                        <p class="form-row form-row-wide">
-                                                            <label for="password">Password<span class="required">*</span></label>
-                                                            <input class="input-text" type="password" name="password" id="password" required="required" />
-                                                        </p>
+					<article id="post-8" class="hentry">
 
-                                                        <p class="form-row">
-                                                            <input class="button" type="submit" value="Login" name="login">
-                                                           
-                                                        </p>
+						<div class="entry-content">
+							<div class="woocommerce">
+								<div class="customer-login-form">
+									<span class="or-text">or</span>
 
-                                                        <p class="lost_password"><a href="login-and-register.html">Lost your password?</a></p>
+									<div class="col2-set" id="customer_login">
 
-                                                    </form>
+										<div class="col-1">
 
-<div align="center" th:if="${param.error}">
-				<p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+
+											<h2>Login</h2>
+
+											<form th:action="@{/login}" method="post" class="login">
+
+												<p class="before-login-text">Welcome back! Sign in to
+													your account</p>
+
+												<p class="form-row form-row-wide">
+													<label for="username">Email address<span
+														class="required">*</span></label> <input class="input-text"
+														type="email" name="email" id="email" required="required" />
+												</p>
+
+												<p class="form-row form-row-wide">
+													<label for="password">Password<span
+														class="required">*</span></label> <input class="input-text"
+														type="password" name="password" id="password"
+														required="required" />
+												</p>
+
+												<p class="form-row">
+													<input class="button" type="submit" value="Login"
+														name="login">
+
+												</p>
+
+												<p class="lost_password">
+													<a href="login-and-register.html">Lost your password?</a>
+												</p>
+
+											</form>
+
+											<div align="center" th:if="${param.error}">
+												<p style="font-size: 20; color: #FF1C19;">Email or
+													Password invalid, please verify</p>
+											</div>
+
+										</div>
+										<!-- .col-1 -->
+
+										<div class="col-2">
+
+											<h2>Register</h2>
+
+											<form method="post" class="register"
+												th:action="@{/registration}" th:object="${user}">
+
+												<p class="before-register-text">Create your very own
+													account</p>
+												<div class="row" id="full-name-stuff">
+													<div class="col-md-6">
+														<p class="form-row form-row-wide">
+															<label for="reg_email">First Name<span
+																class="required">*</span></label> <input type="text"
+																th:field="*{firstName}" class="input-text"
+																name="firstName" />
+														</p>
+													</div>
+													<div class="col-md-6">
+														<p class="form-row form-row-wide">
+															<label for="reg_email">Last Name<span
+																class="required">*</span></label> <input type="text"
+																th:field="*{lastName}" class="input-text"
+																name="lastName" />
+														</p>
+													</div>
+												</div>
+
+												<p class="form-row form-row-wide">
+													<label>Company Name<span class="required">*</span></label>
+													<input type="text" th:field="*{companyName}"
+														class="input-text" name="Company Name" />
+												</p>
+
+
+
+												<div class="row">
+													<div class="col-md-6">
+														<p class="form-row form-row-wide">
+															<label>Email address<span class="required">*</span></label>
+															<input type="email" th:field="*{email}"
+																class="input-text" name="email" />
+														</p>
+													</div>
+													<div class="col-md-6">
+														<p class="form-row form-row-wide">
+															<label>Phone<span class="required">*</span></label> <input
+																type="text" th:field="*{phone}" class="input-text"
+																name="phone" />
+														</p>
+													</div>
+												</div>
+
+
+												<p class="form-row form-row-wide">
+													<label for="reg_email">Password<span
+														class="required">*</span></label> <input type="password"
+														th:field="*{password}" class="input-text" name="password" />
+												</p>
+
+
+
+												<p class="form-row form-row-wide">
+													<label>Address<span class="required">*</span></label> <input
+														type="text" th:field="*{address}" class="input-text"
+														name="Address" />
+												</p>
+
+												<div class="woocommerce-checkout-payment form-row form-row-wide" id="payment">
+													<ul class="wc_payment_methods payment_methods methods">
+														<li class="wc_payment_method payment_method_bacs">
+														<input onclick="show1();"
+														th:field="*{type}"
+															type="radio" data-order_button_text="" checked="checked"
+															value="company" name="type" class="input-radio"
+															id="payment_method_bacs"> <label
+															for="payment_method_bacs">Company Account</label> </li>
+														<li class="wc_payment_method payment_method_cheque">
+															<input onclick="show2();" th:field="*{type}" type="radio" data-order_button_text=""
+															value="personal" name="type" class="input-radio"
+															id="payment_method_cheque"> <label
+															for="payment_method_cheque">Personal Account </label>
+															
+														</li>
+
+
+													</ul>
+													<div class="form-row place-order">
+
+														<p class="form-row terms wc-terms-and-conditions">
+															<input type="checkbox" id="terms" name="terms"
+																class="input-checkbox" required="required"> <label
+																class="checkbox" for="terms">I’ve read and
+																accept the <a target="_blank" href="/termsAndConditions">terms
+																	&amp; conditions</a> <span class="required">*</span>
+															</label> <input type="hidden" value="1" name="terms-field">
+														</p>
+
+
+													</div>
+												</div>
+
+
+
+												<p class="form-row">
+													<input type="submit" class="button" name="register"
+														value="Register" />
+												</p>
+
+												<div class="register-benefits">
+													<h3>Sign up today and you will be able to :</h3>
+													<ul>
+														<li>Speed your way through checkout</li>
+
+														<li>Keep a record of all your purchases</li>
+													</ul>
+												</div>
+
+											</form>
+
+										</div>
+										<!-- .col-2 -->
+
+									</div>
+									<!-- .col2-set -->
+
+								</div>
+								<!-- /.customer-login-form -->
+							</div>
+							<!-- .woocommerce -->
+						</div>
+						<!-- .entry-content -->
+
+					</article>
+					<!-- #post-## --> </main>
+					<!-- #main -->
+				</div>
+				<!-- #primary -->
 			</div>
-			
-                                                </div><!-- .col-1 -->
-
-                                                <div class="col-2">
-
-                                                    <h2>Register</h2>
-
-                                                    <form method="post" class="register" th:action="@{/registration}" th:object="${user}">
-
-                                                        <p class="before-register-text">Create your very own account</p>
-                                                        <div class="row">
-                                                        <div class="col-md-6">
-                                                         <p class="form-row form-row-wide">
-                                                            <label for="reg_email">First Name<span class="required">*</span></label>
-                                                            <input type="text" th:field="*{firstName}" class="input-text" name="firstName" />
-                                                        </p>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                         <p class="form-row form-row-wide">
-                                                            <label for="reg_email">Last Name<span class="required">*</span></label>
-                                                            <input type="text" th:field="*{lastName}" class="input-text" name="lastName" />
-                                                        </p>
-                                                        </div>
-                                                        </div>
-                                                        
-                                                        <p class="form-row form-row-wide">
-                                                            <label >Company Name<span class="required">*</span></label>
-                                                            <input type="text" th:field="*{companyName}" class="input-text" name="Company Name" />
-                                                        </p>
-                                                        <div class="row">
-                                                        <div class="col-md-6">
-                                                        <p class="form-row form-row-wide">
-                                                            <label >Email address<span class="required">*</span></label>
-                                                            <input type="email" th:field="*{email}" class="input-text" name="email" />
-                                                        </p>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                        <p class="form-row form-row-wide">
-                                                            <label >Phone<span class="required">*</span></label>
-                                                            <input type="text" th:field="*{phone}" class="input-text" name="phone" />
-                                                        </p>
-                                                        </div>
-                                                        </div>
-
-
- <p class="form-row form-row-wide">
-                                                            <label for="reg_email">Password<span class="required">*</span></label>
-                                                            <input type="password" th:field="*{password}" class="input-text" name="password" />
-                                                        </p>
-                                                        
-                                                         
-                                                        
-                                                         <p class="form-row form-row-wide">
-                                                            <label >Address<span class="required">*</span></label>
-                                                            <input type="text" th:field="*{address}" class="input-text" name="Address" />
-                                                        </p>
-                                                        
-                                                        
-                                                        <p class="form-row"><input type="submit" class="button" name="register" value="Register" /></p>
-
-                                                        <div class="register-benefits">
-                                                            <h3>Sign up today and you will be able to :</h3>
-                                                            <ul>
-                                                                <li>Speed your way through checkout</li>
-                                                                
-                                                                <li>Keep a record of all your purchases</li>
-                                                            </ul>
-                                                        </div>
-
-                                                    </form>
-
-                                                </div><!-- .col-2 -->
-
-                                            </div><!-- .col2-set -->
-
-                                        </div><!-- /.customer-login-form -->
-                                    </div><!-- .woocommerce -->
-                                </div><!-- .entry-content -->
-
-                            </article><!-- #post-## -->
-
-
-                            
-            			</main><!-- #main -->
-            		</div><!-- #primary -->
-            	</div><!-- .col-full -->
-            </div><!-- #content -->
+			<!-- .col-full -->
+		</div>
+		<!-- #content -->
 
 
 
 
-            
-        <div th:replace="commons :: footer"></div>
 
-        </div><!-- #page -->
+		<div th:replace="commons :: footer"></div>
 
+	</div>
+	<!-- #page -->
 
-    </body>
+	<script type="text/javascript">
+	
+	function show1(){
+		  document.getElementById('full-name-stuff').style.display ='none';
+		}
+		function show2(){
+		  document.getElementById('full-name-stuff').style.display = 'block';
+		}
+	
+		
+	</script>
+
+</body>
 </html>

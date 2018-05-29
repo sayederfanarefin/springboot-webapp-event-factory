@@ -37,7 +37,6 @@ public class LoginController {
 	@Autowired
 	private ServiceCategoryRepository serviceCategoryRepository;
 
-	
 
 	@RequestMapping(value= "/login", method = RequestMethod.GET)
 	public ModelAndView login(){
@@ -50,8 +49,6 @@ public class LoginController {
 		return modelAndView;
 	}
 	
-	
-
 	
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
