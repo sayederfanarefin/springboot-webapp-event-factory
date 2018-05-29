@@ -152,13 +152,13 @@
 														<li class="wc_payment_method payment_method_bacs">
 														<input onclick="show1();"
 														th:field="*{type}"
-															type="radio" data-order_button_text="" checked="checked"
+															type="radio" data-order_button_text="" 
 															value="company" name="type" class="input-radio"
 															id="payment_method_bacs"> <label
 															for="payment_method_bacs">Company Account</label> </li>
 														<li class="wc_payment_method payment_method_cheque">
 															<input onclick="show2();" th:field="*{type}" type="radio" data-order_button_text=""
-															value="personal" name="type" class="input-radio"
+															value="personal" name="type" checked="checked" class="input-radio"
 															id="payment_method_cheque"> <label
 															for="payment_method_cheque">Personal Account </label>
 															
@@ -221,9 +221,6 @@
 			<!-- .col-full -->
 		</div>
 		<!-- #content -->
-
-
-
 
 
 		<div th:replace="commons :: footer"></div>
