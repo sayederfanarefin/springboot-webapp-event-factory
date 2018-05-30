@@ -147,6 +147,8 @@ public class StoreController {
 	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult, Order order) {
 		ModelAndView modelAndView = new ModelAndView();
 		
+		System.out.println(order.getNote());
+		
 		return modelAndView;
 	}
 }

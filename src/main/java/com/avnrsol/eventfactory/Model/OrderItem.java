@@ -28,7 +28,7 @@ public class OrderItem {
 	
 	public Long quantity;
 	
-	public Long amount;
+	public double amount;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_order_item_service")
@@ -63,13 +63,13 @@ public class OrderItem {
 
 
 
-	public Long getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
 
 
-	public void setAmount(Long amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
@@ -87,7 +87,7 @@ public class OrderItem {
 
 
 
-	public OrderItem(Long quantity, Long amount, Serviceo service) {
+	public OrderItem(Long quantity, double amount, Serviceo service) {
 		super();
 		this.quantity = quantity;
 		this.amount = amount;

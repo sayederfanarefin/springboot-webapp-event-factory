@@ -212,10 +212,6 @@
 						</form>
 					</article>
 
-
-
-
-
 					</main>
 					<!-- #main -->
 				</div>
@@ -284,14 +280,72 @@
 			$('#fuckCheckout').on('submit', function(e) {
 				e.preventDefault();
 
+				var billing_first_name = $('#billing_first_name').val();
+				var billing_last_name = $('#billing_last_name').val();
+				var billing_company = $('#billing_company').val();
+				var billing_email = $('#billing_email').val();
+				var billing_phone = $('#billing_phone').val();
+				var billing_address_1 = $('#billing_address_1').val();
+				var order_comments = $('#order_comments').val();
+				
+				var user = {};
+				
+				
+				user["firstName"] = billing_first_name;
+				user["lastName"] = billing_last_name;
+				user["companyName"] = billing_company;
+				user["email"] = billing_email;
+				user["phone"] = billing_phone;
+			//	user["address"] = billing_address_1;
+			//	user["id"] = order_comments;
+				
+
+			var order = {};
+			order["subTotal"] = billing_first_name;
+			order["note"] = order_comments;
+			order["total"] = 666;
+			order["cuponCode"] = order_comments;
+			order["paymentType"] = order_comments;
+			order["user"] = user;
+			
+			var orderItems = [];
+			
+			
+			var cartJson;
+			var cartRaw = localStorage.getItem('cartx');
+			if (cartRaw != null) {
+				cartJson = JSON.parse(cartRaw);
+				
+				var i;
+				for (i = 0; i < cartJson.length; i++) { 
+					var cartItem = cartJson[i];
+					var item = {};
+					
+					item["quantity"] = cartItem.quantity;
+					item["price"] = cartItem.amount;
+					
+					var service = {};
+					service["id"] = cartItem.id;
+					
+					item["service"] = service;
+					
+					orderItems.push(item);
+				}
+			} 
+			
+			order["orderItems"] = orderItems;
+			
+			
+			console.log(order);
+			
 				$.ajax({
 					url : '/placeOrder',
 					type : 'post',
 					dataType : 'json',
-					data : $('form#myForm').serialize(),
-					success : function(data) {
+					data : order,
+					done : function(data) {
 						
-						alert('success');
+						alert('done!');
 					}
 				});
 
