@@ -321,11 +321,11 @@
 					var cartItem = cartJson[i];
 					var item = {};
 					
-					item["quantity"] = cartItem.quantity;
+					item["quantity"] = Number(cartItem.quantity);
 					item["price"] = cartItem.amount;
 					
 					var service = {};
-					service["id"] = cartItem.id;
+					service["id"] = Number(cartItem.id);
 					
 					item["service"] = service;
 					
@@ -341,8 +341,9 @@
 				$.ajax({
 					url : '/placeOrder',
 					type : 'post',
-					dataType : 'json',
-					data : order,
+					
+					data: 'test', //JSON.stringify(order)
+			        dataType: 'json',
 					done : function(data) {
 						
 						alert('done!');

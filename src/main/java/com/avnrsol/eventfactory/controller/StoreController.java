@@ -143,12 +143,12 @@ public class StoreController {
 	
 	
 	
-	@RequestMapping(value = "/placeOrder", method = RequestMethod.POST)
-	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult, Order order) {
-		ModelAndView modelAndView = new ModelAndView();
+	@RequestMapping(value = "/placeOrder", method = RequestMethod.POST , consumes = "application/json")
+	public String createNewOrder( String data) {// Order order) {
+	//	ModelAndView modelAndView = new ModelAndView();
 		
-		System.out.println(order.getNote());
-		
-		return modelAndView;
+		//System.out.println(order.getNote());
+		System.out.println(data);
+		return "got it";
 	}
 }
