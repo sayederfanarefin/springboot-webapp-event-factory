@@ -341,13 +341,25 @@
 				$.ajax({
 					url : '/placeOrder',
 					type : 'post',
-					
-					data: 'test', //JSON.stringify(order)
+					contentType: "application/json",
+					data: JSON.stringify(order),
 			        dataType: 'json',
-					done : function(data) {
-						
-						alert('done!');
-					}
+			        cache: false,
+			        timeout: 600000,
+			        success: function (data) {
+
+			           
+			            console.log("SUCCESS : ", data);
+			           
+
+			        },
+			        error: function (e) {
+
+			          
+			            console.log("ERROR : ", e);
+			           
+
+			        }
 				});
 
 			});
