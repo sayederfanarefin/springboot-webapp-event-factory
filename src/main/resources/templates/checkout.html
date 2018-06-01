@@ -301,7 +301,7 @@
 				
 
 			var order = {};
-			order["subTotal"] = billing_first_name;
+			order["subTotal"] = 999;
 			order["note"] = order_comments;
 			order["total"] = 666;
 			order["cuponCode"] = order_comments;
@@ -322,7 +322,7 @@
 					var item = {};
 					
 					item["quantity"] = Number(cartItem.quantity);
-					item["price"] = cartItem.amount;
+					item["amount"] = 69; //cartItem.amount;
 					
 					var service = {};
 					service["id"] = Number(cartItem.id);
@@ -338,8 +338,11 @@
 			
 			console.log(order);
 			
+			var testAjax = {};
+			testAjax["name"] = "test name erfan! inshallah it will work";
+			
 				$.ajax({
-					url : '/placeOrder',
+					url : '/ads',
 					type : 'post',
 					contentType: "application/json",
 					data: JSON.stringify(order),

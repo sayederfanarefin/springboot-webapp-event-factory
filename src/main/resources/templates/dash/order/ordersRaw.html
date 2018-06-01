@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Paper Dashboard by Creative Tim</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+
+    <!--  Paper Dashboard core CSS    -->
+    <link href="assets/css/paper-dashboard.css" rel="stylesheet"/>
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="assets/css/themify-icons.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="wrapper">
+	<div class="sidebar" data-background-color="black" data-active-color="warning">
+
+    <!--
+        Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+        Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+    -->
+        <!-- Sidebar (Include this into one common file) -->
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="http://www.example.com" class="simple-text">
+                    Project Title goes here
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="index.html">
+                        <i class="ti-panel"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">
+                        <i class="ti-briefcase"></i>
+                        <p>Vendor Information <b class="caret"></b></p>
+                    </a>
+                    <ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">
+                        <li><a href="#">Add Vendors</a></li>
+                        <li><a href="#">Edit Vendors</a></li>
+                        <li><a href="#">List All Vendors</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" id="btn-2" data-toggle="collapse" data-target="#submenu2" aria-expanded="false">
+                        <i class="ti-shopping-cart"></i>
+                        <p>Category Information <b class="caret"></b></p>
+                    </a>
+                    <ul class="nav collapse" id="submenu2" role="menu" aria-labelledby="btn-2">
+                        <li><a href="#">Add Categories</a></li>
+                        <li><a href="#">Edit Categories</a></li>
+                        <li><a href="#">List All Categories</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" id="btn-3" data-toggle="collapse" data-target="#submenu3" aria-expanded="false">
+                        <i class="ti-shopping-cart"></i>
+                        <p>Item Information <b class="caret"></b></p>
+                    </a>
+                    <ul class="nav collapse" id="submenu3" role="menu" aria-labelledby="btn-3">
+                        <li><a href="#">Add Items</a></li>
+                        <li><a href="#">Edit Items</a></li>
+                        <li><a href="#">List All Items</a></li>
+                    </ul>
+                </li>            
+                <li class="active">
+                    <a href="orders.html">
+                        <i class="ti-money"></i>
+                        <p>ORDERS</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+		<nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar bar1"></span>
+                        <span class="icon-bar bar2"></span>
+                        <span class="icon-bar bar3"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Dashboard</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-settings"></i>
+                                    <p>User Settings</p>
+                                    <b class="caret"></b>
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="user.html">User Profile</a></li>
+                                <li><a href="logout.html">Log Out</a></li>
+                              </ul>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Orders list</h4>
+                                <p class="category">List arriving orders</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <th>Order ID</th>
+                                    	<th>Profile Information</th>
+                                    	<th>Order Information</th>
+                                    	<th>Payment Information</th>
+                                    	<th>Delivery Information</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        	<td>1</td>
+                                        	<td>
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Name: John Doe
+                                                    </li>
+                                                    <li>
+                                                        Device: Mac OSX
+                                                    </li>
+                                                    <li>
+                                                        Time: 1970-00-00
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        	<td>
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Services: [List of ordered services go here]
+                                                    </li>
+                                                    <li>
+                                                        Quantities: [List of quantities go here]
+                                                    </li>
+                                                    <li>
+                                                        Vendors: [List of vendors go here]
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        	<td>
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Payment Type: Cash on Delivery
+                                                    </li>
+                                                    <li>
+                                                        Discount: None
+                                                    </li>
+                                                    <li>
+                                                        Delivery Fee: 100
+                                                    </li>                                                    
+                                                    <li>
+                                                        Service Charge: 100
+                                                    </li>                                                    
+                                                    <li>
+                                                        Commission: 13%
+                                                    </li>
+                                                    <li>
+                                                        Vendor payable: 21750
+                                                    </li>
+                                                    <li>
+                                                        Subtotal: 24800
+                                                    </li>
+                                                    <li>
+                                                        <strong>Total: 25000</strong>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        	<td>
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Deliver Address: [Address goes here]
+                                                    </li>
+                                                    <li>
+                                                        Contant Information: [Phone goes here]
+                                                    </li>
+                                                    <li>
+                                                        Outside Dhaka?: Yes/No [Either one will show here]
+                                                    </li>
+                                                </ul>   
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        	<td>2</td>
+                                        	<td>
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Name: John Doe
+                                                    </li>
+                                                    <li>
+                                                        Device: Mac OSX
+                                                    </li>
+                                                    <li>
+                                                        Time: 1970-00-00
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        	<td>
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Services: [List of ordered services go here]
+                                                    </li>
+                                                    <li>
+                                                        Quantities: [List of quantities go here]
+                                                    </li>
+                                                    <li>
+                                                        Vendors: [List of vendors go here]
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        	<td>
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Payment Type: Cash on Delivery
+                                                    </li>
+                                                    <li>
+                                                        Discount: None
+                                                    </li>
+                                                    <li>
+                                                        Delivery Fee: 100
+                                                    </li>                                                    
+                                                    <li>
+                                                        Service Charge: 100
+                                                    </li>                                                    
+                                                    <li>
+                                                        Commission: 13%
+                                                    </li>
+                                                    <li>
+                                                        Vendor payable: 21750
+                                                    </li>
+                                                    <li>
+                                                        Subtotal: 24800
+                                                    </li>
+                                                    <li>
+                                                        <strong>Total: 25000</strong>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        	<td>
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Deliver Address: [Address goes here]
+                                                    </li>
+                                                    <li>
+                                                        Contant Information: [Phone goes here]
+                                                    </li>
+                                                    <li>
+                                                        Outside Dhaka?: Yes/No [Either one will show here]
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        	<td>3</td>
+                                        	<td>
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Name: John Doe
+                                                    </li>
+                                                    <li>
+                                                        Device: Mac OSX
+                                                    </li>
+                                                    <li>
+                                                        Time: 1970-00-00
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        	<td>
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Services: [List of ordered services go here]
+                                                    </li>
+                                                    <li>
+                                                        Quantities: [List of quantities go here]
+                                                    </li>
+                                                    <li>
+                                                        Vendors: [List of vendors go here]
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        	<td>
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Payment Type: Cash on Delivery
+                                                    </li>
+                                                    <li>
+                                                        Discount: None
+                                                    </li>
+                                                    <li>
+                                                        Delivery Fee: 100
+                                                    </li>                                                    
+                                                    <li>
+                                                        Service Charge: 100
+                                                    </li>                                                    
+                                                    <li>
+                                                        Commission: 13%
+                                                    </li>
+                                                    <li>
+                                                        Vendor payable: 21750
+                                                    </li>
+                                                    <li>
+                                                        Subtotal: 24800
+                                                    </li>
+                                                    <li>
+                                                        <strong>Total: 25000</strong>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        	<td>
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Deliver Address: [Address goes here]
+                                                    </li>
+                                                    <li>
+                                                        Contant Information: [Phone goes here]
+                                                    </li>
+                                                    <li>
+                                                        Outside Dhaka?: Yes/No [Either one will show here]
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <!-- <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="http://www.creative-tim.com">
+                                Creative Tim
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://blog.creative-tim.com">
+                               Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.creative-tim.com/license">
+                                Licenses
+                            </a>
+                        </li>
+                    </ul>
+                </nav> -->
+                <div class="copyright pull-right">
+                    &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.avnrsol.com">AVNR SOL</a>
+                </div>
+            </div>
+        </footer>
+
+
+    </div>
+</div>
+
+
+</body>
+
+    <!--   Core JS Files   -->
+    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="assets/js/bootstrap-checkbox-radio.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+	<script src="assets/js/paper-dashboard.js"></script>
+
+	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+	<script src="assets/js/demo.js"></script>
+
+
+</html>

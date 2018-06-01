@@ -17,8 +17,10 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Value;
 
-@Entity
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OrderItem {
 	
 	

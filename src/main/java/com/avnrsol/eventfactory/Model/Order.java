@@ -21,10 +21,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
 @Table(name = "orders")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Order {
 	
 	
@@ -52,9 +54,9 @@ public class Order {
 	@Column(name = "created_at")
     public Date createdAt;
 	
-	@OneToMany
-    @JoinColumn(name = "fk_order_item")
-	public List<OrderItem> orderItems;
+//	@OneToMany
+//    @JoinColumn(name = "fk_order_item")
+//	public List<OrderItem> orderItems;
 
 
 	public Long getId() {
@@ -145,15 +147,15 @@ public class Order {
 
 
 
-	public List<OrderItem> getOrderItems() {
-		return orderItems;
-	}
-
-
-
-	public void setOrderItems(List<OrderItem> orderItems) {
-		this.orderItems = orderItems;
-	}
+//	public List<OrderItem> getOrderItems() {
+//		return orderItems;
+//	}
+//
+//
+//
+//	public void setOrderItems(List<OrderItem> orderItems) {
+//		this.orderItems = orderItems;
+//	}
 
 
 

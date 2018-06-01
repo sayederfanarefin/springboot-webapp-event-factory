@@ -6,12 +6,14 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.avnrsol.eventfactory.Model.Order;
+import com.avnrsol.eventfactory.Model.ajaxTest;
 import com.avnrsol.eventfactory.Repository.ServiceCategoryRepository;
 import com.avnrsol.eventfactory.Repository.ServiceoRepository;
 import com.avnrsol.eventfactory.service.UserService;
@@ -33,10 +35,10 @@ public class OrderController {
 	private VendorService vendorService;
 
 	
-	@RequestMapping(value = "/placeOrder", method = RequestMethod.POST , consumes = "application/json")
+	//@RequestMapping(value = "/placeOrder", method = RequestMethod.POST , consumes = "application/json")
 	
-//	@PostMapping("/placeOrder")
-	public String createNewOrder( @Valid @RequestBody Order order, Errors errors) {
+	@PostMapping("/ads")
+	public String createNewOrder( @RequestBody Order order, Errors errors) {
 		 if (errors.hasErrors()) {
 		
 		
@@ -45,6 +47,22 @@ public class OrderController {
                         .collect(Collectors.joining(",")));
 		 }
 		//System.out.println(order.getNote());
+		//System.out.println(data);
+		return "got it";
+	}
+	
+	@PostMapping("/testAjax")
+	public String createNewOrder1( @RequestBody ajaxTest a, Errors errors) {
+		 if (errors.hasErrors()) {
+		
+		
+		System.out.println(errors.getAllErrors()
+                        .stream().map(x -> x.getDefaultMessage())
+                        .collect(Collectors.joining(",")));
+		 }
+		 
+		
+		System.out.println( a.getName());
 		//System.out.println(data);
 		return "got it";
 	}
