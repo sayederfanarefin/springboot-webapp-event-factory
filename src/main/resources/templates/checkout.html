@@ -312,6 +312,9 @@
 				var billing_phone = $('#billing_phone').val();
 				var billing_address_1 = $('#billing_address_1').val();
 				var order_comments = $('#order_comments').val();
+				var sub_total = $('#sub-total').val();
+				var final_total = $('#final-total').val();
+				
 				
 				var user = {};
 				
@@ -326,9 +329,9 @@
 				
 
 			var order = {};
-			order["subTotal"] = 999;
+			order["subTotal"] = Number(sub_total);
 			order["note"] = order_comments;
-			order["total"] = 666;
+			order["total"] = Number(final_total);
 			order["cuponCode"] = order_comments;
 			order["paymentType"] = order_comments;
 			order["user"] = user;
@@ -347,7 +350,7 @@
 					var item = {};
 					
 					item["quantity"] = Number(cartItem.quantity);
-					item["amount"] = 69; //cartItem.amount;
+					item["amount"] = Number(cartItem.price);
 					
 					var service = {};
 					service["id"] = Number(cartItem.id);
