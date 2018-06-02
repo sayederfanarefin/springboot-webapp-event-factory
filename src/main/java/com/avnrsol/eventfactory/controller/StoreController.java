@@ -139,5 +139,20 @@ public class StoreController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value = "/orderSuccess", method = RequestMethod.GET)
+	public ModelAndView orderSuccess() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("orderSuccess");
+		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/orderFailed", method = RequestMethod.GET)
+	public ModelAndView orderFailed() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("orderFailed");
+		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
+		return modelAndView;
+	}
 	
 }

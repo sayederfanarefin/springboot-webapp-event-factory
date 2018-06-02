@@ -9,5 +9,5 @@ import com.avnrsol.eventfactory.Model.Order;
 public interface OrderRepository extends JpaRepository<Order, Long>{
 	
 	Order findById(Long id);
-	
+	Order save(Order order);
 }

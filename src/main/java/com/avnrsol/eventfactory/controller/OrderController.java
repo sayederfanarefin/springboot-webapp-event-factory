@@ -46,7 +46,7 @@ public class OrderController {
 	// private ModelMapper modelMapper;
 	//
 	@PostMapping("/ads")
-	public String createNewOrder(@RequestBody OrderDto orderDto, Errors errors) {
+	public boolean createNewOrder(@RequestBody OrderDto orderDto, Errors errors) {
 		if (errors.hasErrors()) {
 
 			System.out.println(
@@ -86,8 +86,13 @@ public class OrderController {
 			System.out.println("->->->->->->->->->->->->->");
 		}
 
-		orderRepository.save(o);
-		return "got it";
+		Order oo = orderRepository.save(o);
+		if(oo==null) {
+			return false;
+		}else {
+			return true;
+		}
+		
 	}
 
 	@PostMapping("/testAjax")

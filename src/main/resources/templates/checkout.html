@@ -353,14 +353,14 @@
 
 			           
 			            console.log("SUCCESS : ", data);
-			           
+			            window.location.replace("/orderSuccess");
 
 			        },
 			        error: function (e) {
 
 			          
 			            console.log("ERROR : ", e);
-			           
+			            window.location.replace("/orderFailed");
 
 			        }
 				});
