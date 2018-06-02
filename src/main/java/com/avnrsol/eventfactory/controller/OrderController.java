@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.avnrsol.eventfactory.Model.Order;
 import com.avnrsol.eventfactory.Model.ajaxTest;
+import com.avnrsol.eventfactory.Model.Dto.OrderDto;
 import com.avnrsol.eventfactory.Repository.ServiceCategoryRepository;
 import com.avnrsol.eventfactory.Repository.ServiceoRepository;
 import com.avnrsol.eventfactory.service.UserService;
@@ -34,11 +37,13 @@ public class OrderController {
 	@Autowired
 	private VendorService vendorService;
 
+//	@Autowired
+//	private ModelMapper modelMapper;
 	
 	//@RequestMapping(value = "/placeOrder", method = RequestMethod.POST , consumes = "application/json")
 	
 	@PostMapping("/ads")
-	public String createNewOrder( @RequestBody Order order, Errors errors) {
+	public String createNewOrder( @RequestBody OrderDto orderDto, Errors errors) {
 		 if (errors.hasErrors()) {
 		
 		
@@ -46,8 +51,13 @@ public class OrderController {
                         .stream().map(x -> x.getDefaultMessage())
                         .collect(Collectors.joining(",")));
 		 }
-		//System.out.println(order.getNote());
+		 
+		System.out.println(orderDto.getNote());
 		//System.out.println(data);
+		
+		 
+	//	 modelMapper.map(orderDto, Order.class);
+		 
 		return "got it";
 	}
 	
