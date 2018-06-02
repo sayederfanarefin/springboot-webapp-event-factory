@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.avnrsol.eventfactory.Model.Order;
 
-@Repository("imageRepository")
+@Repository("orderRepository")
 public interface OrderRepository extends JpaRepository<Order, Long>{
 	
 	Order findById(Long id);

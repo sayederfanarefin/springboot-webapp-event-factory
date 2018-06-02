@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.avnrsol.eventfactory.Model.User;
 
-@Repository
+@Repository("userRepository")
 public interface UsersRepository extends JpaRepository<User, Long> {
 	User findByEmail(String email);
 	User findById(Long id);

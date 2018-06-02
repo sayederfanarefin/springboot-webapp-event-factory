@@ -55,7 +55,8 @@ public class Order {
 	@Column(name = "created_at")
     public Date createdAt;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL)
     @JoinColumn(name = "fk_order_item")
 	public List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
