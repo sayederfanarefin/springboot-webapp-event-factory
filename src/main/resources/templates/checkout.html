@@ -140,10 +140,15 @@
 														<td><span class="amount" id="sub-total"></span></td>
 													</tr>
 
-													<!--      <tr class="shipping">
-                                                    <th>Shipping</th>
-                                                    <td data-title="Shipping">Flat Rate: <span class="amount">$300.00</span> <input type="hidden" class="shipping_method" value="international_delivery" id="shipping_method_0" data-index="0" name="shipping_method[0]"></td>
-                                                </tr> -->
+													<tr class="cart-subtotal">
+														<th>Service Charge</th>
+														<td><span class="amount" id="service-charge" th:value="${charges.serviceCharge}" th:text="${charges.serviceCharge}"></span></td>
+													</tr>
+													
+													<tr class="cart-subtotal">
+														<th>Delivery Charge</th>
+														<td><span class="amount" id="delivery-charge" th:value="${charges.deliveryCharge}" th:text="${charges.deliveryCharge}"></span></td>
+													</tr>
 
 													<tr class="order-total">
 														<th>Total</th>
@@ -262,13 +267,33 @@
 									* Number(cartItem.price) + ' BDT'));
 
 					total += Number(cartItem.quantity) * Number(cartItem.price);
+					
+					
+					
 					document.getElementById("sub-total").innerHTML = total
 							+ ' BDT';
-					document.getElementById("final-total").innerHTML = total
-							+ ' BDT';
+					
 
-					console.log("======================xxxxxxxxxxxxxxxxxxx");
+					
 				}
+				
+				
+				//console.log(document.getElementById("service-charge").innerHTML);
+				//console.log(document.getElementById("delivery-charge").innerHTML);
+				
+				total += Number(document.getElementById("service-charge").innerHTML);
+				total += Number(document.getElementById("delivery-charge").innerHTML);
+				
+				
+				document.getElementById("service-charge").innerHTML = Number(document.getElementById("service-charge").innerHTML)
+				+ ' BDT';
+		
+				document.getElementById("delivery-charge").innerHTML = Number(document.getElementById("delivery-charge").innerHTML)
+				+ ' BDT';
+		
+				
+				document.getElementById("final-total").innerHTML = total
+				+ ' BDT';
 			}
 		}
 

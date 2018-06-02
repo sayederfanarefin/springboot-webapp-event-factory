@@ -1,6 +1,7 @@
 package com.avnrsol.eventfactory.controller;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.avnrsol.eventfactory.Model.Charge;
 import com.avnrsol.eventfactory.Model.Order;
 import com.avnrsol.eventfactory.Model.User;
 import com.avnrsol.eventfactory.Repository.ChargeRepository;
@@ -132,7 +134,8 @@ public class StoreController {
 		
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		modelAndView.addObject("userx", userService.findUserByEmail(principal.getName()));
-		modelAndView.addObject("charges", chargeRepository.findAll());
+		List<Charge> charges = chargeRepository.findAll();
+		modelAndView.addObject("charges", charges.get(0));
 		return modelAndView;
 	}
 	@RequestMapping(value = "/about", method = RequestMethod.GET)

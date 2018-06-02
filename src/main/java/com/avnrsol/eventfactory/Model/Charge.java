@@ -21,9 +21,9 @@ public class Charge {
 	private Long id;
 
 
-	private double deliveryCharge;
+	public double deliveryCharge;
 	
-	private double serviceCharge;
+	public double serviceCharge;
 	
 	
 	
