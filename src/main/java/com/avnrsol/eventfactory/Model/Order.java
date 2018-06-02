@@ -1,5 +1,6 @@
 package com.avnrsol.eventfactory.Model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -54,9 +55,9 @@ public class Order {
 	@Column(name = "created_at")
     public Date createdAt;
 	
-//	@OneToMany
-//    @JoinColumn(name = "fk_order_item")
-//	public List<OrderItem> orderItems;
+	@OneToMany
+    @JoinColumn(name = "fk_order_item")
+	public List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
 
 	public Long getId() {
@@ -146,16 +147,15 @@ public class Order {
 	}
 
 
+	public List<OrderItem> getOrderItems() {
+		return orderItems;
+	}
 
-//	public List<OrderItem> getOrderItems() {
-//		return orderItems;
-//	}
-//
-//
-//
-//	public void setOrderItems(List<OrderItem> orderItems) {
-//		this.orderItems = orderItems;
-//	}
+
+
+	public void setOrderItems(List<OrderItem> orderItems) {
+		this.orderItems = orderItems;
+	}
 
 
 
@@ -169,6 +169,9 @@ public class Order {
 		this.paymentType = paymentType;
 	}
 
+	public void addOrderItem(OrderItem orderItem) {
+		orderItems.add(orderItem);
+	}
 	
 	
 }

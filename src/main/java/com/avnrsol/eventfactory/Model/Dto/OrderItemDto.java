@@ -58,6 +58,14 @@ public class OrderItemDto {
 		this.amount = amount;
 	}
 
+	public ServiceoDto getService() {
+		return service;
+	}
+
+	public void setService(ServiceoDto service) {
+		this.service = service;
+	}
+
 	
 	
 	
