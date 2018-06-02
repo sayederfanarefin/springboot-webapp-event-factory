@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+<meta charset="utf-8" />
+<link rel="apple-touch-icon" sizes="76x76"
+	href="assets/img/apple-icon.png">
+<link rel="icon" type="image/png" sizes="96x96"
+	href="assets/img/favicon.png">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<title>Admin Panel - Dashboard</title>
+
+<meta
+	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
+	name='viewport' />
+<meta name="viewport" content="width=device-width" />
+
+<div th:replace="dash/header :: header"></div>
+
+</head>
+<body>
+
+	<div class="wrapper">
+		<div th:replace="dash/sidebar :: sidebar"></div>
+
+		<div class="main-panel">
+			<div th:replace="dash/navbar :: navbar"></div>
+
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+
+						<div class="col-lg-12 col-md-12">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">Add Charges</h4>
+								</div>
+								<div class="content">
+									<form th:action="@{/dash/charge/add}" th:object="${charge}"
+										method="post" enctype="multipart/form-data">
+										<div class="row">
+
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Delivery Charge</label> <input type="text"
+														class="form-control border-input"
+														placeholder="Delivery Charge" th:field="*{deliveryCharge}">
+												</div>
+											</div>
+
+										</div>
+										<div class="row">
+
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Service Charge</label> <input type="text"
+														class="form-control border-input"
+														placeholder="Service Charge" th:field="*{serviceCharge}">
+												</div>
+											</div>
+
+										</div>
+										
+
+
+										<div class="row">
+
+											<div class="col-md-12">
+
+												<div class="content">
+													<div class="alert alert-success" th:if="${m != null && m == 0}">
+														
+														<span th:text="${message}">Successful!</span>
+													</div>
+
+													<div class="alert alert-danger" th:if="${m != null && m == 1}">
+												
+														<span  th:text="${message}"> Un successful</span>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+
+
+
+
+										<div class="text-center">
+											<button type="submit" value="Submit"
+												class="btn btn-info btn-fill btn-wd">Create</button>
+										</div>
+										<div class="clearfix"></div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+			<div th:replace="dash/footer :: footer"></div>
+		</div>
+
+	</div>
+</body>
+
+
+
+</html>

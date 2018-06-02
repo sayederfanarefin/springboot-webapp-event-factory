@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.avnrsol.eventfactory.Model.Order;
 import com.avnrsol.eventfactory.Model.User;
+import com.avnrsol.eventfactory.Repository.ChargeRepository;
 import com.avnrsol.eventfactory.Repository.ServiceCategoryRepository;
 import com.avnrsol.eventfactory.Repository.ServiceoRepository;
 import com.avnrsol.eventfactory.service.UserService;
@@ -37,6 +38,9 @@ public class StoreController {
 
 	@Autowired
 	private VendorService vendorService;
+	
+	@Autowired
+	private ChargeRepository chargeRepository;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView index(@CookieValue(value = "test_cookie", defaultValue = "hello") String fooCookie) {
@@ -128,7 +132,7 @@ public class StoreController {
 		
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		modelAndView.addObject("userx", userService.findUserByEmail(principal.getName()));
-		
+		modelAndView.addObject("charges", chargeRepository.findAll());
 		return modelAndView;
 	}
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
