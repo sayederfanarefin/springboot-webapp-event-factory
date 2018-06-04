@@ -379,7 +379,9 @@
 			        timeout: 600000,
 			        success: function (data) {
 
-			           
+                        var cartRaw = localStorage.getItem('cartx');
+
+                        localStorage.clear();
 			            console.log("SUCCESS : ", data);
 			            window.location.replace("/orderSuccess");
 

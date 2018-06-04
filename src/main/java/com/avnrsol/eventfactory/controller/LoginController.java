@@ -75,7 +75,7 @@ public class LoginController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/home", method = RequestMethod.GET)
+	@RequestMapping(value="/admin", method = RequestMethod.GET)
 	public RedirectView home(){
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -93,9 +93,9 @@ public class LoginController {
 		if(sb.equals(Constants.SUPER_ADMIN)) {
 			return new RedirectView("/dash/superAdmin/");
 		}else if(sb.equals(Constants.ADMIN)) {
-			return new RedirectView("dash/admin/");
+			return new RedirectView("/dash/admin/");
 		}else {
-			return new RedirectView("dash/customer/");
+			return new RedirectView("/dash/customer/");
 		}
 		
 	}
