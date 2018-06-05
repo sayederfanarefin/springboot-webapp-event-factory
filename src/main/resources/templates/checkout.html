@@ -265,16 +265,16 @@
 			if (cartRaw != null) {
 				cartJson = JSON.parse(cartRaw);
 
-				console.log(cartJson);
+			//	console.log(cartJson);
 
 				var total = 0;
 
 				var i;
 				for (i = 0; i < cartJson.length; i++) {
 
-					console.log('goging for it');
+				//	console.log('goging for it');
 					var cartItem = cartJson[i];
-					console.log(cartItem);
+				//	console.log(cartItem);
 
 					var tableRef = document.getElementById("mytable")
 							.getElementsByTagName('tbody')[0];
@@ -295,46 +295,80 @@
                         var cartItem2 = cartJson[j];
                         if(cartItem2.id != serviceId && vendorId == cartItem2.vendor){
                             vendorRepeatCount++;
-
                         }
                     }
-
-                    var itemPrice =Number(cartItem.quantity)
-                        * afterDiscountPrice ;
+                    var itemPrice =0;
                     var afterDiscountPrice = 0;
                     if(vendorRepeatCount > 0 ){
                         var toBeDiscounted = (Number(vendorDiscount) / 100) * Number(cartItem.price);
-                        afterDiscountPrice = Number(cartItem.price) - toBeDiscounted;
-                        itemPrice = itemPrice + ' BDT (Vendor Discount)'
+                        var previousPrice = Number(cartItem.price);
+                        afterDiscountPrice = previousPrice - toBeDiscounted;
+                        itemPrice =Number(cartItem.quantity) * afterDiscountPrice ;
+                        itemPrice = itemPrice + ' BDT ( After'+ vendorDiscount+'%  Vendor Discount )'
                     }else{
                         afterDiscountPrice = Number(cartItem.price);
+                        itemPrice =Number(cartItem.quantity) * afterDiscountPrice ;
                         itemPrice = itemPrice + ' BDT'
                     }
-
-
-					newRow.insertCell(1).appendChild(
-							document.createTextNode(itemPrice);
-
+					newRow.insertCell(1).appendChild(document.createTextNode(itemPrice));
 					total += Number(cartItem.quantity) * afterDiscountPrice;
-					
-					
-					
-					document.getElementById("sub-total").innerHTML = Number(document.getElementById("sub-total").innerHTML) + total
-							+ ' BDT';
-
+					document.getElementById("sub-total").innerHTML = Number(document.getElementById("sub-total").innerHTML) + total;
 				}
+
+				var subTotal = Number(document.getElementById("sub-total").innerHTML);
+				var selectedServiceCharge = 0;
+//
+// console.log("sub total: "+ subTotal);
+//
+//                 console.log("tire1up: "+ tire1up);
+//                 console.log("tire1down: "+ tire1down);
+//                 console.log("tire1charge: "+ tire1charge);
+//
+//                 console.log("tire2up: "+ tire2up);
+//                 console.log("tire2down: "+ tire2down);
+//                 console.log("tire2charge: "+ tire2charge);
+//
+//                 console.log("tire3up: "+ tire3up);
+//                 console.log("tire3down: "+ tire3down);
+//                 console.log("tire3charge: "+ tire3charge);
+
+                if( subTotal <= Number(tire1up) && subTotal > Number() ){
+                    selectedServiceCharge = tire1charge;
+                }else  if( subTotal <= Number(tire2up) && subTotal > Number(tire2down) ){
+                    selectedServiceCharge = tire2charge;
+                }else  if( subTotal <= Number(tire3up) && subTotal > Number(tire3down) ){
+                    selectedServiceCharge = tire3charge;
+                }
+
+                if(subTotal>tire1down){
+                    if(subTotal < tire1up){
+                        selectedServiceCharge = tire1charge;
+                        console.log("tire 1 condition");
+					}else if(subTotal < tire2up) {
+                        selectedServiceCharge = tire2charge;
+                        console.log("tire 2 condition");
+					}else if (subTotal < tire3up){
+                        selectedServiceCharge = tire3charge;
+                        console.log("tire 3 condition");
+					}else{
+                        console.log("tire fuck condition");
+					}
+				}
+
+                document.getElementById("service-charge").innerHTML = selectedServiceCharge;
+
+                console.log("service charge:" + selectedServiceCharge)
 
 				total += Number(document.getElementById("service-charge").innerHTML);
 				total += Number(document.getElementById("delivery-charge").innerHTML);
-				
-				
 				document.getElementById("service-charge").innerHTML = Number(document.getElementById("service-charge").innerHTML)
 				+ ' BDT';
-		
+
 				document.getElementById("delivery-charge").innerHTML = Number(document.getElementById("delivery-charge").innerHTML)
 				+ ' BDT';
-		
-				
+
+                document.getElementById("sub-total").innerHTML = document.getElementById("sub-total").innerHTML + ' BDT';
+
 				document.getElementById("final-total").innerHTML = total
 				+ ' BDT';
 			}
@@ -407,7 +441,7 @@
 			order["orderItem"] = orderItems;
 			
 			
-			console.log(order);
+			//console.log(order);
 			
 			var testAjax = {};
 			testAjax["name"] = "test name erfan! inshallah it will work";
@@ -425,14 +459,14 @@
                         var cartRaw = localStorage.getItem('cartx');
 
                         localStorage.clear();
-			            console.log("SUCCESS : ", data);
+			          //  console.log("SUCCESS : ", data);
 			            window.location.replace("/orderSuccess");
 
 			        },
 			        error: function (e) {
 
 			          
-			            console.log("ERROR : ", e);
+			         //   console.log("ERROR : ", e);
 			            window.location.replace("/orderFailed");
 
 			        }
