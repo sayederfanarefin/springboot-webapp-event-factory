@@ -78,7 +78,10 @@
                               <td th:text="${clientlist.phone}">Text ...</td>
                                 
                                     
-                        <td><button type="button"
+                        <td>
+							<button type="button"
+									th:onclick="'javascript:editOrDelete(\'' + ${clientlist.id} + '\');'"
+
                                 class="btn btn-primary btn-condensed">
                                 Edit/Delete
                             </button></td>

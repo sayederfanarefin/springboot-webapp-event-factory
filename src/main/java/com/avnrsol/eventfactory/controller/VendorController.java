@@ -122,10 +122,69 @@ public class VendorController {
         
 		return modelAndView;
 	}
-	
-	
-	
-	// save file
-		
-	
+
+	@RequestMapping(value="/edit", method = RequestMethod.GET)
+	public ModelAndView editEntity(@RequestParam("id") Long id){
+
+
+
+		ModelAndView modelAndView = new ModelAndView();
+		Vendor vendor = vendorService.findById(id);
+
+		modelAndView.setViewName("dash/vendor/edit");
+
+		modelAndView.addObject("vendor", new Vendor());
+		modelAndView.addObject("title", "Vendor Information > Edit "+ vendor.getName());
+		modelAndView.addObject("v",  vendor);
+
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public ModelAndView updateEntity(@ModelAttribute Vendor v, @RequestParam("file") MultipartFile file) {
+		ModelAndView modelAndView = new ModelAndView();
+
+		if(v == null) {
+			System.out.println("vendor null");
+		}else {
+
+		}
+		List<MultipartFile> files = new ArrayList<MultipartFile>();
+		files.add(file);
+		try {
+			List<Image> i = imageService.saveUploadedFiles(files);
+
+			v.setImages(i);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Vendor v2 = vendorService.add(v);
+
+
+		if(v !=null) {
+			modelAndView.addObject("message", "Vendor " + v2.getName() +" has been updated successfully");
+			modelAndView.addObject("m",  0);
+		}else {
+			modelAndView.addObject("message", "Some thing went wrong. Please try again later.");
+			modelAndView.addObject("m",  1);
+		}
+
+
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public ModelAndView deleteEntity(@RequestParam("id") Long id) {
+		ModelAndView modelAndView = new ModelAndView();
+
+		vendorService.delete(vendorService.findById(id));
+
+			modelAndView.addObject("message", "Vendor Deleted!");
+			modelAndView.addObject("m",  0);
+
+		return modelAndView;
+	}
+
 }

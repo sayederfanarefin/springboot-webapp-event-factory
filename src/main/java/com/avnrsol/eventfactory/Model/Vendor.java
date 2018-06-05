@@ -35,37 +35,37 @@ public class Vendor {
 	
 	@Column(name = "name")
 	@NotEmpty(message = "*Please provide your name")
-	private String name;
+	public String name;
 	
 	
 	@Column(columnDefinition="LONGTEXT")
-	private String address;
-	
-	
-	private String phone;
-	
-	private String zip;
+	public String address;
+
+
+	public String phone;
+
+	public String zip;
 	
 	@Column(columnDefinition="LONGTEXT")
-	private String description;
+	public String description;
 	
 	@Column(name = "city")
 	@NotEmpty(message = "*Please provide your city")
-	private String city;
+	public String city;
 	
 	@Column(name = "country")
 	@NotEmpty(message = "*Please provide your country")
-	private String country;
+	public String country;
 	
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name = "fk_service_vendor")
-	private List<Serviceo> services  = new ArrayList<Serviceo>();
+	public List<Serviceo> services  = new ArrayList<Serviceo>();
 	
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_vendor_image")
-	private List<Image> images = new ArrayList<Image>();
+	public List<Image> images = new ArrayList<Image>();
 	
 
 	public Vendor() {
