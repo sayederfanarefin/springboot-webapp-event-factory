@@ -147,7 +147,7 @@
 													
 													<tr class="cart-subtotal">
 														<th>Delivery Charge</th>
-														<td><span class="amount" id="delivery-charge" th:value="${charges.deliveryCharge}" th:text="${charges.deliveryCharge}"></span></td>
+														<td><span class="amount" id="delivery-charge"></span></td>
 													</tr>
 
 													<tr class="order-total">
@@ -252,6 +252,18 @@
         var tire3down = /*[[${charges.serviceChargeTire3LowerLimit}]]*/ 'default';
         var tire3charge = /*[[${charges.serviceChargeTire3}]]*/ 'default';
 
+        var deliveryCharge1up = /*[[${charges.deliveryChargeTire1UpperLimit}]]*/ 'default';
+        var deliveryCharge1down = /*[[${charges.deliveryChargeTire1LowerLimit}]]*/ 'default';
+        var deliveryCharge1charge = /*[[${charges.deliveryChargeTire1}]]*/ 'default';
+
+        var deliveryCharge2up = /*[[${charges.deliveryChargeTire2UpperLimit}]]*/ 'default';
+        var deliveryCharge2down = /*[[${charges.deliveryChargeTire2LowerLimit}]]*/ 'default';
+        var deliveryCharge2charge = /*[[${charges.deliveryChargeTire2}]]*/ 'default';
+
+        var deliveryCharge3up = /*[[${charges.deliveryChargeTire3UpperLimit}]]*/ 'default';
+        var deliveryCharge3down = /*[[${charges.deliveryChargeTire3LowerLimit}]]*/ 'default';
+        var deliveryCharge3charge = /*[[${charges.deliveryChargeTire3}]]*/ 'default';
+
         /*]]>*/
     </script>
 
@@ -317,28 +329,14 @@
 
 				var subTotal = Number(document.getElementById("sub-total").innerHTML);
 				var selectedServiceCharge = 0;
-//
-// console.log("sub total: "+ subTotal);
-//
-//                 console.log("tire1up: "+ tire1up);
-//                 console.log("tire1down: "+ tire1down);
-//                 console.log("tire1charge: "+ tire1charge);
-//
-//                 console.log("tire2up: "+ tire2up);
-//                 console.log("tire2down: "+ tire2down);
-//                 console.log("tire2charge: "+ tire2charge);
-//
-//                 console.log("tire3up: "+ tire3up);
-//                 console.log("tire3down: "+ tire3down);
-//                 console.log("tire3charge: "+ tire3charge);
 
-                if( subTotal <= Number(tire1up) && subTotal > Number() ){
-                    selectedServiceCharge = tire1charge;
-                }else  if( subTotal <= Number(tire2up) && subTotal > Number(tire2down) ){
-                    selectedServiceCharge = tire2charge;
-                }else  if( subTotal <= Number(tire3up) && subTotal > Number(tire3down) ){
-                    selectedServiceCharge = tire3charge;
-                }
+                // if( subTotal <= Number(tire1up) && subTotal > Number() ){
+                //     selectedServiceCharge = tire1charge;
+                // }else  if( subTotal <= Number(tire2up) && subTotal > Number(tire2down) ){
+                //     selectedServiceCharge = tire2charge;
+                // }else  if( subTotal <= Number(tire3up) && subTotal > Number(tire3down) ){
+                //     selectedServiceCharge = tire3charge;
+                // }
 
                 if(subTotal>tire1down){
                     if(subTotal < tire1up){
@@ -355,9 +353,27 @@
 					}
 				}
 
-                document.getElementById("service-charge").innerHTML = selectedServiceCharge;
+//delivery charge calculation
+                var selectedDeliveryCharge = 0;
+                if(subTotal>deliveryCharge1down){
+                    if(subTotal < deliveryCharge1up){
+                        selectedDeliveryCharge = deliveryCharge1charge;
+                        console.log("deliveryCharge 1 condition");
+                    }else if(subTotal < deliveryCharge2up) {
+                        selectedDeliveryCharge = deliveryCharge2charge;
+                        console.log("deliveryCharge 2 condition");
+                    }else if (subTotal < deliveryCharge3up){
+                        selectedDeliveryCharge = deliveryCharge3charge;
+                        console.log("deliveryCharge 3 condition");
+                    }else{
+                        console.log("deliveryCharge fuck condition");
+                    }
+                }
 
-                console.log("service charge:" + selectedServiceCharge)
+
+
+                document.getElementById("service-charge").innerHTML = selectedServiceCharge;
+                document.getElementById("delivery-charge").innerHTML = selectedDeliveryCharge;
 
 				total += Number(document.getElementById("service-charge").innerHTML);
 				total += Number(document.getElementById("delivery-charge").innerHTML);

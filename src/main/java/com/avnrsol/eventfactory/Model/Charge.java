@@ -21,7 +21,17 @@ public class Charge {
 	private Long id;
 
 
-	public double deliveryCharge;
+	public double deliveryChargeTire1;
+	public double deliveryChargeTire2;
+	public double deliveryChargeTire3;
+
+	public double deliveryChargeTire1LowerLimit;
+	public double deliveryChargeTire2LowerLimit;
+	public double deliveryChargeTire3LowerLimit;
+
+	public double deliveryChargeTire1UpperLimit;
+	public double deliveryChargeTire2UpperLimit;
+	public double deliveryChargeTire3UpperLimit;
 	
 	public double serviceChargeTire1;
 	public double serviceChargeTire2;
@@ -54,14 +64,76 @@ public class Charge {
 		this.id = id;
 	}
 
-
-	public double getDeliveryCharge() {
-		return deliveryCharge;
+	public double getDeliveryChargeTire1() {
+		return deliveryChargeTire1;
 	}
 
+	public void setDeliveryChargeTire1(double deliveryChargeTire1) {
+		this.deliveryChargeTire1 = deliveryChargeTire1;
+	}
 
-	public void setDeliveryCharge(double deliveryCharge) {
-		this.deliveryCharge = deliveryCharge;
+	public double getDeliveryChargeTire2() {
+		return deliveryChargeTire2;
+	}
+
+	public void setDeliveryChargeTire2(double deliveryChargeTire2) {
+		this.deliveryChargeTire2 = deliveryChargeTire2;
+	}
+
+	public double getDeliveryChargeTire3() {
+		return deliveryChargeTire3;
+	}
+
+	public void setDeliveryChargeTire3(double deliveryChargeTire3) {
+		this.deliveryChargeTire3 = deliveryChargeTire3;
+	}
+
+	public double getDeliveryChargeTire1LowerLimit() {
+		return deliveryChargeTire1LowerLimit;
+	}
+
+	public void setDeliveryChargeTire1LowerLimit(double deliveryChargeTire1LowerLimit) {
+		this.deliveryChargeTire1LowerLimit = deliveryChargeTire1LowerLimit;
+	}
+
+	public double getDeliveryChargeTire2LowerLimit() {
+		return deliveryChargeTire2LowerLimit;
+	}
+
+	public void setDeliveryChargeTire2LowerLimit(double deliveryChargeTire2LowerLimit) {
+		this.deliveryChargeTire2LowerLimit = deliveryChargeTire2LowerLimit;
+	}
+
+	public double getDeliveryChargeTire3LowerLimit() {
+		return deliveryChargeTire3LowerLimit;
+	}
+
+	public void setDeliveryChargeTire3LowerLimit(double deliveryChargeTire3LowerLimit) {
+		this.deliveryChargeTire3LowerLimit = deliveryChargeTire3LowerLimit;
+	}
+
+	public double getDeliveryChargeTire1UpperLimit() {
+		return deliveryChargeTire1UpperLimit;
+	}
+
+	public void setDeliveryChargeTire1UpperLimit(double deliveryChargeTire1UpperLimit) {
+		this.deliveryChargeTire1UpperLimit = deliveryChargeTire1UpperLimit;
+	}
+
+	public double getDeliveryChargeTire2UpperLimit() {
+		return deliveryChargeTire2UpperLimit;
+	}
+
+	public void setDeliveryChargeTire2UpperLimit(double deliveryChargeTire2UpperLimit) {
+		this.deliveryChargeTire2UpperLimit = deliveryChargeTire2UpperLimit;
+	}
+
+	public double getDeliveryChargeTire3UpperLimit() {
+		return deliveryChargeTire3UpperLimit;
+	}
+
+	public void setDeliveryChargeTire3UpperLimit(double deliveryChargeTire3UpperLimit) {
+		this.deliveryChargeTire3UpperLimit = deliveryChargeTire3UpperLimit;
 	}
 
 	public double getServiceChargeTire1() {

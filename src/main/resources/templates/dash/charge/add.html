@@ -43,17 +43,7 @@
 								<div class="content">
 									<form th:action="@{/dash/charge/add}" th:object="${charge}"
 										method="post" enctype="multipart/form-data">
-										<div class="row">
 
-											<div class="col-md-12">
-												<div class="form-group">
-													<label>Delivery Charge</label> <input type="text"
-														class="form-control border-input"
-														placeholder="Delivery Charge" th:field="*{deliveryCharge}">
-												</div>
-											</div>
-
-										</div>
 										<div class="row">
 
 											<div class="col-md-12">
@@ -150,6 +140,94 @@
 													<input type="text"
 														   class="form-control border-input"
 														   placeholder="Tire 3 Service Charge" th:field="*{serviceChargeTire3}">
+												</div>
+											</div>
+
+										</div>
+
+										<div class="row">
+
+
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Service Charge Tire 1 Upper Limit</label>
+													<input type="text"
+														   class="form-control border-input"
+														   placeholder="Tire 1 Upper Limit" th:field="*{deliveryChargeTire1UpperLimit}">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Service Charge Tire 1 Lower Limit</label>
+													<input type="text"
+														   class="form-control border-input"
+														   placeholder="Tire 1 Lower Limit" th:field="*{deliveryChargeTire1LowerLimit}">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Service Charge Tire 1 </label>
+													<input type="text"
+														   class="form-control border-input"
+														   placeholder="Tire 1 Service Charge" th:field="*{deliveryChargeTire1}">
+												</div>
+											</div>
+
+										</div>
+										<div class="row">
+
+
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Service Charge Tire 2 Upper Limit</label>
+													<input type="text"
+														   class="form-control border-input"
+														   placeholder="Tire 2 Upper Limit" th:field="*{deliveryChargeTire2UpperLimit}">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Service Charge Tire 2 Lower Limit</label>
+													<input type="text"
+														   class="form-control border-input"
+														   placeholder="Tire 2 Lower Limit" th:field="*{deliveryChargeTire2LowerLimit}">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Service Charge Tire 2</label>
+													<input type="text"
+														   class="form-control border-input"
+														   placeholder="Tire 2 Service Charge" th:field="*{deliveryChargeTire2}">
+												</div>
+											</div>
+
+										</div>
+										<div class="row">
+
+
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Service Charge Tire 3 Upper Limit</label>
+													<input type="text"
+														   class="form-control border-input"
+														   placeholder="Tire 3 Upper Limit" th:field="*{deliveryChargeTire3UpperLimit}">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Service Charge Tire 3 Lower Limit</label>
+													<input type="text"
+														   class="form-control border-input"
+														   placeholder="Tire 3 Lower Limit" th:field="*{deliveryChargeTire3LowerLimit}">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Service Charge Tire 3</label>
+													<input type="text"
+														   class="form-control border-input"
+														   placeholder="Tire 3 Service Charge" th:field="*{deliveryChargeTire3}">
 												</div>
 											</div>
 
