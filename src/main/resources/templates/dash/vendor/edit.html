@@ -38,18 +38,22 @@
 						<div class="col-lg-12 col-md-12">
 							<div class="card">
 								<div class="header">
-									<h4 class="title">Add Vendor</h4>
+									<h4 class="title">Edit Vendor</h4>
 								</div>
 								<div class="content">
-									<form th:action="@{/dash/vendor/add}" th:object="${vendor}"
+									<form th:action="@{/dash/vendor/edit}"
 										method="post" enctype="multipart/form-data">
 										<div class="row">
+
+											<input type="hidden"
+												   class="form-control border-input"
+												    th:field="${vendor.id}">
 
 											<div class="col-md-12">
 												<div class="form-group">
 													<label>Name</label> <input type="text"
 														class="form-control border-input"
-														placeholder="Vendor Name" th:field="*{name}">
+														 th:field="${vendor.name}">
 												</div>
 											</div>
 
@@ -59,15 +63,15 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>Phone</label> <input type="text"
-														class="form-control border-input" placeholder="Phone"
-														th:field="*{phone}">
+														class="form-control border-input"
+																				th:field="${vendor.phone}">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label for="exampleInputEmail1">Email address</label> <input
 														type="email" class="form-control border-input"
-														placeholder="Email" th:field="*{email}">
+														th:field="${vendor.email}">
 												</div>
 											</div>
 
@@ -77,8 +81,7 @@
 											<div class="col-md-12">
 												<div class="form-group">
 													<label>Address</label> <input type="text"
-														class="form-control border-input"
-														placeholder="Vendor Address" th:field="*{address}">
+														class="form-control border-input" th:field="${vendor.address}">
 												</div>
 											</div>
 										</div>
@@ -87,8 +90,7 @@
 											<div class="col-md-12">
 												<div class="form-group">
 													<label>Commision</label> <input type="text"
-														class="form-control border-input"
-														placeholder="Commision" th:field="*{commision}">
+														class="form-control border-input" th:field="${vendor.commision}">
 												</div>
 											</div>
 										</div>
@@ -97,22 +99,19 @@
 											<div class="col-md-4">
 												<div class="form-group">
 													<label>City</label> <input type="text"
-														class="form-control border-input" placeholder="City"
-														th:field="*{city}">
+														class="form-control border-input"  th:field="${vendor.city}">
 												</div>
 											</div>
 											<div class="col-md-4">
 												<div class="form-group">
 													<label>Country</label> <input type="text"
-														class="form-control border-input" placeholder="Country"
-														th:field="*{country}">
+														class="form-control border-input"  th:field="${vendor.country}">
 												</div>
 											</div>
 											<div class="col-md-4">
 												<div class="form-group">
 													<label>Postal Code</label> <input type="number"
-														class="form-control border-input" placeholder="ZIP Code"
-														th:field="*{zip}">
+														class="form-control border-input"  th:field="${vendor.zip}">
 												</div>
 											</div>
 										</div>
@@ -121,12 +120,12 @@
 											<div class="col-md-12">
 												<div class="form-group">
 													<label>Description</label>
-													<textarea rows="6" class="form-control border-input"
-														placeholder="Here can be the vendor description"
-														th:field="*{description}"></textarea>
+													<textarea rows="6" class="form-control border-input" th:field="${vendor.description}"></textarea>
 												</div>
 											</div>
 										</div>
+
+
 										<div class="row">
 											<div class="col-md-12">
 												<div class="form-group">
@@ -159,14 +158,9 @@
 										</div>
 
 
-
-
-
-
-
 										<div class="text-center">
 											<button type="submit" value="Submit"
-												class="btn btn-info btn-fill btn-wd">Create</button>
+												class="btn btn-info btn-fill btn-wd">Update</button>
 										</div>
 										<div class="clearfix"></div>
 									</form>

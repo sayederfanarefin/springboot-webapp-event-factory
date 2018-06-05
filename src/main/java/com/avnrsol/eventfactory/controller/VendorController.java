@@ -23,6 +23,8 @@ import com.avnrsol.eventfactory.Repository.VendorRepository;
 import com.avnrsol.eventfactory.configuration.Constants;
 import com.avnrsol.eventfactory.service.ImageService;
 import com.avnrsol.eventfactory.service.interfaces.IVendorService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping(value= "/dash/vendor")
@@ -124,46 +126,46 @@ public class VendorController {
 	}
 
 	@RequestMapping(value="/edit", method = RequestMethod.GET)
-	public ModelAndView editEntity(@RequestParam("id") Long id){
-
-
-
+	public ModelAndView editEntityView(@RequestParam("id") Long id){
 		ModelAndView modelAndView = new ModelAndView();
 		Vendor vendor = vendorService.findById(id);
-
 		modelAndView.setViewName("dash/vendor/edit");
-
-		modelAndView.addObject("vendor", new Vendor());
+		//modelAndView.addObject("vendor", new Vendor());
 		modelAndView.addObject("title", "Vendor Information > Edit "+ vendor.getName());
-		modelAndView.addObject("v",  vendor);
+		modelAndView.addObject("vendor",  vendor);
 
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public ModelAndView updateEntity(@ModelAttribute Vendor v, @RequestParam("file") MultipartFile file) {
+	public ModelAndView updateEntity( Vendor vendor, @RequestParam("file") MultipartFile file) {
 		ModelAndView modelAndView = new ModelAndView();
 
-		if(v == null) {
+		if(vendor == null) {
 			System.out.println("vendor null");
 		}else {
 
 		}
-		List<MultipartFile> files = new ArrayList<MultipartFile>();
-		files.add(file);
-		try {
-			List<Image> i = imageService.saveUploadedFiles(files);
 
-			v.setImages(i);
+		if(file != null){
+			List<MultipartFile> files = new ArrayList<MultipartFile>();
+			files.add(file);
+			try {
+				List<Image> i = imageService.saveUploadedFiles(files);
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				vendor.setImages(i);
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		Vendor v2 = vendorService.add(v);
 
 
-		if(v !=null) {
+		Vendor v2 = vendorService.add(vendor);
+
+
+		if(vendor !=null) {
 			modelAndView.addObject("message", "Vendor " + v2.getName() +" has been updated successfully");
 			modelAndView.addObject("m",  0);
 		}else {
@@ -175,15 +177,18 @@ public class VendorController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public ModelAndView deleteEntity(@RequestParam("id") Long id) {
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ModelAndView  deleteEntity(@RequestParam("id") Long id , RedirectAttributes redir) {
 		ModelAndView modelAndView = new ModelAndView();
 
 		vendorService.delete(vendorService.findById(id));
 
-			modelAndView.addObject("message", "Vendor Deleted!");
-			modelAndView.addObject("m",  0);
+//			modelAndView.addObject("message", "Vendor Deleted!");
+//			modelAndView.addObject("m",  0);
 
+		modelAndView.setViewName("redirect:/dash/vendor/viewAll");
+		redir.addFlashAttribute("message","Vendor Deleted!");
+		redir.addFlashAttribute("m","0");
 		return modelAndView;
 	}
 

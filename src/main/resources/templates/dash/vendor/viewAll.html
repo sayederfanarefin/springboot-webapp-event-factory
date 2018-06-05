@@ -55,6 +55,8 @@
 									<h4 class="title">Vendors</h4>
 									<p class="category">List of all vendors</p>
 								</div>
+
+
 								<div class="content table-responsive table-full-width">
 									<table class="table table-striped">
 										<thead>
@@ -148,6 +150,26 @@
 						</div>
 
 					</div>
+
+
+					<div class="row">
+
+						<div class="col-md-12">
+
+							<div class="content">
+								<div class="alert alert-success" th:if="${m != null && m == 0}">
+
+									<span th:text="${message}">Successful!</span>
+								</div>
+
+								<div class="alert alert-danger" th:if="${m != null && m == 1}">
+
+									<span  th:text="${message}"> Un successful</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</div>
 

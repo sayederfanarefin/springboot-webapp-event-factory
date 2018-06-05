@@ -1,25 +1,7 @@
  <div th:fragment="footer">
   <footer class="footer" >
             <div class="container-fluid">
-                <!-- <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="http://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com">
-                               Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.creative-tim.com/license">
-                                Licenses
-                            </a>
-                        </li>
-                    </ul>
-                </nav> -->
+
                 <div class="copyright pull-right">
                     &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.avnrsol.com">AVNR SOL</a>
                 </div>
@@ -28,7 +10,7 @@
 
         </footer>
 
-     //selection css style
+
      <style>
          body {font-family: Arial, Helvetica, sans-serif;}
 
@@ -72,7 +54,7 @@
          }
      </style>
 
-//selection modal for edit/delete
+
      <div id="selectionModal" class="modal">
 
          <!-- Modal content -->
@@ -101,7 +83,7 @@
 
      </div>
 
-//delete modal
+
      <div id="deleteModal" class="modal">
 
          <!-- Modal content -->
@@ -174,10 +156,8 @@
         });
     </script>
 
-     //pop up for edit/delete selection
      <script type="text/javascript">
 
-         // Get the modal
          var modal = document.getElementById('selectionModal');
          var modaldelete = document.getElementById('deleteModal');
 
@@ -188,29 +168,22 @@
              modaldelete.style.display="none";
          }
 
-        // Get the button that opens the modal
-      //   var btn = document.getElementById("selectionBtn");
+
          var editbtn = document.getElementById("editBtn");
          var deletebtn = document.getElementById("deleteBtn");
          var deletebtnyes = document.getElementById("deleteBtnYes");
          var deletebtnno = document.getElementById("deleteBtnNo");
 
-         // Get the <span> element that closes the modal
+
          var span = document.getElementsByClassName("close")[0];
          var span2 = document.getElementsByClassName("close")[1];
 
-         // // When the user clicks the button, open the modal
-         // btn.onclick = function() {
-         //     modal.style.display = "block";
-         //     modaldelete.style.display="none";
-         // }
-         //
          deletebtn.onclick = function() {
              modal.style.display = "none";
              modaldelete.style.display="block";
          }
 
-         // When the user clicks on <span> (x), close the modal
+
          span.onclick = function() {
              modal.style.display = "none";
          }
@@ -220,12 +193,14 @@
          deletebtnno.onclick = function () {
              modal.style.display = "none";
              modaldelete.style.display = "none";
+
          }
 
          deletebtnyes.onclick = function() {
              modal.style.display = "none";
              modaldelete.style.display="none";
              window.location.href = "./delete?id="+ concernedEntityId;
+
          }
          editbtn.onclick = function() {
              modal.style.display = "none";
@@ -233,7 +208,7 @@
              window.location.href = "./edit?id="+ concernedEntityId;
          }
 
-         // When the user clicks anywhere outside of the modal, close it
+
          window.onclick = function(event) {
              if (event.target == modal) {
                  modal.style.display = "none";

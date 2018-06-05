@@ -373,7 +373,7 @@
 
 
                 document.getElementById("service-charge").innerHTML = (Number(selectedServiceCharge)/100) * subTotal;
-                document.getElementById("delivery-charge").innerHTML = selectedDeliveryCharge;
+                document.getElementById("delivery-charge").innerHTML = (Number(selectedDeliveryCharge)/100) * subTotal;
 
 				total += Number(document.getElementById("service-charge").innerHTML);
 				total += Number(document.getElementById("delivery-charge").innerHTML);
