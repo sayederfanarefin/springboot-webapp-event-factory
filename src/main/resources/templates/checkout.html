@@ -142,7 +142,7 @@
 
 													<tr class="cart-subtotal">
 														<th>Service Charge</th>
-														<td><span class="amount" id="service-charge" th:value="${charges.serviceCharge}" th:text="${charges.serviceCharge}"></span></td>
+														<td><span class="amount" id="service-charge" ></span></td>
 													</tr>
 													
 													<tr class="cart-subtotal">
@@ -234,9 +234,31 @@
 
 	</div>
 	<!-- #page -->
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        var vendorDiscount = /*[[${charges.vendorDiscount}]]*/ 'default';
+
+        var tire1up = /*[[${charges.serviceChargeTire1UpperLimit}]]*/ 'default';
+        var tire1down = /*[[${charges.serviceChargeTire1LowerLimit}]]*/ 'default';
+        var tire1charge = /*[[${charges.serviceChargeTire1}]]*/ 'default';
+
+        var tire2up = /*[[${charges.serviceChargeTire2UpperLimit}]]*/ 'default';
+        var tire2down = /*[[${charges.serviceChargeTire2LowerLimit}]]*/ 'default';
+        var tire2charge = /*[[${charges.serviceChargeTire2}]]*/ 'default';
+
+        var tire3up = /*[[${charges.serviceChargeTire3UpperLimit}]]*/ 'default';
+        var tire3down = /*[[${charges.serviceChargeTire3LowerLimit}]]*/ 'default';
+        var tire3charge = /*[[${charges.serviceChargeTire3}]]*/ 'default';
+
+        /*]]>*/
+    </script>
+
 	<script type="text/javascript">
 		function iniata() {
 
+		    //console.log("vendor discount:" + vendorDiscount);
 			var cartJson;
 
 			var cartRaw = localStorage.getItem('cartx');
@@ -262,25 +284,46 @@
 							document.createTextNode(cartItem.name + " x "
 									+ cartItem.quantity));
 
+					//vendor discount
+					var vendorId = cartItem.vendor;
+                    var serviceId = cartItem.id;
+
+                    var vendorRepeatCount = 0;
+					var j ;
+					for(j=0; j < i; j++){
+
+                        var cartItem2 = cartJson[j];
+                        if(cartItem2.id != serviceId && vendorId == cartItem2.vendor){
+                            vendorRepeatCount++;
+
+                        }
+                    }
+
+                    var itemPrice =Number(cartItem.quantity)
+                        * afterDiscountPrice ;
+                    var afterDiscountPrice = 0;
+                    if(vendorRepeatCount > 0 ){
+                        var toBeDiscounted = (Number(vendorDiscount) / 100) * Number(cartItem.price);
+                        afterDiscountPrice = Number(cartItem.price) - toBeDiscounted;
+                        itemPrice = itemPrice + ' BDT (Vendor Discount)'
+                    }else{
+                        afterDiscountPrice = Number(cartItem.price);
+                        itemPrice = itemPrice + ' BDT'
+                    }
+
+
 					newRow.insertCell(1).appendChild(
-							document.createTextNode(Number(cartItem.quantity)
-									* Number(cartItem.price) + ' BDT'));
+							document.createTextNode(itemPrice);
 
-					total += Number(cartItem.quantity) * Number(cartItem.price);
+					total += Number(cartItem.quantity) * afterDiscountPrice;
 					
 					
 					
-					document.getElementById("sub-total").innerHTML = total
+					document.getElementById("sub-total").innerHTML = Number(document.getElementById("sub-total").innerHTML) + total
 							+ ' BDT';
-					
 
-					
 				}
-				
-				
-				//console.log(document.getElementById("service-charge").innerHTML);
-				//console.log(document.getElementById("delivery-charge").innerHTML);
-				
+
 				total += Number(document.getElementById("service-charge").innerHTML);
 				total += Number(document.getElementById("delivery-charge").innerHTML);
 				

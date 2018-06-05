@@ -64,7 +64,7 @@ public class StoreController {
 		modelAndView.addObject("serv", serviceoRepository.findServiceoById(id));
 		modelAndView.addObject("related", serviceoRepository.findTop4ServiceoByServiceCategory_Id(serviceoRepository.findServiceoById(id).getServiceCategory().getId()));
 		
-		System.out.println("cookie ->->->->->->->->->->->->-> "+ fooCookie);
+	//	System.out.println("cookie ->->->->->->->->->->->->-> "+ fooCookie);
 		
 		return modelAndView;
 	}
