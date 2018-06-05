@@ -58,12 +58,12 @@ public class Vendor {
 	public String country;
 	
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade={CascadeType.REMOVE, CascadeType.PERSIST})
 	@JoinColumn(name = "fk_service_vendor")
 	public List<Serviceo> services  = new ArrayList<Serviceo>();
 	
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
 	@JoinColumn(name = "fk_vendor_image")
 	public List<Image> images = new ArrayList<Image>();
 	
