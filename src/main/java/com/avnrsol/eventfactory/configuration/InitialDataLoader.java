@@ -99,13 +99,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 						
 					}
 					
-					if(prev.equals(PrivilegeConstants.USER_VIEW) || 
-							prev.equals(PrivilegeConstants.ASSIGNEDPROJECTS_VIEW) || 
-							prev.equals(PrivilegeConstants.EXPENDITURE_REQUEST)
-							) {
-						employeePrivileges.add(privilegeRepository.findByName(prev));
-						
-					}
+
 				}
 			}
 

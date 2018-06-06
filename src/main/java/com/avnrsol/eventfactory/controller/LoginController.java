@@ -106,7 +106,7 @@ System.out.println("=>->=>->=>->=>->=>->=>->=>->=>->=>->=>->=>->=>->=>->=>->=>->
         } else if (sb.equals(Constants.ADMIN)) {
             return new RedirectView("/dash/admin/");
         } else {
-            return new RedirectView("/dash/customer/");
+            return new RedirectView("/myAccount/");
         }
 
     }
