@@ -183,9 +183,6 @@ public class VendorController {
 
 		vendorService.delete(vendorService.findById(id));
 
-//			modelAndView.addObject("message", "Vendor Deleted!");
-//			modelAndView.addObject("m",  0);
-
 		modelAndView.setViewName("redirect:/dash/vendor/viewAll");
 		redir.addFlashAttribute("message","Vendor Deleted!");
 		redir.addFlashAttribute("m","0");

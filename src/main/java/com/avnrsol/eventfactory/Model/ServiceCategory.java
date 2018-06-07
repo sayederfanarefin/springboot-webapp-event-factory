@@ -32,13 +32,13 @@ public class ServiceCategory {
 	@Column(columnDefinition="LONGTEXT")
 	private String description;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade={CascadeType.REMOVE, CascadeType.PERSIST})
 	@JoinColumn(name = "fk_service_category_image")
 	private List<Image> images = new ArrayList<Image>();
 	
 	
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade={CascadeType.REMOVE, CascadeType.PERSIST})
 	@JoinColumn(name = "fk_service_service_category")
 	private List<Serviceo> Services = new ArrayList<Serviceo>();
 

@@ -419,8 +419,7 @@
 
 				document.getElementById("cart_fucking").appendChild(node);
 
-				var current_total = Number(document
-						.getElementById("inside-cart-total").innerHTML);
+				var current_total = Number(document.getElementById("inside-cart-total").innerHTML);
 				var final_total = current_total
 						+ (Number(form.unit_price.value) * Number(form.quantity.value));
 				document.getElementById("inside-cart-total").innerHTML = final_total;

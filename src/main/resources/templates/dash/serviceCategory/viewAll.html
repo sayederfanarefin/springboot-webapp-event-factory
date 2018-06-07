@@ -78,7 +78,9 @@
                                 
                                     
                         <td><button type="button"
-                                class="btn btn-primary btn-condensed">
+                                class="btn btn-primary btn-condensed"
+
+									th:onclick="'javascript:editOrDelete(\'' + ${clientlist.id} + '\');'">
                                 Edit/Delete
                             </button></td>
                     </tr>

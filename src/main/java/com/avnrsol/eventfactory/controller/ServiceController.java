@@ -26,6 +26,7 @@ import com.avnrsol.eventfactory.Repository.VendorRepository;
 import com.avnrsol.eventfactory.configuration.Constants;
 import com.avnrsol.eventfactory.service.ImageService;
 import com.avnrsol.eventfactory.service.interfaces.IServiceoService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value= "/dash/serviceo")
@@ -49,6 +50,8 @@ public class ServiceController {
 	
 	@Autowired
 	private VendorRepository vendorRepository;
+
+
 	
 	
 	
@@ -79,27 +82,8 @@ public class ServiceController {
 			Image image = imageService.saveUploadedFile(file);
 			serviceo.addImage(image);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-//		List<MultipartFile> files = new ArrayList<MultipartFile>();
-//		files.add(file);
-//		try {
-//			List<Image> i = imageService.saveUploadedFiles(files);
-//			
-//			for(int g =0; g < i.size(); g++) {
-//				serviceo.addImage(i.get(g));
-//			}
-//			//System.out.println(i.size());
-//			//System.out.println(i.get(0).getUrl());
-//			//serviceo.setImages(i);
-//			
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
 
 		Serviceo v = serviceoService.add(serviceo);
 		if(v !=null) {
@@ -112,18 +96,14 @@ public class ServiceController {
 			modelAndView.addObject("message", "Some thing went wrong. Please try again later.");
 			modelAndView.addObject("m",  1);
 		}
-		
-		
+
 		return modelAndView;
 	}
-	
-	
+
 	@RequestMapping(value="/viewAll", method = RequestMethod.GET)
 	public ModelAndView viewAll(@RequestParam("pageSize") Optional<Integer> pageSize,
             @RequestParam("page") Optional<Integer> page){
-		
-		
-		
+
 		ModelAndView modelAndView = new ModelAndView();
 		Page<Serviceo> serviceos = serviceoService.findAllServiceo(0);
 		
@@ -153,6 +133,72 @@ public class ServiceController {
         
         
         
+		return modelAndView;
+	}
+
+
+	@RequestMapping(value="/edit", method = RequestMethod.GET)
+	public ModelAndView editEntityView(@RequestParam("id") Long id){
+		ModelAndView modelAndView = new ModelAndView();
+		Serviceo service = serviceoService.findById(id);
+		modelAndView.setViewName("dash/serviceo/edit");
+
+		modelAndView.addObject("title", "Service Information > Edit "+ service.getName());
+		modelAndView.addObject("service",  service);
+		modelAndView.addObject("categories", serviceCategoryRepository.findAll());
+		modelAndView.addObject("vendors", vendorRepository.findAll());
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public ModelAndView updateEntity( Serviceo service, @RequestParam("file") MultipartFile file) {
+		ModelAndView modelAndView = new ModelAndView();
+
+		if(service == null) {
+			System.out.println("service null");
+		}else {
+
+		}
+
+		if(file != null){
+			List<MultipartFile> files = new ArrayList<MultipartFile>();
+			files.add(file);
+			try {
+				List<Image> i = imageService.saveUploadedFiles(files);
+
+				service.setImages(i);
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+
+		Serviceo v2 = serviceoService.add(service);
+
+
+		if(service !=null) {
+			modelAndView.addObject("message", "Service " + v2.getName() +" has been updated successfully");
+			modelAndView.addObject("m",  0);
+		}else {
+			modelAndView.addObject("message", "Some thing went wrong. Please try again later.");
+			modelAndView.addObject("m",  1);
+		}
+
+
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ModelAndView  deleteEntity(@RequestParam("id") Long id , RedirectAttributes redir) {
+		ModelAndView modelAndView = new ModelAndView();
+
+		serviceoService.delete(serviceoService.findById(id));
+
+		modelAndView.setViewName("redirect:/dash/serviceo/viewAll");
+		redir.addFlashAttribute("message","Service Deleted!");
+		redir.addFlashAttribute("m","0");
 		return modelAndView;
 	}
 	
