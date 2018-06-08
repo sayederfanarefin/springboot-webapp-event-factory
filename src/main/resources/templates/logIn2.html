@@ -65,9 +65,9 @@
 
 												</p>
 
-												<p class="lost_password">
-													<a href="login-and-register.html">Lost your password?</a>
-												</p>
+												<!--<p class="lost_password">-->
+													<!--<a href="login-and-register.html">Lost your password?</a>-->
+												<!--</p>-->
 
 											</form>
 
@@ -88,7 +88,51 @@
 
 												<p class="before-register-text">Create your very own
 													account</p>
-												<div class="row" id="full-name-stuff">
+
+
+												<div class="row">
+													<div class="col-md-12">
+														<p class="form-row form-row-wide">
+															<label>Email address<span class="required">*</span></label>
+															<input required="required" type="email" th:field="*{email}"
+																   class="input-text" name="email" />
+														</p>
+													</div>
+
+												</div>
+
+
+												<p class="form-row form-row-wide">
+													<label for="reg_email">Password<span
+															class="required">*</span></label> <input required="required" type="password"
+																									 th:field="*{password}" class="input-text" name="password" />
+												</p>
+
+
+												<div class="woocommerce-checkout-payment form-row form-row-wide" id="payment">
+													<ul class="wc_payment_methods payment_methods methods">
+														<li class="wc_payment_method payment_method_bacs" >
+															<input required="required" onclick="show1();"
+																   th:field="*{type}"
+																   type="radio" data-order_button_text=""
+																   value="company" name="type" class="input-radio"
+																   id="payment_method_bacs"> <label
+																for="payment_method_bacs">Company Account</label> </li>
+														<li class="wc_payment_method payment_method_cheque">
+															<input onclick="show2();" required="required" th:field="*{type}" type="radio" data-order_button_text=""
+																   value="personal" name="type" id="personal-option" class="input-radio"
+																   id="payment_method_cheque"> <label
+																for="payment_method_cheque">Personal Account </label>
+
+														</li>
+
+
+													</ul>
+
+												</div>
+												<div style="display:none;" id="full-name-stuff">
+													<div class="row" >
+
 													<div class="col-md-6">
 														<p class="form-row form-row-wide">
 															<label for="reg_email">First Name<span
@@ -99,30 +143,35 @@
 													</div>
 													<div class="col-md-6">
 														<p class="form-row form-row-wide">
-															<label for="reg_email">Last Name<span
+															<label >Last Name<span
 																class="required">*</span></label> <input type="text"
 																th:field="*{lastName}" class="input-text"
 																name="lastName" />
 														</p>
 													</div>
+
 												</div>
+													<div class="row" >
+														<div class="col-md-6">
 
-												<p class="form-row form-row-wide">
-													<label>Company Name<span class="required">*</span></label>
-													<input type="text" th:field="*{companyName}"
-														class="input-text" name="Company Name" />
-												</p>
+															<div class="form-group">
+																<div class='input-group date' id='datetimepicker1'>
+
+																	<label>Date of Birth<span
+																			class="required">*</span></label>
+
+																	<input type='text' class="form-control" />
+																	<span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+																</div>
+															</div>
+
+
+														</div>
 
 
 
-												<div class="row">
-													<div class="col-md-6">
-														<p class="form-row form-row-wide">
-															<label>Email address<span class="required">*</span></label>
-															<input type="email" th:field="*{email}"
-																class="input-text" name="email" />
-														</p>
-													</div>
 													<div class="col-md-6">
 														<p class="form-row form-row-wide">
 															<label>Phone<span class="required">*</span></label> <input
@@ -130,14 +179,72 @@
 																name="phone" />
 														</p>
 													</div>
+													</div>
+
+												</div>
+
+												<div style="display:none;" id="company">
+													<div class="row" >
+
+													<p class="form-row form-row-wide">
+														<label>Company Name<span class="required">*</span></label>
+														<input type="text" th:field="*{companyName}"
+															   class="input-text" name="Company Name" />
+													</p>
+													<p class="form-row form-row-wide">
+														<label>Parent Company Name<span class="required">*</span></label>
+														<input type="text" th:field="*{parentCompanyName}"
+															   class="input-text" name="Parent Company Name" />
+													</p>
+													</div>
+													<div class="row" >
+														<div class="col-md-6">
+															<p class="form-row form-row-wide">
+																<label>Contact Person Name<span class="required">*</span></label>
+																<input type="text" th:field="*{contactPersonName}"
+																	   class="input-text" name="Parent Company Name" />
+															</p>
+														</div>
+
+														<div class="col-md-6">
+															<p class="form-row form-row-wide">
+																<label>Contact Person Number<span class="required">*</span></label>
+																<input type="text" th:field="*{contactPersonNumber}"
+																	   class="input-text" name="Parent Company Name" />
+															</p>
+														</div>
+													</div>
+													<div class="row" >
+														<div class="col-md-4">
+															<p class="form-row form-row-wide">
+																<label>Secondary Contact Person Name<span class="required">*</span></label>
+																<input type="text" th:field="*{secondaryContactPersonName}"
+																	   class="input-text" name="Parent Company Name" />
+															</p>
+														</div>
+
+														<div class="col-md-4">
+															<p class="form-row form-row-wide">
+																<label>Secondary Contact Person Email<span class="required">*</span></label>
+																<input type="text" th:field="*{secondaryContactPersonEmail}"
+																	   class="input-text" name="Parent Company Email" />
+															</p>
+														</div>
+														<div class="col-md-4">
+															<p class="form-row form-row-wide">
+																<label>Secondary Contact Person Number<span class="required">*</span></label>
+																<input type="text" th:field="*{secondaryContactPersonNumber}"
+																	   class="input-text" name="Parent Company Number" />
+															</p>
+														</div>
+													</div>
+
 												</div>
 
 
-												<p class="form-row form-row-wide">
-													<label for="reg_email">Password<span
-														class="required">*</span></label> <input type="password"
-														th:field="*{password}" class="input-text" name="password" />
-												</p>
+
+
+
 
 
 
@@ -148,24 +255,7 @@
 												</p>
 
 												<div class="woocommerce-checkout-payment form-row form-row-wide" id="payment">
-													<ul class="wc_payment_methods payment_methods methods">
-														<li class="wc_payment_method payment_method_bacs">
-														<input onclick="show1();"
-														th:field="*{type}"
-															type="radio" data-order_button_text="" 
-															value="company" name="type" class="input-radio"
-															id="payment_method_bacs"> <label
-															for="payment_method_bacs">Company Account</label> </li>
-														<li class="wc_payment_method payment_method_cheque">
-															<input onclick="show2();" th:field="*{type}" type="radio" data-order_button_text=""
-															value="personal" name="type" checked="checked" class="input-radio"
-															id="payment_method_cheque"> <label
-															for="payment_method_cheque">Personal Account </label>
-															
-														</li>
 
-
-													</ul>
 													<div class="form-row place-order">
 
 														<p class="form-row terms wc-terms-and-conditions">
@@ -229,15 +319,18 @@
 	<!-- #page -->
 
 	<script type="text/javascript">
-	
+
+
 	function show1(){
 		  document.getElementById('full-name-stuff').style.display ='none';
+        document.getElementById('company').style.display ='block';
 		}
 		function show2(){
 		  document.getElementById('full-name-stuff').style.display = 'block';
+            document.getElementById('company').style.display ='none';
 		}
-	
-		
+
+
 	</script>
 
 </body>

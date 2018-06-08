@@ -42,6 +42,22 @@ public class User implements UserDetails, Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long id;
 
+	//company stuff
+	public String companyName;
+
+	public String parentCompanyName;
+
+	public String contactPersonName;
+
+	public String contactPersonNumber;
+
+
+	public String secondaryContactPersonName;
+
+	public String secondaryContactPersonNumber;
+
+	public String secondaryContactPersonEmail;
+
 	@Column(name = "created_at")
 	public Date createdAt;
 
@@ -49,7 +65,7 @@ public class User implements UserDetails, Serializable {
 	
 	public String type;
 
-	public String companyName;
+
 	
 	public String password;
 
@@ -65,6 +81,8 @@ public class User implements UserDetails, Serializable {
 	
 	public String firstName;
 	public String lastName;
+
+	public Date dob;
 
 	public String address;
 	public String phone;
@@ -276,7 +294,64 @@ public class User implements UserDetails, Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	
 
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getParentCompanyName() {
+		return parentCompanyName;
+	}
+
+	public void setParentCompanyName(String parentCompanyName) {
+		this.parentCompanyName = parentCompanyName;
+	}
+
+	public String getContactPersonName() {
+		return contactPersonName;
+	}
+
+	public void setContactPersonName(String contactPersonName) {
+		this.contactPersonName = contactPersonName;
+	}
+
+	public String getContactPersonNumber() {
+		return contactPersonNumber;
+	}
+
+	public void setContactPersonNumber(String contactPersonNumber) {
+		this.contactPersonNumber = contactPersonNumber;
+	}
+
+	public String getSecondaryContactPersonName() {
+		return secondaryContactPersonName;
+	}
+
+	public void setSecondaryContactPersonName(String secondaryContactPersonName) {
+		this.secondaryContactPersonName = secondaryContactPersonName;
+	}
+
+	public String getSecondaryContactPersonNumber() {
+		return secondaryContactPersonNumber;
+	}
+
+	public void setSecondaryContactPersonNumber(String secondaryContactPersonNumber) {
+		this.secondaryContactPersonNumber = secondaryContactPersonNumber;
+	}
+
+	public String getSecondaryContactPersonEmail() {
+		return secondaryContactPersonEmail;
+	}
+
+	public void setSecondaryContactPersonEmail(String secondaryContactPersonEmail) {
+		this.secondaryContactPersonEmail = secondaryContactPersonEmail;
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
 }

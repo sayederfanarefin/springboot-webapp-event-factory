@@ -334,8 +334,9 @@
 		<!-- #colophon -->
 
 		 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-       
+
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 		<script type="text/javascript" th:src="@{/js/tether.min.js}"></script>
 		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 		<script type="text/javascript"
@@ -349,7 +350,11 @@
 
 
 		<script type="text/javascript">
-			
+
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+
 			function removeRow(input) {
 				var current_total = Number(document
 						.getElementById("inside-cart-total").innerHTML);
