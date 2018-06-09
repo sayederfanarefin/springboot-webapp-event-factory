@@ -47,7 +47,7 @@
 													your account</p>
 
 												<p class="form-row form-row-wide">
-													<label for="username">Email address<span
+													<label for="email">Email address<span
 														class="required">*</span></label> <input class="input-text"
 														type="email" name="email" id="email" required="required" />
 												</p>
@@ -160,7 +160,7 @@
 
 																	<label>Date of Birth<span
 																			class="required">*</span></label>
-																	 <input type="text" id="datepicker">
+																	 <input th:field="*{dob}" type="text" id="datepicker">
 																</div>
 															</div>
 
@@ -169,7 +169,7 @@
 
 
 
-													<div class="col-md-12">
+													<div class="col-md-6">
 														<p class="form-row form-row-wide">
 															<label>Phone<span class="required">*</span></label> <input
 																type="text" th:field="*{phone}" class="input-text"
