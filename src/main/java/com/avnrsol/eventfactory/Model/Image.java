@@ -1,14 +1,12 @@
 package com.avnrsol.eventfactory.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Value;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "image")
@@ -23,16 +21,32 @@ public class Image {
 	@Column(name = "name")
 	@NotEmpty(message = "*Please provide your name")
 	private String name;
-	
-	
+
+	@Column(name = "created_at")
+	public Date createdAt;
+
+
 	@Column(columnDefinition="LONGTEXT")
 	private String description;
 	
 	@Column(columnDefinition="LONGTEXT")
 	private String url;
-	
-	
-	
+
+	@PrePersist
+	void createdAt() {
+		this.createdAt = new Date();
+	}
+
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss.000 ", timezone="UTC")
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+
 	public Image() {
 		super();
 	}

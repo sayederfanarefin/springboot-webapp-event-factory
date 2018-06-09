@@ -47,13 +47,67 @@ public class Charge {
 
 	public double vendorDiscount;
 
+	public int extra_charge_tier_1_days;
+	public int extra_charge_tier_2_days;
+	public int extra_charge_tier_3_days;
 
-	
+	public int extra_charge_tier_1_charge_percentage;
+	public int extra_charge_tier_2_charge_percentage;
+	public int extra_charge_tier_3_charge_percentage;
+
 	public Charge() {
 		super();
 	}
 
-	
+
+	public int getExtra_charge_tier_1_days() {
+		return extra_charge_tier_1_days;
+	}
+
+	public void setExtra_charge_tier_1_days(int extra_charge_tier_1_days) {
+		this.extra_charge_tier_1_days = extra_charge_tier_1_days;
+	}
+
+	public int getExtra_charge_tier_2_days() {
+		return extra_charge_tier_2_days;
+	}
+
+	public void setExtra_charge_tier_2_days(int extra_charge_tier_2_days) {
+		this.extra_charge_tier_2_days = extra_charge_tier_2_days;
+	}
+
+	public int getExtra_charge_tier_3_days() {
+		return extra_charge_tier_3_days;
+	}
+
+	public void setExtra_charge_tier_3_days(int extra_charge_tier_3_days) {
+		this.extra_charge_tier_3_days = extra_charge_tier_3_days;
+	}
+
+	public int getExtra_charge_tier_1_charge_percentage() {
+		return extra_charge_tier_1_charge_percentage;
+	}
+
+	public void setExtra_charge_tier_1_charge_percentage(int extra_charge_tier_1_charge_percentage) {
+		this.extra_charge_tier_1_charge_percentage = extra_charge_tier_1_charge_percentage;
+	}
+
+	public int getExtra_charge_tier_2_charge_percentage() {
+		return extra_charge_tier_2_charge_percentage;
+	}
+
+	public void setExtra_charge_tier_2_charge_percentage(int extra_charge_tier_2_charge_percentage) {
+		this.extra_charge_tier_2_charge_percentage = extra_charge_tier_2_charge_percentage;
+	}
+
+	public int getExtra_charge_tier_3_charge_percentage() {
+		return extra_charge_tier_3_charge_percentage;
+	}
+
+	public void setExtra_charge_tier_3_charge_percentage(int extra_charge_tier_3_charge_percentage) {
+		this.extra_charge_tier_3_charge_percentage = extra_charge_tier_3_charge_percentage;
+	}
+
 	public Long getId() {
 		return id;
 	}

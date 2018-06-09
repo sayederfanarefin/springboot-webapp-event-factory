@@ -1,18 +1,12 @@
 package com.avnrsol.eventfactory.Model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -35,9 +29,11 @@ public class ServiceCategory {
 	@OneToMany(cascade={CascadeType.REMOVE, CascadeType.PERSIST})
 	@JoinColumn(name = "fk_service_category_image")
 	private List<Image> images = new ArrayList<Image>();
-	
-	
-	
+
+	@Column(name = "created_at")
+	public Date createdAt;
+
+
 	@OneToMany(cascade={CascadeType.REMOVE, CascadeType.PERSIST})
 	@JoinColumn(name = "fk_service_service_category")
 	private List<Serviceo> Services = new ArrayList<Serviceo>();
@@ -46,6 +42,21 @@ public class ServiceCategory {
 		super();
 	
 	}
+
+	@PrePersist
+	void createdAt() {
+		this.createdAt = new Date();
+	}
+
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss.000 ", timezone="UTC")
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
 
 	public Long getId() {
 		return id;

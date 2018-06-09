@@ -1,18 +1,12 @@
 package com.avnrsol.eventfactory.Model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -24,7 +18,9 @@ public class Vendor {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	
 	private Long id;
-	
+
+	@Column(name = "created_at")
+	public Date createdAt;
 	
 	@Column(name = "email")
 	@Email(message = "*Please provide a valid Email")
@@ -73,6 +69,19 @@ public class Vendor {
 	}
 
 
+	@PrePersist
+	void createdAt() {
+		this.createdAt = new Date();
+	}
+
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss.000 ", timezone="UTC")
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
 
 
 	public Vendor(String email, String name, String address, String phone, String description, String city,

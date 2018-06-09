@@ -1,21 +1,13 @@
 package com.avnrsol.eventfactory.Model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -35,7 +27,11 @@ public class Serviceo {
 	private double price;
 	
 	private double discount;
-	
+
+	@Column(name = "created_at")
+	public Date createdAt;
+
+
 	@OneToMany
     @JoinColumn(name = "fk_order_item_service")
 	public List<OrderItem> orderItems;
@@ -62,6 +58,25 @@ public class Serviceo {
 	@JoinColumn(name = "fk_service_vendor")
 	@JsonBackReference
 	private Vendor vendor;
+
+
+	@OneToMany(cascade={CascadeType.REMOVE, CascadeType.PERSIST})
+	@JoinColumn(name = "fk_service_booking")
+	public List<Booking> booking  = new ArrayList<Booking>();
+
+	@PrePersist
+	void createdAt() {
+		this.createdAt = new Date();
+	}
+
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss.000 ", timezone="UTC")
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
 
 	public Serviceo() {
 		super();
@@ -172,6 +187,12 @@ public class Serviceo {
 	public void setOrderItems(List<OrderItem> orderItems) {
 		this.orderItems = orderItems;
 	}
-	
-	
+
+	public List<Booking> getBooking() {
+		return booking;
+	}
+
+	public void setBooking(List<Booking> booking) {
+		this.booking = booking;
+	}
 }
