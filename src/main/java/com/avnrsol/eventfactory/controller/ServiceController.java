@@ -152,6 +152,14 @@ public class ServiceController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public ModelAndView updateEntity( Serviceo service, @RequestParam("file") MultipartFile file) {
 		ModelAndView modelAndView = new ModelAndView();
+		//modelAndView.setViewName("redirect:/dash/serviceo/viewAll");
+
+		modelAndView.setViewName("dash/serviceo/edit");
+
+		modelAndView.addObject("title", "Service Information > Edit "+ service.getName());
+
+		modelAndView.addObject("categories", serviceCategoryRepository.findAll());
+		modelAndView.addObject("vendors", vendorRepository.findAll());
 
 		if(service == null) {
 			System.out.println("service null");
@@ -174,9 +182,9 @@ public class ServiceController {
 		}
 
 
-		Serviceo v2 = serviceoService.add(service);
+		Serviceo v2 = serviceoService.updateServiceo(service);
 
-
+		modelAndView.addObject("service",  v2);
 		if(service !=null) {
 			modelAndView.addObject("message", "Service " + v2.getName() +" has been updated successfully");
 			modelAndView.addObject("m",  0);
@@ -196,6 +204,7 @@ public class ServiceController {
 		serviceoService.delete(serviceoService.findById(id));
 
 		modelAndView.setViewName("redirect:/dash/serviceo/viewAll");
+
 		redir.addFlashAttribute("message","Service Deleted!");
 		redir.addFlashAttribute("m","0");
 		return modelAndView;
