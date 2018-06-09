@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import com.avnrsol.eventfactory.Model.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -49,6 +50,7 @@ public class StoreController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("home");
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
+		modelAndView.addObject("SearchCriteria", new SearchCriteria() );
 		modelAndView.addObject("vendors", vendorService.findAllVendor(0));
 		
 		System.out.println("cookie ->->->->->->->->->->->->-> "+ fooCookie);

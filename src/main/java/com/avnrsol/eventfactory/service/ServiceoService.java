@@ -13,6 +13,8 @@ import com.avnrsol.eventfactory.Repository.ServiceoRepository;
 import com.avnrsol.eventfactory.configuration.Constants;
 import com.avnrsol.eventfactory.service.interfaces.IServiceoService;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class ServiceoService implements IServiceoService {
@@ -47,5 +49,13 @@ public class ServiceoService implements IServiceoService {
 		return serviceoRepository.save(serviceo);
 	}
 
-	
+	@Override
+	public List<Serviceo> search(String search) {
+
+System.out.println("seraching for "+ search);
+
+		return serviceoRepository.findByNameContaining(search);
+	}
+
+
 }

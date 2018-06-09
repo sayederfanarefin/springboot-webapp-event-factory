@@ -95,6 +95,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	       .ignoring()
 	       .antMatchers("/service/**", "/serviceCategory/**", "/about/**", "/faq/**", "/cart/**", 
 	    		   "/resources/**", "/static/**", "/css/**", "/css/colors/**", "/js/**", "/images/**", "/adminDash/**",
+				   "/livesearch/**",
 	    		   "/fonts/**");
 	}
 }

@@ -87,31 +87,29 @@
 							</div>
 							<!-- ============================================================= Header Logo : End============================================================= -->
 
-							<form class="navbar-search" method="get" action="/">
-								<label class="sr-only screen-reader-text" for="search">Search
+							<form class="navbar-search" method="post" th:object="${SearchCriteria}" th:action="@{/livesearch/}">
+								<label class="sr-only screen-reader-text" >Search
 									for:</label>
 								<div class="input-group">
-									<input type="text" id="search"
-										class="form-control search-field" dir="ltr" value="" name="s"
-										placeholder="Search for services" />
-									<div class="input-group-addon search-categories">
-
-										<select>
-										 <option value='0' selected='selected'>All Categories</option>
-											<option th:each="clientlist : ${clientlist}"
-												th:text="${clientlist.name}" th:value="${clientlist.id} "></option>
-										</select>
+									<input type="text" class="form-control search-field" placeholder="Search for services"
+										   id="username" th:field="*{username}"
+									/>
 
 
 
-									</div>
 									<div class="input-group-btn">
-										<input type="hidden" id="search-param" name="post_type"
-											value="product" />
-										<button type="submit" class="btn btn-secondary">
+
+										<button id="btn-search" type="submit" class="btn btn-secondary">
 											<i class="ec ec-search"></i>
 										</button>
 									</div>
+
+
+									<div id="feedback">
+
+									</div>
+
+
 								</div>
 							</form>
 							<ul
@@ -351,9 +349,7 @@
 
 		<script type="text/javascript">
 
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
+
 
 			function removeRow(input) {
 				var current_total = Number(document
@@ -503,6 +499,73 @@
 				//alert('ok');
 			}
 			window.onload = codeAddress;
+
+
+
+            // $(document).ready(function () {
+            //
+            //     $("#search-form").submit(function (event) {
+            //
+            //         //stop submit the form, we will post it manually.
+            //         event.preventDefault();
+            //
+            //         fire_ajax_submit();
+            //
+            //     });
+            //
+            // });
+
+            // function fire_ajax_submit() {
+            //
+            //     var search = {}
+            //     search["username"] = $("#username").val();
+            //
+            //     $("#btn-search").prop("disabled", true);
+            //
+            //     alert("searching..")
+            //     $.ajax({
+            //         type: "POST",
+            //         contentType: "application/json",
+            //         url: "/livesearch/",
+            //         data: JSON.stringify(search),
+            //         dataType: 'json',
+            //         cache: false,
+            //         timeout: 600000,
+            //         success: function (data) {
+            //
+            //             var results = data.result;
+            //
+            //
+            //
+            //             var ul = $('#res');
+            //             var i= 0;
+            //             for(i=0;i<results.size; i++){
+            //                 $('#feedback').appendChild( results[i].name);
+            //
+				// 		}
+            //
+            //             $("#btn-search").prop("disabled", false);
+            //
+            //         },
+            //         error: function (e) {
+            //
+            //             var json = "<h4>Ajax Response</h4><pre>"
+            //                 + e.responseText + "</pre>";
+            //             $('#feedback').html(json);
+            //
+            //             console.log("ERROR : ", e);
+            //             $("#btn-search").prop("disabled", false);
+            //
+            //         }
+            //     });
+            //
+            // }
+
+            $( function() {
+                $( "#datepicker" ).datepicker();
+            } );
+
+
 		</script>
 
 

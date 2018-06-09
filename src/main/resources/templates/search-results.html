@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Service Category  | Event Factory</title>
+
+<div th:replace="commons :: head"></div>
+    </head>
+
+    <body class="page home page-template-default">
+        <div id="page" class="hfeed site">
+            <a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+            <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+   
+            <div th:replace="iCommons :: header"></div>
+           
+            
+
+             <div id="content" class="site-content" tabindex="-1">
+            	<div class="container">
+            		<div id="primary" class="content-area">
+            			<main id="main" class="site-main">
+            				
+            				
+            				<section>
+                                <header>
+                                    <h2 style="padding-top:50px"" class="h1">Results</h2>
+                                </header>
+
+                                <div class="woocommerce columns-6">
+                                    <ul class="product-loop-categories">
+
+                                        <li class="product-category product" th:each="category : ${category}">
+                                            <a th:href="@{/service?id=} + ${category.id}">
+                                                <img th:src="@{/service?id=} + ${category.images[0].url}" class="img-responsive" alt="">
+                                                <h3  th:text="${category.name}">Mac Computers</h3>
+                                            </a>
+                                        </li><!-- /.item -->
+
+                                        
+
+                                    </ul>
+                                </div>
+                            </section>
+                            
+                            
+            			</main><!-- #main -->
+            		</div><!-- #primary -->
+            	</div><!-- .col-full -->
+            </div><!-- #content -->
+
+
+
+
+            
+        <div th:replace="commons :: footer"></div>
+
+        </div><!-- #page -->
+
+
+    </body>
+</html>
