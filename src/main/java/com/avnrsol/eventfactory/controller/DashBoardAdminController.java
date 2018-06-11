@@ -2,6 +2,10 @@ package com.avnrsol.eventfactory.controller;
 
 import com.avnrsol.eventfactory.Model.Privilege;
 import com.avnrsol.eventfactory.Model.Role;
+import com.avnrsol.eventfactory.Repository.OrderRepository;
+import com.avnrsol.eventfactory.Repository.ServiceoRepository;
+import com.avnrsol.eventfactory.Repository.UsersRepository;
+import com.avnrsol.eventfactory.Repository.VendorRepository;
 import com.avnrsol.eventfactory.configuration.Constants;
 import com.avnrsol.eventfactory.configuration.PrivilegeConstants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +29,19 @@ public class DashBoardAdminController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private UsersRepository usersRepository;
+
+	@Autowired
+	private VendorRepository vendorRepository;
+
+	@Autowired
+	private ServiceoRepository serviecServiceoRepository;
+
+	@Autowired
+	private OrderRepository odersRepository;
+
+
 	@GetMapping(value= {"/", "home"})
 	public ModelAndView adminHome(Principal principal){
 		ModelAndView modelAndView = new ModelAndView();
@@ -33,8 +50,14 @@ public class DashBoardAdminController {
 			User user = userService.findUserByEmail(auth.getName());
 
 
-			System.out.println("->->->->->->->->->->->->->->->-> admin dash board");
+
 			modelAndView.addObject("title", "Dashboard");
+
+			modelAndView.addObject("usersCount", usersRepository.findAll().size());
+			modelAndView.addObject("vendorsCount", vendorRepository.findAll().size());
+			modelAndView.addObject("servicesCount", serviecServiceoRepository.findAll().size());
+			modelAndView.addObject("ordersCount", odersRepository.findAll().size());
+
 			modelAndView.setViewName("dash/admindash");
 
 			return modelAndView;
