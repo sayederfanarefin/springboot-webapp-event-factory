@@ -50,11 +50,11 @@ public class StoreController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("home");
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
-		modelAndView.addObject("SearchCriteria", new SearchCriteria() );
+		modelAndView.addObject("searchCriteria", new SearchCriteria() );
 		modelAndView.addObject("vendors", vendorService.findAllVendor(0));
-		
+
 		System.out.println("cookie ->->->->->->->->->->->->-> "+ fooCookie);
-		
+
 		return modelAndView;
 	}
 
@@ -65,55 +65,59 @@ public class StoreController {
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		modelAndView.addObject("serv", serviceoRepository.findServiceoById(id));
 		modelAndView.addObject("related", serviceoRepository.findTop4ServiceoByServiceCategory_Id(serviceoRepository.findServiceoById(id).getServiceCategory().getId()));
-		
+		modelAndView.addObject("searchCriteria", new SearchCriteria() );
 	//	System.out.println("cookie ->->->->->->->->->->->->-> "+ fooCookie);
-		
+
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/serviceCategory", method = RequestMethod.GET)
 	public ModelAndView serviceCategory(@RequestParam("id") Long id, @CookieValue(value = "test_cookie", defaultValue = "hello") String fooCookie) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("service-category");
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		modelAndView.addObject("category", serviceCategoryRepository.findById(id));
+		modelAndView.addObject("searchCriteria", new SearchCriteria() );
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/directory", method = RequestMethod.GET)
 	public ModelAndView dategory(@RequestParam("id") Long id, @CookieValue(value = "test_cookie", defaultValue = "hello") String fooCookie) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("store-directory");
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
-			
+		modelAndView.addObject("searchCriteria", new SearchCriteria() );
 		return modelAndView;
 	}
-	
-	
+
+
 	@RequestMapping(value = "/myAccount", method = RequestMethod.GET)
 	public ModelAndView myProfile(@Valid Principal principal) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("my-account");
 		User u = userService.findUserByEmail(principal.getName());
 		System.out.println(u.getFirstName());
+		modelAndView.addObject("searchCriteria", new SearchCriteria() );
 		modelAndView.addObject("userx", u);
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;
 	}
-	
-	
+
+
 	@RequestMapping(value = "/faq", method = RequestMethod.GET)
 	public ModelAndView faq() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("faq");
+		modelAndView.addObject("searchCriteria", new SearchCriteria() );
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/termsAndConditions", method = RequestMethod.GET)
 	public ModelAndView termsAndCondition() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("terms-and-conditions");
+		modelAndView.addObject("searchCriteria", new SearchCriteria() );
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;
 	}
@@ -122,18 +126,20 @@ public class StoreController {
 	public ModelAndView cart() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("cart");
+		modelAndView.addObject("searchCriteria", new SearchCriteria() );
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
 	public ModelAndView checkOut(@Valid Principal principal) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("checkout");
-		
+		modelAndView.addObject("searchCriteria", new SearchCriteria() );
+
 		Order order = new Order();
 		modelAndView.addObject("order", order);
-		
+
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		modelAndView.addObject("userx", userService.findUserByEmail(principal.getName()));
 		List<Charge> charges = chargeRepository.findAll();
@@ -143,22 +149,25 @@ public class StoreController {
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
 	public ModelAndView about() {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("searchCriteria", new SearchCriteria() );
 		modelAndView.setViewName("about");
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/orderSuccess", method = RequestMethod.GET)
 	public ModelAndView orderSuccess() {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("searchCriteria", new SearchCriteria() );
 		modelAndView.setViewName("orderSuccess");
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/orderFailed", method = RequestMethod.GET)
 	public ModelAndView orderFailed() {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("searchCriteria", new SearchCriteria() );
 		modelAndView.setViewName("orderFailed");
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		return modelAndView;

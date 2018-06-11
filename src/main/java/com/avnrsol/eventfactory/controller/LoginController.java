@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.avnrsol.eventfactory.Model.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -58,6 +59,7 @@ public class LoginController {
         User user = new User();
         modelAndView.addObject("user", user);
         modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
+        modelAndView.addObject("searchCriteria", new SearchCriteria() );
         return modelAndView;
     }
 

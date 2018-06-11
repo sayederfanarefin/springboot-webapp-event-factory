@@ -102,12 +102,12 @@
 							</div>
 							<!-- ============================================================= Header Logo : End============================================================= -->
 
-							<form class="navbar-search" method="post" th:object="${SearchCriteria}" th:action="@{/livesearch/}">
+							<form class="navbar-search" method="post" >
 								<label class="sr-only screen-reader-text" >Search
 									for:</label>
 								<div class="input-group">
 									<input type="text" class="form-control search-field" placeholder="Search for services"
-										   id="username" th:field="*{username}"
+										   id="username"
 									/>
 
 
@@ -479,7 +479,7 @@
 			}
 		
 			
-		//initial population things
+			//initial population things
 		
 			function codeAddress() {
 
@@ -521,72 +521,60 @@
 			window.onload = codeAddress;
 
 
-
-            // $(document).ready(function () {
-            //
-            //     $("#search-form").submit(function (event) {
-            //
-            //         //stop submit the form, we will post it manually.
-            //         event.preventDefault();
-            //
-            //         fire_ajax_submit();
-            //
-            //     });
-            //
-            // });
-
-            // function fire_ajax_submit() {
-            //
-            //     var search = {}
-            //     search["username"] = $("#username").val();
-            //
-            //     $("#btn-search").prop("disabled", true);
-            //
-            //     alert("searching..")
-            //     $.ajax({
-            //         type: "POST",
-            //         contentType: "application/json",
-            //         url: "/livesearch/",
-            //         data: JSON.stringify(search),
-            //         dataType: 'json',
-            //         cache: false,
-            //         timeout: 600000,
-            //         success: function (data) {
-            //
-            //             var results = data.result;
-            //
-            //
-            //
-            //             var ul = $('#res');
-            //             var i= 0;
-            //             for(i=0;i<results.size; i++){
-            //                 $('#feedback').appendChild( results[i].name);
-            //
-				// 		}
-            //
-            //             $("#btn-search").prop("disabled", false);
-            //
-            //         },
-            //         error: function (e) {
-            //
-            //             var json = "<h4>Ajax Response</h4><pre>"
-            //                 + e.responseText + "</pre>";
-            //             $('#feedback').html(json);
-            //
-            //             console.log("ERROR : ", e);
-            //             $("#btn-search").prop("disabled", false);
-            //
-            //         }
-            //     });
-            //
-            // }
-
+			var flag = false;
             $( function() {
 
 
                 $( "#datepicker" ).datepicker();
+                $( "#datepicker2" ).datepicker({
+                    showOn: "button",
+                    buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                    buttonImageOnly: false,
+                    onSelect: function(formattedDate, date, inst) {
+                        flag = true;
+                        //alert(formattedDate);
+                        calculateDays();
+                    }
+                });
+
+
+
+                $( "#datepicker3" ).datepicker({
+                    showOn: "button",
+                    buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                    buttonImageOnly: false,
+                    onSelect: function(formattedDate, date, inst) {
+                        flag = true;
+                       // alert(formattedDate);
+                        calculateDays();
+                    }
+                });
+
 
             } );
+
+			function calculateDays() {
+	 var startDate = $( "#datepicker2" ).val();
+   	 var endDate = $( "#datepicker3" ).val();
+
+   	 if(startDate != "" && endDate != ""){
+   	     var totalDays = datediff(parseDate(startDate), parseDate(endDate)) +1;
+         alert(totalDays);
+         iniata(totalDays);
+	 }
+
+}
+
+            function parseDate(str) {
+                var mdy = str.split('/');
+                return new Date(mdy[2], mdy[0]-1, mdy[1]);
+            }
+
+            function datediff(first, second) {
+                // Take the difference between the dates and divide by milliseconds per day.
+                // Round to nearest whole number to deal with DST.
+                return Math.round((second-first)/(1000*60*60*24));
+            }
 
 
 		</script>

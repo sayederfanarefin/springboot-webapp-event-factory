@@ -40,18 +40,18 @@ public class SearchController {
 
 
 	@RequestMapping(value="/", method = RequestMethod.POST)
-	public ModelAndView registration( @RequestParam String search, Errors errors){
+	public ModelAndView registration( SearchCriteria searchCriteria, Errors errors){
 
 		System.out.println("searching.............................");
 
 
 
 
-		List<Serviceo> services = serviceoService.search(search);
+		List<Serviceo> services = serviceoService.search(searchCriteria.getUsername());
 
 
 		ModelAndView modelAndView = new ModelAndView();
-
+		modelAndView.addObject("searchCriteria", new SearchCriteria() );
 
 
 		modelAndView.setViewName("search-results");

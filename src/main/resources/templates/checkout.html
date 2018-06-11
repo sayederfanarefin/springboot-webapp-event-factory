@@ -158,6 +158,31 @@
 												</tfoot>
 											</table>
 
+
+											<div class="row text-center" style="padding-top: 10px; padding-bottom: 30px;">
+												<p style="text-align: center">Please choose the duration for the service(s)</p>
+												<div class="col-md-1"></div>
+												<div class="col-md-5">
+
+													<label>Start Date<span
+															class="required">*</span></label>
+													<input type="text" id="datepicker2">
+
+
+												</div>
+
+												<div class="col-md-1"></div>
+												<div class="col-md-5">
+
+													<label>End Date<span
+															class="required">*</span></label>
+													<input  type="text" id="datepicker3">
+
+												</div>
+
+											</div>
+
+
 											<div class="woocommerce-checkout-payment" id="payment">
 												<ul class="wc_payment_methods payment_methods methods">
 													<li class="wc_payment_method payment_method_bacs"><input
@@ -268,7 +293,8 @@
     </script>
 
 	<script type="text/javascript">
-		function iniata() {
+		function iniata(days) {
+
 
 		    //console.log("vendor discount:" + vendorDiscount);
 			var cartJson;
@@ -315,15 +341,18 @@
                         var toBeDiscounted = (Number(vendorDiscount) / 100) * Number(cartItem.price);
                         var previousPrice = Number(cartItem.price);
                         afterDiscountPrice = previousPrice - toBeDiscounted;
-                        itemPrice =Number(cartItem.quantity) * afterDiscountPrice ;
+                        itemPrice =Number(cartItem.quantity) * afterDiscountPrice * days;
+
                         itemPrice = itemPrice + ' BDT ( After'+ vendorDiscount+'%  Vendor Discount )'
                     }else{
                         afterDiscountPrice = Number(cartItem.price);
-                        itemPrice =Number(cartItem.quantity) * afterDiscountPrice ;
+                        itemPrice =Number(cartItem.quantity) * afterDiscountPrice * days;
+
                         itemPrice = itemPrice + ' BDT'
                     }
+
 					newRow.insertCell(1).appendChild(document.createTextNode(itemPrice));
-					total += Number(cartItem.quantity) * afterDiscountPrice;
+					total += Number(cartItem.quantity) * afterDiscountPrice * days;
 					document.getElementById("sub-total").innerHTML = Number(document.getElementById("sub-total").innerHTML) + total;
 				}
 
@@ -353,7 +382,7 @@
 					}
 				}
 
-//delivery charge calculation
+				//delivery charge calculation
                 var selectedDeliveryCharge = 0;
                 if(subTotal>deliveryCharge1down){
                     if(subTotal < deliveryCharge1up){
@@ -390,9 +419,10 @@
 			}
 		}
 
-		window.onload = iniata;
+		window.onload = iniata(1);
 
 		codeAddress();
+
 
 		$(document).ready(function() {
 			$('#fuckCheckout').on('submit', function(e) {
