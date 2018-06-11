@@ -40,6 +40,10 @@ public class Order {
 	public String note;
 	
 	public Long subTotal;
+
+	public Long serviceCharge;
+
+	public Long deliveryCharge;
 	
 	public String cuponCode;
 	
@@ -191,5 +195,21 @@ public class Order {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public Long getServiceCharge() {
+		return serviceCharge;
+	}
+
+	public void setServiceCharge(Long serviceCharge) {
+		this.serviceCharge = serviceCharge;
+	}
+
+	public Long getDeliveryCharge() {
+		return deliveryCharge;
+	}
+
+	public void setDeliveryCharge(Long deliveryCharge) {
+		this.deliveryCharge = deliveryCharge;
 	}
 }

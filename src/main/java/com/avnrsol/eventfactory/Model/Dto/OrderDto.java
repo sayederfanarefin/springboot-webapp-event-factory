@@ -26,6 +26,10 @@ public class OrderDto {
 	public Long total;
 	
 	public String paymentType;
+
+	public Long serviceCharge;
+
+	public Long deliveryCharge;
 	
 	@JsonBackReference(value="order-user")
 	private UserDto user;
@@ -130,5 +134,21 @@ public class OrderDto {
 
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+	}
+
+	public Long getServiceCharge() {
+		return serviceCharge;
+	}
+
+	public void setServiceCharge(Long serviceCharge) {
+		this.serviceCharge = serviceCharge;
+	}
+
+	public Long getDeliveryCharge() {
+		return deliveryCharge;
+	}
+
+	public void setDeliveryCharge(Long deliveryCharge) {
+		this.deliveryCharge = deliveryCharge;
 	}
 }

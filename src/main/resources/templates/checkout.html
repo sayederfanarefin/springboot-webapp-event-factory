@@ -1,571 +1,583 @@
 <!DOCTYPE html>
 <html lang="en-US" itemscope="itemscope"
-	itemtype="http://schema.org/WebPage">
+      itemtype="http://schema.org/WebPage">
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Checkout | Event Factory</title>
+    <title>Checkout | Event Factory</title>
 
-<div th:replace="commons :: head"></div>
+    <div th:replace="commons :: head"></div>
 </head>
 
 <body class="page home page-template-default">
-	<div id="page" class="hfeed site">
-		<a class="skip-link screen-reader-text" href="#site-navigation">Skip
-			to navigation</a> <a class="skip-link screen-reader-text" href="#content">Skip
-			to content</a>
+<div id="page" class="hfeed site">
+    <a class="skip-link screen-reader-text" href="#site-navigation">Skip
+        to navigation</a> <a class="skip-link screen-reader-text" href="#content">Skip
+    to content</a>
 
 
-		<div th:replace="iCommons :: header"></div>
+    <div th:replace="iCommons :: header"></div>
 
 
-
-		<div id="content" class="site-content" tabindex="-1">
-			<div class="container">
-				<div id="primary" class="content-area">
-					<main id="main" class="site-main">
-
-
-					<article class="page type-page status-publish hentry">
-						<header class="entry-header">
-							<h1 itemprop="name" class="entry-title"
-								style="padding-top: 30px;">Checkout</h1>
-						</header>
-						<!-- .entry-header -->
-
-						<form enctype="multipart/form-data" th:action="@{/placeOrder}"
-							th:object="${order}" class="checkout woocommerce-checkout"
-							method="post" name="fuckCheckout" id="fuckCheckout">
-							<div id="customer_details" class="col2-set">
-								<div class="col-1">
-									<div class="woocommerce-billing-fields">
-
-										<h3>Billing Details</h3>
-
-										<p id="billing_first_name_field"
-											class="form-row form-row form-row-first validate-required">
-											<label class="" for="billing_first_name">First Name <abbr
-												title="required" class="required">*</abbr></label><input type="text"
-												id="billing_first_name" name="billing_first_name"
-												class="input-text " th:placeholder="${userx.firstName}"
-												th:value="${userx.firstName}">
-										</p>
-
-										<p id="billing_last_name_field"
-											class="form-row form-row form-row-last validate-required">
-											<label class="" for="billing_last_name">Last Name <abbr
-												title="required" class="required">*</abbr></label><input type="text"
-												th:placeholder="${userx.lastName}"
-												th:value="${userx.lastName}" id="billing_last_name"
-												name="billing_last_name" class="input-text ">
-										</p>
-										<div class="clear"></div>
-
-										<p id="billing_company_field"
-											class="form-row form-row form-row-wide">
-											<label class="" for="billing_company">Company Name</label><input
-												type="text" th:placeholder="${userx.companyName}"
-												th:value="${userx.companyName}" id="billing_company"
-												name="billing_company" class="input-text ">
-										</p>
-
-										<p id="billing_email_field"
-											class="form-row form-row form-row-first validate-required validate-email">
-											<label class="" for="billing_email">Email Address <abbr
-												title="required" class="required">*</abbr></label><input
-												type="email" th:placeholder="${userx.email}"
-												th:value="${userx.email}" id="billing_email"
-												name="billing_email" class="input-text ">
-										</p>
-
-										<p id="billing_phone_field"
-											class="form-row form-row form-row-last validate-required validate-phone">
-											<label class="" for="billing_phone">Phone <abbr
-												title="required" class="required">*</abbr></label><input type="tel"
-												th:placeholder="${userx.phone}" th:value="${userx.phone}"
-												id="billing_phone" name="billing_phone" class="input-text ">
-										</p>
-										<div class="clear"></div>
+    <div id="content" class="site-content" tabindex="-1">
+        <div class="container">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
 
 
-										<p id="billing_address_1_field"
-											class="form-row form-row form-row-wide address-field validate-required">
-											<label class="" for="billing_address_1">Address <abbr
-												title="required" class="required">*</abbr></label><input type="text"
-												th:placeholder="${userx.address}"
-												th:value="${userx.address}" id="billing_address_1"
-												name="billing_address_1" class="input-text ">
-										</p>
+                    <article class="page type-page status-publish hentry">
+                        <header class="entry-header">
+                            <h1 itemprop="name" class="entry-title"
+                                style="padding-top: 30px;">Checkout</h1>
+                        </header>
+                        <!-- .entry-header -->
+
+                        <form enctype="multipart/form-data" th:action="@{/placeOrder}"
+                              th:object="${order}" class="checkout woocommerce-checkout"
+                              method="post" name="fuckCheckout" id="fuckCheckout">
+                            <div id="customer_details" class="col2-set">
+                                <div class="col-1">
+                                    <div class="woocommerce-billing-fields">
+
+                                        <h3>Billing Details</h3>
+
+                                        <p id="billing_first_name_field"
+                                           class="form-row form-row form-row-first validate-required">
+                                            <label class="" for="billing_first_name">First Name <abbr
+                                                    title="required" class="required">*</abbr></label><input type="text"
+                                                                                                             id="billing_first_name"
+                                                                                                             name="billing_first_name"
+                                                                                                             class="input-text "
+                                                                                                             th:placeholder="${userx.firstName}"
+                                                                                                             th:value="${userx.firstName}">
+                                        </p>
+
+                                        <p id="billing_last_name_field"
+                                           class="form-row form-row form-row-last validate-required">
+                                            <label class="" for="billing_last_name">Last Name <abbr
+                                                    title="required" class="required">*</abbr></label><input type="text"
+                                                                                                             th:placeholder="${userx.lastName}"
+                                                                                                             th:value="${userx.lastName}"
+                                                                                                             id="billing_last_name"
+                                                                                                             name="billing_last_name"
+                                                                                                             class="input-text ">
+                                        </p>
+                                        <div class="clear"></div>
+
+                                        <p id="billing_company_field"
+                                           class="form-row form-row form-row-wide">
+                                            <label class="" for="billing_company">Company Name</label><input
+                                                type="text" th:placeholder="${userx.companyName}"
+                                                th:value="${userx.companyName}" id="billing_company"
+                                                name="billing_company" class="input-text ">
+                                        </p>
+
+                                        <p id="billing_email_field"
+                                           class="form-row form-row form-row-first validate-required validate-email">
+                                            <label class="" for="billing_email">Email Address <abbr
+                                                    title="required" class="required">*</abbr></label><input
+                                                type="email" th:placeholder="${userx.email}"
+                                                th:value="${userx.email}" id="billing_email"
+                                                name="billing_email" class="input-text ">
+                                        </p>
+
+                                        <p id="billing_phone_field"
+                                           class="form-row form-row form-row-last validate-required validate-phone">
+                                            <label class="" for="billing_phone">Phone <abbr
+                                                    title="required" class="required">*</abbr></label><input type="tel"
+                                                                                                             th:placeholder="${userx.phone}"
+                                                                                                             th:value="${userx.phone}"
+                                                                                                             id="billing_phone"
+                                                                                                             name="billing_phone"
+                                                                                                             class="input-text ">
+                                        </p>
+                                        <div class="clear"></div>
 
 
-										<div class="clear"></div>
-
-										<p id="order_comments_field" class="form-row form-row notes">
-											<label class="" for="order_comments">Order Notes</label>
-											<textarea cols="5" rows="2"
-												placeholder="Notes about your order, e.g. special notes for delivery."
-												id="order_comments" class="input-text "
-												name="order_comments"></textarea>
-										</p>
-
-									</div>
-								</div>
-
-								<div class="col-2">
-									<h3>Your order</h3>
-									<div class="woocommerce-shipping-fields">
+                                        <p id="billing_address_1_field"
+                                           class="form-row form-row form-row-wide address-field validate-required">
+                                            <label class="" for="billing_address_1">Address <abbr
+                                                    title="required" class="required">*</abbr></label><input type="text"
+                                                                                                             th:placeholder="${userx.address}"
+                                                                                                             th:value="${userx.address}"
+                                                                                                             id="billing_address_1"
+                                                                                                             name="billing_address_1"
+                                                                                                             class="input-text ">
+                                        </p>
 
 
-										<div class="woocommerce-checkout-review-order"
-											id="order_review">
-											<table
-												class="shop_table woocommerce-checkout-review-order-table"
-												id="mytable">
-												<thead>
-													<tr>
-														<th class="product-name">Service</th>
-														<th class="product-total">Total</th>
-													</tr>
-												</thead>
-												<tbody>
+                                        <div class="clear"></div>
+
+                                        <p id="order_comments_field" class="form-row form-row notes">
+                                            <label class="" for="order_comments">Order Notes</label>
+                                            <textarea cols="5" rows="2"
+                                                      placeholder="Notes about your order, e.g. special notes for delivery."
+                                                      id="order_comments" class="input-text "
+                                                      name="order_comments"></textarea>
+                                        </p>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-2">
+                                    <h3>Your order</h3>
+                                    <div class="woocommerce-shipping-fields">
 
 
-												</tbody>
-												<tfoot>
-
-													<tr class="cart-subtotal">
-														<th>Subtotal</th>
-														<td><span class="amount" id="sub-total"></span></td>
-													</tr>
-
-													<tr class="cart-subtotal">
-														<th>Service Charge</th>
-														<td><span class="amount" id="service-charge" ></span></td>
-													</tr>
-													
-													<tr class="cart-subtotal">
-														<th>Delivery Charge</th>
-														<td><span class="amount" id="delivery-charge"></span></td>
-													</tr>
-
-													<tr class="order-total">
-														<th>Total</th>
-														<td><strong><span class="amount"
-																id="final-total"></span></strong></td>
-													</tr>
-												</tfoot>
-											</table>
+                                        <div class="woocommerce-checkout-review-order"
+                                             id="order_review">
+                                            <table
+                                                    class="shop_table woocommerce-checkout-review-order-table"
+                                                    id="mytable">
+                                                <thead>
+                                                <tr>
+                                                    <th class="product-name">Service</th>
+                                                    <th class="product-total">Total</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
 
 
-											<div class="row text-center" style="padding-top: 10px; padding-bottom: 30px;">
-												<p style="text-align: center">Please choose the duration for the service(s)</p>
-												<div class="col-md-1"></div>
-												<div class="col-md-5">
+                                                </tbody>
+                                                <tfoot>
 
-													<label>Start Date<span
-															class="required">*</span></label>
-													<input type="text" id="datepicker2">
+                                                <tr class="cart-subtotal">
+                                                    <th>Subtotal</th>
+                                                    <td><span class="amount" id="sub-total"></span></td>
+                                                </tr>
+
+                                                <tr class="cart-subtotal">
+                                                    <th>Service Charge</th>
+                                                    <td><span class="amount" id="service-charge"></span></td>
+                                                </tr>
+
+                                                <tr class="cart-subtotal">
+                                                    <th>Delivery Charge</th>
+                                                    <td><span class="amount" id="delivery-charge"></span></td>
+                                                </tr>
+
+                                                <tr class="order-total">
+                                                    <th>Total</th>
+                                                    <td><strong><span class="amount"
+                                                                      id="final-total"></span></strong></td>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
 
 
-												</div>
+                                            <div class="row text-center"
+                                                 style="padding-top: 10px; padding-bottom: 30px;">
+                                                <p style="text-align: center">Please choose the duration for the
+                                                    service(s)</p>
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-5">
 
-												<div class="col-md-1"></div>
-												<div class="col-md-5">
-
-													<label>End Date<span
-															class="required">*</span></label>
-													<input  type="text" id="datepicker3">
-
-												</div>
-
-											</div>
+                                                    <label>Start Date<span
+                                                            class="required">*</span></label>
+                                                    <input type="text" id="datepicker2">
 
 
-											<div class="woocommerce-checkout-payment" id="payment">
-												<ul class="wc_payment_methods payment_methods methods">
-													<li class="wc_payment_method payment_method_bacs"><input
-														type="radio" data-order_button_text="" checked="checked"
-														value="bacs" name="payment_method" class="input-radio"
-														id="payment_method_bacs"> <label
-														for="payment_method_bacs">Direct Bank Transfer</label> <!-- <div class="payment_box payment_method_bacs">
+                                                </div>
+
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-5">
+
+                                                    <label>End Date<span
+                                                            class="required">*</span></label>
+                                                    <input type="text" id="datepicker3">
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="woocommerce-checkout-payment" id="payment">
+                                                <ul class="wc_payment_methods payment_methods methods">
+                                                    <li class="wc_payment_method payment_method_bacs"><input
+                                                            type="radio" data-order_button_text="" checked="checked"
+                                                            value="bacs" name="payment_method" class="input-radio"
+                                                            id="payment_method_bacs"> <label
+                                                            for="payment_method_bacs">Direct Bank Transfer</label> <!-- <div class="payment_box payment_method_bacs">
                                                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
                                                     </div> --></li>
-													<li class="wc_payment_method payment_method_cheque"><input
-														type="radio" data-order_button_text="" value="cheque"
-														name="payment_method" class="input-radio"
-														id="payment_method_cheque"> <label
-														for="payment_method_cheque">Cheque Payment </label>
-														<div style="display: none;"
-															class="payment_box payment_method_cheque">
-															<p>Please send your cheque to Store Name, Store
-																Street, Store Town, Store State / County, Store
-																Postcode.</p>
-														</div></li>
-													<li class="wc_payment_method payment_method_cod"><input
-														type="radio" data-order_button_text="" value="cod"
-														name="payment_method" class="input-radio"
-														id="payment_method_cod"> <label
-														for="payment_method_cod">Cash on Delivery</label>
-														<div style="display: none;"
-															class="payment_box payment_method_cod">
-															<p>Pay with cash upon delivery.</p>
-														</div></li>
+                                                    <li class="wc_payment_method payment_method_cheque"><input
+                                                            type="radio" data-order_button_text="" value="cheque"
+                                                            name="payment_method" class="input-radio"
+                                                            id="payment_method_cheque"> <label
+                                                            for="payment_method_cheque">Cheque Payment </label>
+                                                        <div style="display: none;"
+                                                             class="payment_box payment_method_cheque">
+                                                            <p>Please send your cheque to Store Name, Store
+                                                                Street, Store Town, Store State / County, Store
+                                                                Postcode.</p>
+                                                        </div>
+                                                    </li>
+                                                    <li class="wc_payment_method payment_method_cod"><input
+                                                            type="radio" data-order_button_text="" value="cod"
+                                                            name="payment_method" class="input-radio"
+                                                            id="payment_method_cod"> <label
+                                                            for="payment_method_cod">Cash on Delivery</label>
+                                                        <div style="display: none;"
+                                                             class="payment_box payment_method_cod">
+                                                            <p>Pay with cash upon delivery.</p>
+                                                        </div>
+                                                    </li>
 
-												</ul>
-												<div class="form-row place-order">
+                                                </ul>
+                                                <div class="form-row place-order">
 
-													<p class="form-row terms wc-terms-and-conditions">
-														<input type="checkbox" id="terms" name="terms"
-															class="input-checkbox" required="required"> <label
-															class="checkbox" for="terms">I’ve read and accept
-															the <a target="_blank" href="/termsAndConditions">terms
-																&amp; conditions</a> <span class="required">*</span>
-														</label> <input type="hidden" value="1" name="terms-field">
-													</p>
+                                                    <p class="form-row terms wc-terms-and-conditions">
+                                                        <input type="checkbox" id="terms" name="terms"
+                                                               class="input-checkbox" required="required"> <label
+                                                            class="checkbox" for="terms">I’ve read and accept
+                                                        the <a target="_blank" href="/termsAndConditions">terms
+                                                            &amp; conditions</a> <span class="required">*</span>
+                                                    </label> <input type="hidden" value="1" name="terms-field">
+                                                    </p>
 
-													<input type="submit" data-value="Place order"
-														value="Place order" class="button alt">
-												</div>
-											</div>
-										</div>
-
-
-									</div>
-								</div>
-							</div>
+                                                    <input type="submit" data-value="Place order"
+                                                           value="Place order" class="button alt">
+                                                </div>
+                                            </div>
+                                        </div>
 
 
+                                    </div>
+                                </div>
+                            </div>
 
 
-						</form>
-					</article>
+                        </form>
+                    </article>
 
-					</main>
-					<!-- #main -->
-				</div>
-				<!-- #primary -->
-			</div>
-			<!-- .col-full -->
-		</div>
-		<!-- #content -->
-
-
+                </main>
+                <!-- #main -->
+            </div>
+            <!-- #primary -->
+        </div>
+        <!-- .col-full -->
+    </div>
+    <!-- #content -->
 
 
+    <div th:replace="commons :: footer"></div>
 
-		<div th:replace="commons :: footer"></div>
+</div>
+<!-- #page -->
 
-	</div>
-	<!-- #page -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
 
-    <script th:inline="javascript">
-        /*<![CDATA[*/
+    var vendorDiscount = /*[[${charges.vendorDiscount}]]*/ 'default';
 
-        var vendorDiscount = /*[[${charges.vendorDiscount}]]*/ 'default';
+    var tire1up = /*[[${charges.serviceChargeTire1UpperLimit}]]*/ 'default';
+    var tire1down = /*[[${charges.serviceChargeTire1LowerLimit}]]*/ 'default';
+    var tire1charge = /*[[${charges.serviceChargeTire1}]]*/ 'default';
 
-        var tire1up = /*[[${charges.serviceChargeTire1UpperLimit}]]*/ 'default';
-        var tire1down = /*[[${charges.serviceChargeTire1LowerLimit}]]*/ 'default';
-        var tire1charge = /*[[${charges.serviceChargeTire1}]]*/ 'default';
+    var tire2up = /*[[${charges.serviceChargeTire2UpperLimit}]]*/ 'default';
+    var tire2down = /*[[${charges.serviceChargeTire2LowerLimit}]]*/ 'default';
+    var tire2charge = /*[[${charges.serviceChargeTire2}]]*/ 'default';
 
-        var tire2up = /*[[${charges.serviceChargeTire2UpperLimit}]]*/ 'default';
-        var tire2down = /*[[${charges.serviceChargeTire2LowerLimit}]]*/ 'default';
-        var tire2charge = /*[[${charges.serviceChargeTire2}]]*/ 'default';
+    var tire3up = /*[[${charges.serviceChargeTire3UpperLimit}]]*/ 'default';
+    var tire3down = /*[[${charges.serviceChargeTire3LowerLimit}]]*/ 'default';
+    var tire3charge = /*[[${charges.serviceChargeTire3}]]*/ 'default';
 
-        var tire3up = /*[[${charges.serviceChargeTire3UpperLimit}]]*/ 'default';
-        var tire3down = /*[[${charges.serviceChargeTire3LowerLimit}]]*/ 'default';
-        var tire3charge = /*[[${charges.serviceChargeTire3}]]*/ 'default';
+    var deliveryCharge1up = /*[[${charges.deliveryChargeTire1UpperLimit}]]*/ 'default';
+    var deliveryCharge1down = /*[[${charges.deliveryChargeTire1LowerLimit}]]*/ 'default';
+    var deliveryCharge1charge = /*[[${charges.deliveryChargeTire1}]]*/ 'default';
 
-        var deliveryCharge1up = /*[[${charges.deliveryChargeTire1UpperLimit}]]*/ 'default';
-        var deliveryCharge1down = /*[[${charges.deliveryChargeTire1LowerLimit}]]*/ 'default';
-        var deliveryCharge1charge = /*[[${charges.deliveryChargeTire1}]]*/ 'default';
+    var deliveryCharge2up = /*[[${charges.deliveryChargeTire2UpperLimit}]]*/ 'default';
+    var deliveryCharge2down = /*[[${charges.deliveryChargeTire2LowerLimit}]]*/ 'default';
+    var deliveryCharge2charge = /*[[${charges.deliveryChargeTire2}]]*/ 'default';
 
-        var deliveryCharge2up = /*[[${charges.deliveryChargeTire2UpperLimit}]]*/ 'default';
-        var deliveryCharge2down = /*[[${charges.deliveryChargeTire2LowerLimit}]]*/ 'default';
-        var deliveryCharge2charge = /*[[${charges.deliveryChargeTire2}]]*/ 'default';
+    var deliveryCharge3up = /*[[${charges.deliveryChargeTire3UpperLimit}]]*/ 'default';
+    var deliveryCharge3down = /*[[${charges.deliveryChargeTire3LowerLimit}]]*/ 'default';
+    var deliveryCharge3charge = /*[[${charges.deliveryChargeTire3}]]*/ 'default';
 
-        var deliveryCharge3up = /*[[${charges.deliveryChargeTire3UpperLimit}]]*/ 'default';
-        var deliveryCharge3down = /*[[${charges.deliveryChargeTire3LowerLimit}]]*/ 'default';
-        var deliveryCharge3charge = /*[[${charges.deliveryChargeTire3}]]*/ 'default';
+    var leadTimeDiffDaysTire1 = /*[[${charges.extra_charge_tier_1_days}]]*/ 'default';
+    var leadTimeDiffDaysTire2 = /*[[${charges.extra_charge_tier_2_days}]]*/ 'default';
+    var leadTimeDiffDaysTire3 = /*[[${charges.extra_charge_tier_3_days}]]*/ 'default';
 
-        var leadTimeDiffDaysTire1 = /*[[${charges.extra_charge_tier_1_days}]]*/ 'default';
-        var leadTimeDiffDaysTire2 = /*[[${charges.extra_charge_tier_2_days}]]*/ 'default';
-        var leadTimeDiffDaysTire3 = /*[[${charges.extra_charge_tier_3_days}]]*/ 'default';
+    var leadTimeDiffPercentageTire1 = /*[[${charges.extra_charge_tier_1_charge_percentage}]]*/ 'default';
+    var leadTimeDiffPercentageTire2 = /*[[${charges.extra_charge_tier_2_charge_percentage}]]*/ 'default';
+    var leadTimeDiffPercentageTire3 = /*[[${charges.extra_charge_tier_3_charge_percentage}]]*/ 'default';
 
-        var leadTimeDiffPercentageTire1 = /*[[${charges.extra_charge_tier_1_charge_percentage}]]*/ 'default';
-        var leadTimeDiffPercentageTire2 = /*[[${charges.extra_charge_tier_2_charge_percentage}]]*/ 'default';
-        var leadTimeDiffPercentageTire3 = /*[[${charges.extra_charge_tier_3_charge_percentage}]]*/ 'default';
+    /*]]>*/
+</script>
 
-        /*]]>*/
-    </script>
+<script type="text/javascript">
 
-	<script type="text/javascript">
-		
-		function clearRows() {
-		    var tableRef = document.getElementById("mytable").getElementsByTagName('tbody')[0];
-            var x = tableRef.rows.length;
-            console.log("clearing rows");
-            console.log(x);
-            var i ;
-            for(i = 0; i < x; i++){
-                tableRef.deleteRow(i);
-            }
-            document.getElementById("sub-total").innerHTML = "";
+    function clearRows() {
+        var tableRef = document.getElementById("mytable").getElementsByTagName('tbody')[0];
+        var x = tableRef.rows.length;
+        console.log("clearing rows");
+        console.log(x);
+        var i;
+        for (i = 0; i < x; i++) {
+            tableRef.deleteRow(i);
         }
-        function clearBDT(str){
-            return str.replace("BDT", "");
-		}
+        document.getElementById("sub-total").innerHTML = "";
+    }
 
-		function getLeadTimeDiff(days){
-		    var toBeReturned = 0;
-		    if(days < leadTimeDiffDaysTire1){
-                toBeReturned = leadTimeDiffPercentageTire1;
-			}else if(leadTimeDiffDaysTire1 < days && days < leadTimeDiffDaysTire2){
-                toBeReturned = leadTimeDiffPercentageTire2;
-            }else{
-                toBeReturned = leadTimeDiffPercentageTire3;
-			}
+    function clearBDT(str) {
+        return str.replace("BDT", "");
+    }
 
-            toBeReturned += 100;
-			return toBeReturned;
-		}
+    function getLeadTimeDiff(days) {
+        var toBeReturned = 0;
+        if (days < leadTimeDiffDaysTire1) {
+            toBeReturned = leadTimeDiffPercentageTire1;
+        } else if (leadTimeDiffDaysTire1 < days && days < leadTimeDiffDaysTire2) {
+            toBeReturned = leadTimeDiffPercentageTire2;
+        } else {
+            toBeReturned = leadTimeDiffPercentageTire3;
+        }
 
-		function iniata(days, leadTimeDiffDays) {
+        toBeReturned += 100;
+        return toBeReturned;
+    }
 
-            var leadTimeDiff = getLeadTimeDiff(leadTimeDiffDays);
+    function iniata(days, leadTimeDiffDays) {
 
-			if(days>1){
-                clearRows();
-			}
+        var leadTimeDiff = getLeadTimeDiff(leadTimeDiffDays);
 
-		    //console.log("vendor discount:" + vendorDiscount);
-			var cartJson;
+        if (days > 1) {
+            clearRows();
+        }
 
-			var cartRaw = localStorage.getItem('cartx');
-			if (cartRaw != null) {
-				cartJson = JSON.parse(cartRaw);
+        //console.log("vendor discount:" + vendorDiscount);
+        var cartJson;
 
-			//	console.log(cartJson);
+        var cartRaw = localStorage.getItem('cartx');
+        if (cartRaw != null) {
+            cartJson = JSON.parse(cartRaw);
 
-				var total = 0;
+            //	console.log(cartJson);
 
-				var i;
-				for (i = 0; i < cartJson.length; i++) {
+            var total = 0;
 
-					var cartItem = cartJson[i];
-				
-					var tableRef = document.getElementById("mytable")
-							.getElementsByTagName('tbody')[0];
-					var newRow = tableRef.insertRow(tableRef.rows.length - 1);
+            var i;
+            for (i = 0; i < cartJson.length; i++) {
 
-					newRow.insertCell(0).appendChild(document.createTextNode(cartItem.name + " x "+ cartItem.quantity));
+                var cartItem = cartJson[i];
 
-					//vendor discount
-					var vendorId = cartItem.vendor;
-                    var serviceId = cartItem.id;
+                var tableRef = document.getElementById("mytable")
+                    .getElementsByTagName('tbody')[0];
+                var newRow = tableRef.insertRow(tableRef.rows.length - 1);
 
-                    var vendorRepeatCount = 0;
-					var j ;
-					for(j=0; j < i; j++){
+                newRow.insertCell(0).appendChild(document.createTextNode(cartItem.name + " x " + cartItem.quantity));
 
-                        var cartItem2 = cartJson[j];
-                        if(cartItem2.id != serviceId && vendorId == cartItem2.vendor){
-                            vendorRepeatCount++;
-                        }
-                    }
-                    var itemPrice =0;
-                    var afterDiscountPrice = 0;
-                    if(vendorRepeatCount > 0 ){
-                        var toBeDiscounted = (Number(vendorDiscount) / 100) * Number(cartItem.price);
-                        var previousPrice = Number(cartItem.price);
-                        afterDiscountPrice = previousPrice - toBeDiscounted;
-                        itemPrice =Number(cartItem.quantity) * afterDiscountPrice * days * (leadTimeDiff /100);
+                //vendor discount
+                var vendorId = cartItem.vendor;
+                var serviceId = cartItem.id;
 
-                        itemPrice = itemPrice + ' BDT ( After'+ vendorDiscount+'%  Vendor Discount )'
-                    }else{
-                        afterDiscountPrice = Number(cartItem.price);
-                        itemPrice =Number(cartItem.quantity) * afterDiscountPrice * days * (leadTimeDiff /100);
+                var vendorRepeatCount = 0;
+                var j;
+                for (j = 0; j < i; j++) {
 
-                        itemPrice = itemPrice + ' BDT'
-                    }
-
-					newRow.insertCell(1).appendChild(document.createTextNode(itemPrice));
-					total += Number(cartItem.quantity) * afterDiscountPrice * days * (leadTimeDiff /100);
-					document.getElementById("sub-total").innerHTML = Number(clearBDT(document.getElementById("sub-total").innerHTML)) + total;
-				}
-
-				var subTotal = Number(clearBDT(document.getElementById("sub-total").innerHTML));
-				var selectedServiceCharge = 0;
-
-                // if( subTotal <= Number(tire1up) && subTotal > Number() ){
-                //     selectedServiceCharge = tire1charge;
-                // }else  if( subTotal <= Number(tire2up) && subTotal > Number(tire2down) ){
-                //     selectedServiceCharge = tire2charge;
-                // }else  if( subTotal <= Number(tire3up) && subTotal > Number(tire3down) ){
-                //     selectedServiceCharge = tire3charge;
-                // }
-
-                if(subTotal>tire1down){
-                    if(subTotal < tire1up){
-                        selectedServiceCharge = tire1charge;
-                        console.log("tire 1 condition");
-					}else if(subTotal < tire2up) {
-                        selectedServiceCharge = tire2charge;
-                        console.log("tire 2 condition");
-					}else if (subTotal < tire3up){
-                        selectedServiceCharge = tire3charge;
-                        console.log("tire 3 condition");
-					}else{
-                        console.log("tire fuck condition");
-					}
-				}
-
-				//delivery charge calculation
-                var selectedDeliveryCharge = 0;
-                if(subTotal>deliveryCharge1down){
-                    if(subTotal < deliveryCharge1up){
-                        selectedDeliveryCharge = deliveryCharge1charge;
-                        console.log("deliveryCharge 1 condition");
-                    }else if(subTotal < deliveryCharge2up) {
-                        selectedDeliveryCharge = deliveryCharge2charge;
-                        console.log("deliveryCharge 2 condition");
-                    }else if (subTotal < deliveryCharge3up){
-                        selectedDeliveryCharge = deliveryCharge3charge;
-                        console.log("deliveryCharge 3 condition");
-                    }else{
-                        console.log("deliveryCharge fuck condition");
+                    var cartItem2 = cartJson[j];
+                    if (cartItem2.id != serviceId && vendorId == cartItem2.vendor) {
+                        vendorRepeatCount++;
                     }
                 }
+                var itemPrice = 0;
+                var afterDiscountPrice = 0;
+                if (vendorRepeatCount > 0) {
+                    var toBeDiscounted = (Number(vendorDiscount) / 100) * Number(cartItem.price);
+                    var previousPrice = Number(cartItem.price);
+                    afterDiscountPrice = previousPrice - toBeDiscounted;
+                    itemPrice = Number(cartItem.quantity) * afterDiscountPrice * days * (leadTimeDiff / 100);
 
-                document.getElementById("service-charge").innerHTML = (Number(selectedServiceCharge)/100) * subTotal;
-                document.getElementById("delivery-charge").innerHTML = (Number(selectedDeliveryCharge)/100) * subTotal;
+                    itemPrice = itemPrice + ' BDT ( After' + vendorDiscount + '%  Vendor Discount )'
+                } else {
+                    afterDiscountPrice = Number(cartItem.price);
+                    itemPrice = Number(cartItem.quantity) * afterDiscountPrice * days * (leadTimeDiff / 100);
 
-				total += Number(document.getElementById("service-charge").innerHTML);
-				total += Number(document.getElementById("delivery-charge").innerHTML);
-				document.getElementById("service-charge").innerHTML = Number(document.getElementById("service-charge").innerHTML)
-				+ ' BDT';
+                    itemPrice = itemPrice + ' BDT'
+                }
 
-				document.getElementById("delivery-charge").innerHTML = Number(document.getElementById("delivery-charge").innerHTML)
-				+ ' BDT';
+                newRow.insertCell(1).appendChild(document.createTextNode(itemPrice));
+                total += Number(cartItem.quantity) * afterDiscountPrice * days * (leadTimeDiff / 100);
+                document.getElementById("sub-total").innerHTML = Number(clearBDT(document.getElementById("sub-total").innerHTML)) + total;
+            }
 
-                document.getElementById("sub-total").innerHTML = document.getElementById("sub-total").innerHTML + ' BDT';
+            var subTotal = Number(clearBDT(document.getElementById("sub-total").innerHTML));
+            var selectedServiceCharge = 0;
 
-				document.getElementById("final-total").innerHTML = total
-				+ ' BDT';
-			}
-		}
+            // if( subTotal <= Number(tire1up) && subTotal > Number() ){
+            //     selectedServiceCharge = tire1charge;
+            // }else  if( subTotal <= Number(tire2up) && subTotal > Number(tire2down) ){
+            //     selectedServiceCharge = tire2charge;
+            // }else  if( subTotal <= Number(tire3up) && subTotal > Number(tire3down) ){
+            //     selectedServiceCharge = tire3charge;
+            // }
 
-		window.onload = iniata(1, 1000);
+            if (subTotal > tire1down) {
+                if (subTotal < tire1up) {
+                    selectedServiceCharge = tire1charge;
+                    console.log("tire 1 condition");
+                } else if (subTotal < tire2up) {
+                    selectedServiceCharge = tire2charge;
+                    console.log("tire 2 condition");
+                } else if (subTotal < tire3up) {
+                    selectedServiceCharge = tire3charge;
+                    console.log("tire 3 condition");
+                } else {
+                    console.log("tire fuck condition");
+                }
+            }
 
-		codeAddress();
+            //delivery charge calculation
+            var selectedDeliveryCharge = 0;
+            if (subTotal > deliveryCharge1down) {
+                if (subTotal < deliveryCharge1up) {
+                    selectedDeliveryCharge = deliveryCharge1charge;
+                    console.log("deliveryCharge 1 condition");
+                } else if (subTotal < deliveryCharge2up) {
+                    selectedDeliveryCharge = deliveryCharge2charge;
+                    console.log("deliveryCharge 2 condition");
+                } else if (subTotal < deliveryCharge3up) {
+                    selectedDeliveryCharge = deliveryCharge3charge;
+                    console.log("deliveryCharge 3 condition");
+                } else {
+                    console.log("deliveryCharge fuck condition");
+                }
+            }
+
+            document.getElementById("service-charge").innerHTML = (Number(selectedServiceCharge) / 100) * subTotal;
+            document.getElementById("delivery-charge").innerHTML = (Number(selectedDeliveryCharge) / 100) * subTotal;
+
+            total += Number(document.getElementById("service-charge").innerHTML);
+            total += Number(document.getElementById("delivery-charge").innerHTML);
+            document.getElementById("service-charge").innerHTML = Number(document.getElementById("service-charge").innerHTML)
+                + ' BDT';
+
+            document.getElementById("delivery-charge").innerHTML = Number(document.getElementById("delivery-charge").innerHTML)
+                + ' BDT';
+
+            document.getElementById("sub-total").innerHTML = document.getElementById("sub-total").innerHTML + ' BDT';
+
+            document.getElementById("final-total").innerHTML = total
+                + ' BDT';
+        }
+    }
+
+    window.onload = iniata(1, 1000);
+
+    codeAddress();
 
 
-		$(document).ready(function() {
-			$('#fuckCheckout').on('submit', function(e) {
-				e.preventDefault();
+    $(document).ready(function () {
+        $('#fuckCheckout').on('submit', function (e) {
+            e.preventDefault();
 
-				var billing_first_name = $('#billing_first_name').val();
-				var billing_last_name = $('#billing_last_name').val();
-				var billing_company = $('#billing_company').val();
-				var billing_email = $('#billing_email').val();
-				var billing_phone = $('#billing_phone').val();
-				var billing_address_1 = $('#billing_address_1').val();
-				var order_comments = $('#order_comments').val();
-				var sub_total = $('#sub-total').val();
-				var final_total = $('#final-total').val();
-				
-				
-				var user = {};
-				
-				
-				user["firstName"] = billing_first_name;
-				user["lastName"] = billing_last_name;
-				user["companyName"] = billing_company;
-				user["email"] = billing_email;
-				user["phone"] = billing_phone;
-				user["address"] = billing_address_1;
-			//	user["id"] = 1;
-				
+            var billing_first_name = $('#billing_first_name').val();
+            var billing_last_name = $('#billing_last_name').val();
+            var billing_company = $('#billing_company').val();
+            var billing_email = $('#billing_email').val();
+            var billing_phone = $('#billing_phone').val();
+            var billing_address_1 = $('#billing_address_1').val();
+            var order_comments = $('#order_comments').val();
+            var sub_total = clearBDT($('#sub-total').val());
+            var final_total = clearBDT($('#final-total').val());
 
-			var order = {};
-			order["subTotal"] = Number(sub_total);
-			order["note"] = order_comments;
-			order["total"] = Number(final_total);
-			order["cuponCode"] = order_comments;
-			order["paymentType"] = order_comments;
-			order["user"] = user;
-			
-			var orderItems = [];
-			
-			
-			var cartJson;
-			var cartRaw = localStorage.getItem('cartx');
-			if (cartRaw != null) {
-				cartJson = JSON.parse(cartRaw);
-				
-				var i;
-				for (i = 0; i < cartJson.length; i++) { 
-					var cartItem = cartJson[i];
-					var item = {};
-					
-					item["quantity"] = Number(cartItem.quantity);
-					item["amount"] = Number(cartItem.price);
-					
-					var service = {};
-					service["id"] = Number(cartItem.id);
-					
-					item["service"] = service;
-					
-					orderItems.push(item);
-				}
-			} 
-			
-			order["orderItem"] = orderItems;
+            var serviceCharge = clearBDT($('#service-charge').val());
+            var deliveryCharge = clearBDT($('#delivery-charge').val());
 
-                var startDate = $("#datepicker2").val();
-                var endDate = $("#datepicker3").val();
+            var user = {};
 
-              //  alert(startDate);
 
-			order["startDate"] =startDate;
-			order["endDate"] =endDate;
+            user["firstName"] = billing_first_name;
+            user["lastName"] = billing_last_name;
+            user["companyName"] = billing_company;
+            user["email"] = billing_email;
+            user["phone"] = billing_phone;
+            user["address"] = billing_address_1;
+            //	user["id"] = 1;
 
-			
-			//console.log(order);
-			
-			// var testAjax = {};
-			// testAjax["name"] = "test name erfan! inshallah it will work";
-			//
-				$.ajax({
-					url : '/ads',
-					type : 'post',
-					contentType: "application/json",
-					data: JSON.stringify(order),
-			        dataType: 'json',
-			        cache: false,
-			        timeout: 600000,
-			        success: function (data) {
 
-                        var cartRaw = localStorage.getItem('cartx');
+            var order = {};
+            order["subTotal"] = Number(sub_total);
+            order["note"] = order_comments;
+            order["total"] = Number(final_total);
+            order["cuponCode"] = order_comments;
+            order["paymentType"] = order_comments;
+            order["user"] = user;
+            order["serviceCharge"] = serviceCharge;
+            order["deliveryCharge"] = deliveryCharge;
 
-                        localStorage.clear();
-			          //  console.log("SUCCESS : ", data);
-			            window.location.replace("/orderSuccess");
+            var orderItems = [];
 
-			        },
-			        error: function (e) {
 
-			          
-			         //   console.log("ERROR : ", e);
-			            window.location.replace("/orderFailed");
+            var cartJson;
+            var cartRaw = localStorage.getItem('cartx');
+            if (cartRaw != null) {
+                cartJson = JSON.parse(cartRaw);
 
-			        }
-				});
+                var i;
+                for (i = 0; i < cartJson.length; i++) {
+                    var cartItem = cartJson[i];
+                    var item = {};
 
-			});
-		});
-	</script>
+                    item["quantity"] = Number(cartItem.quantity);
+                    item["amount"] = Number(cartItem.price);
+
+                    var service = {};
+                    service["id"] = Number(cartItem.id);
+
+                    item["service"] = service;
+
+                    orderItems.push(item);
+                }
+            }
+
+            order["orderItem"] = orderItems;
+
+            var startDate = $("#datepicker2").val();
+            var endDate = $("#datepicker3").val();
+
+            //  alert(startDate);
+
+            order["startDate"] = startDate;
+            order["endDate"] = endDate;
+
+
+            //console.log(order);
+
+            // var testAjax = {};
+            // testAjax["name"] = "test name erfan! inshallah it will work";
+            //
+            $.ajax({
+                url: '/ads',
+                type: 'post',
+                contentType: "application/json",
+                data: JSON.stringify(order),
+                dataType: 'json',
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+
+                    var cartRaw = localStorage.getItem('cartx');
+
+                    localStorage.clear();
+                    //  console.log("SUCCESS : ", data);
+                    window.location.replace("/orderSuccess");
+
+                },
+                error: function (e) {
+
+
+                    //   console.log("ERROR : ", e);
+                    window.location.replace("/orderFailed");
+
+                }
+            });
+
+        });
+    });
+</script>
 
 </body>
 </html>

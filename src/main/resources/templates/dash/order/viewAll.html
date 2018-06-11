@@ -105,35 +105,34 @@
 
                                                     </li>
 
+                                                    <li th:text="@{Delivery Charge: } + ${clientlist.deliveryCharge} ">
 
-                                                    <li>
-                                                        Delivery Fee: 100
-                                                    </li>                                                    
-                                                    <li>
-                                                        Service Charge: 100
-                                                    </li>                                                    
-                                                    <li>
-                                                        Commission: 13%
-                                                    </li>
-                                                    <li>
-                                                        Vendor payable: 21750
                                                     </li>
 
-                                                    <li>
-                                                        <strong>Total: 25000</strong>
+                                                    <li th:text="@{Service Charge: } + ${clientlist.serviceCharge} ">
+
+                                                    </li>
+
+
+                                                    <li th:text="@{Total: } + ${clientlist.total} ">
+
                                                     </li>
                                                 </ul>
                                             </td>
                                         	<td>
                                                 <ul class="list-unstyled">
-                                                    <li>
-                                                        Deliver Address: [Address goes here]
+
+                                                    <li th:text="@{Deliver Address: } + ${clientlist.user.address} ">
+
                                                     </li>
-                                                    <li>
-                                                        Contant Information: [Phone goes here]
+
+
+                                                    <li th:text="@{Contact Number: } + ${clientlist.user.phone} ">
+
                                                     </li>
-                                                    <li>
-                                                        Outside Dhaka?: Yes/No [Either one will show here]
+
+                                                    <li th:text="@{Order Note: } + ${clientlist.note} ">
+
                                                     </li>
                                                 </ul>   
                                             </td>
