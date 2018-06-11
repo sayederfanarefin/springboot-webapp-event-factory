@@ -1,181 +1,233 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 
-<meta charset="utf-8" />
-<link rel="apple-touch-icon" sizes="76x76"
-	href="assets/img/apple-icon.png">
-<link rel="icon" type="image/png" sizes="96x96"
-	href="assets/img/favicon.png">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8"/>
+    <link rel="apple-touch-icon" sizes="76x76"
+          href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-<title>Admin Panel - Dashboard</title>
+    <title>Admin Panel - Dashboard</title>
 
-<meta
-	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
-	name='viewport' />
-<meta name="viewport" content="width=device-width" />
+    <meta
+            content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
+            name='viewport'/>
+    <meta name="viewport" content="width=device-width"/>
 
-<div th:replace="dash/header :: header"></div>
+    <div th:replace="dash/header :: header"></div>
 
 
-<style>
-.pagination-centered {
-    text-align: center;
-}
-.disabled {
-    pointer-events: none;
-    opacity: 0.5;
-}
-.pointer-disabled {
-    pointer-events: none;
-}
-</style>
+    <style>
+        .pagination-centered {
+            text-align: center;
+        }
 
+        .disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .pointer-disabled {
+            pointer-events: none;
+        }
+    </style>
 
 
 </head>
 <body>
 
-	<div class="wrapper">
-		<div th:replace="dash/sidebar :: sidebar"></div>
+<div class="wrapper">
+    <div th:replace="dash/sidebar :: sidebar"></div>
 
-		<div class="main-panel">
-			<div th:replace="dash/navbar :: navbar"></div>
+    <div class="main-panel">
+        <div th:replace="dash/navbar :: navbar"></div>
 
-			<div class="content">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="header">
-									<h4 class="title">Vendors</h4>
-									<p class="category">List of all vendors</p>
-								</div>
-								<div class="content table-responsive table-full-width">
-									<table class="table table-striped">
-										<thead>
-											<th>ID</th>
-											<th>Name</th>
-											<th>Email</th>
-											<th>Phone</th>
-											
-											<th>Action</th>
-										</thead>
-										<tbody>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Charges</h4>
 
-											
+                            </div>
+                            <div class="content table-responsive table-full-width" style="padding-left: 20px; padding-right: 20px">
 
- <tr th:each="clientlist : ${clientlist}">
-                        <td th:text="${clientlist.id}">Text ...</td>
-                        <td th:text="${clientlist.name}">Text ...</td>
-                        
-                           <td th:text="${clientlist.email}">Text ...</td>
-                           
-                              <td th:text="${clientlist.phone}">Text ...</td>
-                                
-                                    
-                        <td><button type="button"
-                                class="btn btn-primary btn-condensed">
-                                Edit/Delete
-                            </button></td>
-                    </tr>
-											
+                                <h4 style="padding-left: 30px; padding-right: 30px">Delivery Charges</h4>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <th>Tire</th>
+                                    <th>Lower Limit</th>
+                                    <th>Upper Limitm</th>
+                                    <th>Charge</th>
 
-										</tbody>
-									</table>
+                                    </thead>
+                                    <tbody>
 
-								</div>
-								
-								
-								
-								
-								
-								 <div class="row">
-								 
-                <div class="form-group col-md-1"> </div>
-                <div class="form-group col-md-2"> 
-                    <select class="form-control pagination" id="pageSizeSelect">
-                        <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
-                            th:value="${pageSize} "
-                            th:selected="${pageSize} == ${selectedPageSize}"></option>
-                    </select>
-                </div>
-                <div th:if="${clientlist.totalPages != 1}"
-                    class="form-group col-md-9 pagination-centered">
-                    <ul class="pagination">
-                        <li th:class="${clientlist.number == 0} ? disabled"><a
-                            class="pageLink"
-                            th:href="@{${baseUrl}(pageSize=${selectedPageSize}, page=1)}">«</a>
-                        </li>
-                        <li th:class="${clientlist.number == 0} ? disabled"><a
-                            class="pageLink"
-                            th:href="@{${baseUrl}(pageSize=${selectedPageSize}, page=${clientlist.number})}">←</a>
-                        </li>
-                        <li
-                            th:class="${clientlist.number == (page - 1)} ? 'active pointer-disabled'"
-                            th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
-                            <a class="pageLink"
-                            th:href="@{${baseUrl}(pageSize=${selectedPageSize}, page=${page})}"
-                            th:text="${page}"></a>
-                        </li>
-                        <li
-                            th:class="${clientlist.number + 1 == clientlist.totalPages} ? disabled">
-                            <a class="pageLink"
-                            th:href="@{${baseUrl}(pageSize=${selectedPageSize}, page=${clientlist.number + 2})}">→</a>
-                        </li>
-                        <li
-                            th:class="${clientlist.number + 1 == clientlist.totalPages} ? disabled">
-                            <a class="pageLink"
-                            th:href= "@{${baseUrl}(pageSize=${selectedPageSize}, page=${clientlist.totalPages})}">»</a>
-                        </li>
-                    </ul>
+                                    <tr>
+                                        <td>1</td>
+                                        <td th:text="${charges.deliveryChargeTire1LowerLimit}">Text ...</td>
+                                        <td th:text="${charges.deliveryChargeTire1UpperLimit}">Text ...</td>
+                                        <td th:text="${charges.deliveryChargeTire1}">Text ...</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>2</td>
+                                        <td th:text="${charges.deliveryChargeTire2LowerLimit}">Text ...</td>
+                                        <td th:text="${charges.deliveryChargeTire2UpperLimit}">Text ...</td>
+                                        <td th:text="${charges.deliveryChargeTire2}">Text ...</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>3</td>
+                                        <td th:text="${charges.deliveryChargeTire3LowerLimit}">Text ...</td>
+                                        <td th:text="${charges.deliveryChargeTire3UpperLimit}">Text ...</td>
+                                        <td th:text="${charges.deliveryChargeTire3}">Text ...</td>
+
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+
+
+
+
+                            <div class="content table-responsive table-full-width" style="padding-left: 20px; padding-right: 20px">
+
+                                <h4 style="padding-left: 30px; padding-right: 30px">Service Charges</h4>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <th>Tire</th>
+                                    <th>Lower Limit</th>
+                                    <th>Upper Limitm</th>
+                                    <th>Charge</th>
+
+                                    </thead>
+                                    <tbody>
+
+                                    <tr>
+                                        <td>1</td>
+                                        <td th:text="${charges.serviceChargeTire1LowerLimit}">Text ...</td>
+                                        <td th:text="${charges.serviceChargeTire1UpperLimit}">Text ...</td>
+                                        <td th:text="${charges.serviceChargeTire1}">Text ...</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>2</td>
+                                        <td th:text="${charges.serviceChargeTire2LowerLimit}">Text ...</td>
+                                        <td th:text="${charges.serviceChargeTire2UpperLimit}">Text ...</td>
+                                        <td th:text="${charges.serviceChargeTire2}">Text ...</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>3</td>
+                                        <td th:text="${charges.serviceChargeTire3LowerLimit}">Text ...</td>
+                                        <td th:text="${charges.serviceChargeTire3UpperLimit}">Text ...</td>
+                                        <td th:text="${charges.serviceChargeTire3}">Text ...</td>
+
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+
+
+
+                            <div class="content table-responsive table-full-width" style="padding-left: 20px; padding-right: 20px">
+
+                                <h4 style="padding-left: 30px; padding-right: 30px">Lead TIme Difference Charges</h4>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <th>Tire</th>
+                                    <th> Limit</th>
+
+                                    <th>Charge</th>
+
+                                    </thead>
+                                    <tbody>
+
+                                    <tr>
+                                        <td>1</td>
+                                        <td th:text="${charges.extra_charge_tier_1_days}">Text ...</td>
+
+                                        <td th:text="${charges.extra_charge_tier_1_charge_percentage}">Text ...</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>2</td>
+                                        <td th:text="${charges.extra_charge_tier_2_days}">Text ...</td>
+
+                                        <td th:text="${charges.extra_charge_tier_2_charge_percentage}">Text ...</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>3</td>
+                                        <td th:text="${charges.extra_charge_tier_3_days}">Text ...</td>
+
+                                        <td th:text="${charges.extra_charge_tier_3_charge_percentage}">Text ...</td>
+
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
-    
-								
-								
-								
-								
-							</div>
-							
-						</div>
+        </div>
 
-					</div>
-				</div>
-			</div>
+        <div th:replace="dash/footer :: footer"></div>
+    </div>
 
-			<div th:replace="dash/footer :: footer"></div>
-		</div>
+</div>
 
-	</div>
-	
-	
-	
-  
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        $(document).ready(function() {
-    changePageAndSize();
-});
-function changePageAndSize() {
-	
-	
-	
-	
-    $('#pageSizeSelect').change(function(evt) {
-    	var baseUrl = /*[[${baseUrl}]]*/ '';
-        window.location.replace( baseUrl + "?pageSize=" + this.value + "&page=1");
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function () {
+        changePageAndSize();
     });
-}
-        /*]]>*/
-    </script>
-    
-</body>
 
+    function changePageAndSize() {
+
+
+        $('#pageSizeSelect').change(function (evt) {
+            var baseUrl = /*[[${baseUrl}]]*/ '';
+            window.location.replace(baseUrl + "?pageSize=" + this.value + "&page=1");
+        });
+    }
+
+    /*]]>*/
+</script>
+
+</body>
 
 
 </html>
