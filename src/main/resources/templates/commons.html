@@ -1,590 +1,606 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Event Factory</title>
+    <title>Event Factory</title>
 
-<div th:fragment="head">
-
-
-<link rel="shortcut icon" th:href="@{/images/favicon.ico}" />
-
-	<link th:href="@{/css/jquery-ui.css}" rel="stylesheet"
-		  type="text/css" />
-
-	<link th:href="@{/css/jquery-ui.structure.css}" rel="stylesheet"
-		  type="text/css" />
-	<link th:href="@{/css/jquery-ui.theme.css}" rel="stylesheet"
-		  type="text/css" />
-	<link th:href="@{/css/jquery-ui.theme.min.css}" rel="stylesheet"
-		  type="text/css" />
-	<link th:href="@{/css/jquery-ui.structure.min.css}" rel="stylesheet"
-		  type="text/css" />
-	<link th:href="@{/css/jquery-ui.min.css}" rel="stylesheet"
-		  type="text/css" />
+    <div th:fragment="head">
 
 
-	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"
-		type="text/css" />
+        <link rel="shortcut icon" th:href="@{/images/favicon.ico}"/>
+
+        <link th:href="@{/css/jquery-ui.css}" rel="stylesheet"
+              type="text/css"/>
+
+        <link th:href="@{/css/jquery-ui.structure.css}" rel="stylesheet"
+              type="text/css"/>
+        <link th:href="@{/css/jquery-ui.theme.css}" rel="stylesheet"
+              type="text/css"/>
+        <link th:href="@{/css/jquery-ui.theme.min.css}" rel="stylesheet"
+              type="text/css"/>
+        <link th:href="@{/css/jquery-ui.structure.min.css}" rel="stylesheet"
+              type="text/css"/>
+        <link th:href="@{/css/jquery-ui.min.css}" rel="stylesheet"
+              type="text/css"/>
 
 
-	<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"
-		type="text/css" />
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"
+              type="text/css"/>
 
 
-	<link th:href="@{/css/animate.min.css}" rel="stylesheet"
-		type="text/css" />
+        <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"
+              type="text/css"/>
 
 
-	<link th:href="@{/css/font-electro.css}" rel="stylesheet"
-		type="text/css" />
+        <link th:href="@{/css/animate.min.css}" rel="stylesheet"
+              type="text/css"/>
 
 
-	<link th:href="@{/css/owl-carousel.css}" rel="stylesheet"
-		type="text/css" />
+        <link th:href="@{/css/font-electro.css}" rel="stylesheet"
+              type="text/css"/>
 
 
-	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
-
-	<link th:href="@{/css/colors/yellow.css}" rel="stylesheet"
-		type="text/css" />
+        <link th:href="@{/css/owl-carousel.css}" rel="stylesheet"
+              type="text/css"/>
 
 
-	<link
-		href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,700italic,800,800italic,600italic,400italic,300italic'
-		rel='stylesheet' type='text/css'>
-</div>
+        <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
+
+        <link th:href="@{/css/colors/yellow.css}" rel="stylesheet"
+              type="text/css"/>
+
+
+        <link
+                href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,700italic,800,800italic,600italic,400italic,300italic'
+                rel='stylesheet' type='text/css'>
+    </div>
 
 </head>
 
 <body>
 
 
-	<div class="page home page-template-default">
+<div class="page home page-template-default">
 
-		<div id="page" class="hfeed site">
-
-
-			<div th:fragment="header">
-				<a class="skip-link screen-reader-text" href="#site-navigation">Skip
-					to navigation</a> <a class="skip-link screen-reader-text"
-					href="#content">Skip to content</a>
-
-				<!--   <div class="top-bar hidden-md-down">
-                <div class="container">
-                   
-                    <nav>
-                        <ul id="menu-top-bar-right" class="nav nav-inline pull-right animate-dropdown flip">
-                            
-                            <li class="menu-item animate-dropdown"><a title="My Account" href="/myAccount"><i class="ec ec-user"></i>My Account</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>-->
+    <div id="page" class="hfeed site">
 
 
-				<header id="masthead" class="site-header header-v1">
-					<div class="container hidden-md-down">
-						<div class="row" th:fragment="header-upper">
+        <div th:fragment="header">
+            <a class="skip-link screen-reader-text" href="#site-navigation">Skip
+                to navigation</a> <a class="skip-link screen-reader-text"
+                                     href="#content">Skip to content</a>
 
-							<!-- ============================================================= Header Logo ============================================================= -->
-							<div class="header-logo">
-								<a href="/" class="header-logo-link"> <img
-									th:src="@{/images/event_logo.png}"
-									class="img-responsive center-block" style="height: 100px;"
-									alt="Logo" />
-								</a>
-							</div>
-							<!-- ============================================================= Header Logo : End============================================================= -->
+            <!--   <div class="top-bar hidden-md-down">
+            <div class="container">
 
-							<form class="navbar-search" method="post" >
-								<label class="sr-only screen-reader-text" >Search
-									for:</label>
-								<div class="input-group">
-									<input type="text" class="form-control search-field" placeholder="Search for services"
-										   id="username"
-									/>
+                <nav>
+                    <ul id="menu-top-bar-right" class="nav nav-inline pull-right animate-dropdown flip">
+
+                        <li class="menu-item animate-dropdown"><a title="My Account" href="/myAccount"><i class="ec ec-user"></i>My Account</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>-->
 
 
+            <header id="masthead" class="site-header header-v1">
+                <div class="container hidden-md-down">
+                    <div class="row" th:fragment="header-upper">
 
-									<div class="input-group-btn">
+                        <!-- ============================================================= Header Logo ============================================================= -->
+                        <div class="header-logo">
+                            <a href="/" class="header-logo-link"> <img
+                                    th:src="@{/images/event_logo.png}"
+                                    class="img-responsive center-block" style="height: 100px;"
+                                    alt="Logo"/>
+                            </a>
+                        </div>
+                        <!-- ============================================================= Header Logo : End============================================================= -->
 
-										<button id="btn-search" type="submit" class="btn btn-secondary">
-											<i class="ec ec-search"></i>
-										</button>
-									</div>
+                        <form class="navbar-search" method="post">
+                            <label class="sr-only screen-reader-text">Search
+                                for:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control search-field" placeholder="Search for services"
+                                       id="username"
+                                />
 
 
-									<div id="feedback">
+                                <div class="input-group-btn">
 
-									</div>
+                                    <button id="btn-search" type="submit" class="btn btn-secondary">
+                                        <i class="ec ec-search"></i>
+                                    </button>
+                                </div>
 
 
-								</div>
-							</form>
-							<ul
-								class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
-								<li class="nav-item dropdown"><a href="/cart"
-									class="nav-link" data-toggle="dropdown"> <i
-										class="ec ec-shopping-bag"></i> <!-- <span
+                                <div id="feedback">
+
+                                </div>
+
+
+                            </div>
+                        </form>
+                        <ul
+                                class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
+                            <li class="nav-item dropdown"><a href="/cart"
+                                                             class="nav-link" data-toggle="dropdown"> <i
+                                    class="ec ec-shopping-bag"></i> <!-- <span
 										class="cart-items-count count" id="inside-cart-quantity">0</span>-->
-										<span class="cart-items-total-price total-price"><span
-											class="amount" id="inside-cart-total">0</span></span>
-								</a>
-									<ul class="dropdown-menu dropdown-menu-mini-cart">
-										<li>
-											<div class="widget_shopping_cart_content">
+                                <span class="cart-items-total-price total-price"><span
+                                        class="amount" id="inside-cart-total">0</span></span>
+                            </a>
+                                <ul class="dropdown-menu dropdown-menu-mini-cart">
+                                    <li>
+                                        <div class="widget_shopping_cart_content">
 
-												<ul id="cart_fucking" class="cart_list product_list_widget "></ul>
-												<!-- end product list -->
-
-
-												<!-- <p class="total">
-													<strong>Subtotal:</strong> <span class="amount">£969.98</span>
-												</p>-->
+                                            <ul id="cart_fucking" class="cart_list product_list_widget "></ul>
+                                            <!-- end product list -->
 
 
-												<p class="buttons">
-													<a class="button wc-forward" href="/cart">View Cart</a> <a
-														class="button checkout wc-forward" href="/checkout">Checkout</a>
-												</p>
+                                            <!-- <p class="total">
+                                                <strong>Subtotal:</strong> <span class="amount">£969.98</span>
+                                            </p>-->
 
 
-											</div>
-										</li>
-									</ul></li>
-							</ul>
+                                            <p class="buttons">
+                                                <a class="button wc-forward" href="/cart">View Cart</a> <a
+                                                    class="button checkout wc-forward" href="/checkout">Checkout</a>
+                                            </p>
 
 
-						</div>
-						<!-- /.row -->
-
-						<div class="row" th:fragment="header-sidebar">
-							<div class="col-xs-12 col-lg-3">
-								<nav>
-									<ul class="list-group vertical-menu yamm make-absolute">
-										<li class="list-group-item"><span><i
-												class="fa fa-list-ul"></i> All Services</span></li>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
 
 
-										<li id="menu-item-2695"
-											class="menu-item menu-item-has-children animate-dropdown dropdown"
-											th:each="clientlist : ${clientlist}"><a
-											data-hover="dropdown" href="/productCategory"
-											data-toggle="dropdown" class="dropdown-toggle"
-											aria-haspopup="true" th:text="${clientlist.name}">A</a>
-											<ul role="menu" class=" dropdown-menu">
-												<li class="menu-item animate-dropdown"
-													th:each="service : ${clientlist.Services}"><a
-													th:href="@{/service?id=} + ${service.id}"
-													th:text="${service.name}">L</a></li>
-											</ul></li>
-									</ul>
-								</nav>
-							</div>
+                    </div>
+                    <!-- /.row -->
 
-							<div class="col-xs-12 col-lg-9">
-								<nav>
-									<ul id="menu-secondary-nav" class="secondary-nav">
-										<li class="highlight menu-item"><a href="/">Home</a></li>
-										<li class="menu-item"><a href="/about">About</a></li>
-										<li class="menu-item"><a href="/faq">FAQs</a></li>
-										<!-- Only show if logged in -->
-										<li class="menu-item"><a href="/myAccount">My
-												Account</a></li>
-										<li class="pull-right menu-item">24 Hour service!</li>
-										<!-- Any message from Admin goes here -->
-									</ul>
-								</nav>
-							</div>
+                    <div class="row" th:fragment="header-sidebar">
+                        <div class="col-xs-12 col-lg-3">
+                            <nav>
+                                <ul class="list-group vertical-menu yamm make-absolute">
+                                    <li class="list-group-item"><span><i
+                                            class="fa fa-list-ul"></i> All Services</span></li>
 
 
-						</div>
-					</div>
+                                    <li id="menu-item-2695"
+                                        class="menu-item menu-item-has-children animate-dropdown dropdown"
+                                        th:each="clientlist : ${clientlist}"><a
+                                            data-hover="dropdown" href="/productCategory"
+                                            data-toggle="dropdown" class="dropdown-toggle"
+                                            aria-haspopup="true" th:text="${clientlist.name}">A</a>
+                                        <ul role="menu" class=" dropdown-menu">
+                                            <li class="menu-item animate-dropdown"
+                                                th:each="service : ${clientlist.Services}"><a
+                                                    th:href="@{/service?id=} + ${service.id}"
+                                                    th:text="${service.name}">L</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
 
-					<div class="container hidden-lg-up">
-						<div class="handheld-header">
-
-							<!-- ============================================================= Header Logo ============================================================= -->
-							<div class="header-logo">
-								<a href="/" class="header-logo-link"> <img
-									th:src="@{/images/event_logo.png}"
-									class="img-responsive center-block" style="height: 100px;"
-									alt="Logo" />
-								</a>
-							</div>
-							<!-- ============================================================= Header Logo : End============================================================= -->
-
-
-						</div>
-					</div>
-
-				</header>
-				<!-- #masthead -->
-
-			</div>
-		</div>
-	</div>
-	<div th:fragment="footer">
-
-		<footer id="colophon" class="site-footer">
+                        <div class="col-xs-12 col-lg-9">
+                            <nav>
+                                <ul id="menu-secondary-nav" class="secondary-nav">
+                                    <li class="highlight menu-item"><a href="/">Home</a></li>
+                                    <li class="menu-item"><a href="/about">About</a></li>
+                                    <li class="menu-item"><a href="/faq">FAQs</a></li>
+                                    <!-- Only show if logged in -->
+                                    <li class="menu-item"><a href="/myAccount">My
+                                        Account</a></li>
+                                    <li class="pull-right menu-item">24 Hour service!</li>
+                                    <!-- Any message from Admin goes here -->
+                                </ul>
+                            </nav>
+                        </div>
 
 
-			<div class="footer-newsletter">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12 col-sm-12">
-							<h6 class="newsletter-title">#TeamEF</h6>
-							<span class="newsletter-marketing-text">We deliver <strong>all
+                    </div>
+                </div>
+
+                <div class="container hidden-lg-up">
+                    <div class="handheld-header">
+
+                        <!-- ============================================================= Header Logo ============================================================= -->
+                        <div class="header-logo">
+                            <a href="/" class="header-logo-link"> <img
+                                    th:src="@{/images/event_logo.png}"
+                                    class="img-responsive center-block" style="height: 100px;"
+                                    alt="Logo"/>
+                            </a>
+                        </div>
+                        <!-- ============================================================= Header Logo : End============================================================= -->
+
+
+                    </div>
+                </div>
+
+            </header>
+            <!-- #masthead -->
+
+        </div>
+    </div>
+</div>
+<div th:fragment="footer">
+
+    <footer id="colophon" class="site-footer">
+
+
+        <div class="footer-newsletter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                        <h6 class="newsletter-title">#TeamEF</h6>
+                        <span class="newsletter-marketing-text">We deliver <strong>all
 									over</strong> Bangladesh!
 							</span>
-						</div>
-					</div>
-				</div>
-			</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-			<div class="footer-bottom-widgets">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-7 col-md-push-5">
-							<div class="columns">
-								<aside id="nav_menu-2" class="widget clearfix widget_nav_menu">
-									<div class="body">
-										<h4 class="widget-title">Customer Care</h4>
-										<div class="menu-footer-menu-3-container">
-											<ul id="menu-footer-menu-3" class="menu">
-												<li class="menu-item"><a href="/myAccount">My
-														Account</a></li>
-												<li class="menu-item"><a href="/faq">FAQs</a></li>
-												<li class="menu-item"><a href="/about">About EF</a></li>
-												<li class="menu-item"><a href="/termsAndConditions">Terms
-														and Conditions</a></li>
-											</ul>
-										</div>
-									</div>
-								</aside>
-							</div>
-							<!-- /.columns -->
+        <div class="footer-bottom-widgets">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-7 col-md-push-5">
+                        <div class="columns">
+                            <aside id="nav_menu-2" class="widget clearfix widget_nav_menu">
+                                <div class="body">
+                                    <h4 class="widget-title">Customer Care</h4>
+                                    <div class="menu-footer-menu-3-container">
+                                        <ul id="menu-footer-menu-3" class="menu">
+                                            <li class="menu-item"><a href="/myAccount">My
+                                                Account</a></li>
+                                            <li class="menu-item"><a href="/faq">FAQs</a></li>
+                                            <li class="menu-item"><a href="/about">About EF</a></li>
+                                            <li class="menu-item"><a href="/termsAndConditions">Terms
+                                                and Conditions</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+                        <!-- /.columns -->
 
-						</div>
-						<!-- /.col -->
+                    </div>
+                    <!-- /.col -->
 
-						<div
-							class="footer-contact col-xs-12 col-sm-12 col-md-5 col-md-pull-7">
-							<div class="footer-logo">
-								<!-- Logo goes here -->
-							</div>
-							<!-- /.footer-contact -->
+                    <div
+                            class="footer-contact col-xs-12 col-sm-12 col-md-5 col-md-pull-7">
+                        <div class="footer-logo">
+                            <!-- Logo goes here -->
+                        </div>
+                        <!-- /.footer-contact -->
 
-							<div class="footer-call-us">
-								<div class="media">
+                        <div class="footer-call-us">
+                            <div class="media">
 									<span class="media-left call-us-icon media-middle"><i
-										class="ec ec-support"></i></span>
-									<div class="media-body">
+                                            class="ec ec-support"></i></span>
+                                <div class="media-body">
 										<span class="call-us-text">Got Questions ? Call us
 											24/7!</span> <span class="call-us-number"></span>
-									</div>
-								</div>
-							</div>
-							<!-- /.footer-call-us -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.footer-call-us -->
 
 
-							<div class="footer-address">
-								<strong class="footer-address-title">Contact Info</strong>
-								<address>Dhaka, Bangladesh</address>
-							</div>
-							<!-- /.footer-address -->
+                        <div class="footer-address">
+                            <strong class="footer-address-title">Contact Info</strong>
+                            <address>Dhaka, Bangladesh</address>
+                        </div>
+                        <!-- /.footer-address -->
 
-							<div class="footer-social-icons">
-								<ul class="social-icons list-unstyled">
-									<li><a class="fa fa-facebook"
-										href="https://www.facebook.com/e.factory.bd"></a></li>
-								</ul>
-							</div>
-						</div>
+                        <div class="footer-social-icons">
+                            <ul class="social-icons list-unstyled">
+                                <li><a class="fa fa-facebook"
+                                       href="https://www.facebook.com/e.factory.bd"></a></li>
+                            </ul>
+                        </div>
+                    </div>
 
-					</div>
-				</div>
-			</div>
+                </div>
+            </div>
+        </div>
 
-			<div class="copyright-bar">
-				<div class="container">
-					<div class="pull-left flip copyright">
-						&copy; <a href="./">EventFactory</a> - All Rights Reserved
-					</div>
-					<div class="pull-right flip payment">
-						<div class="footer-payment-logo">
-							<ul class="cash-card card-inline">
-								<li class="card-item"><img
-								th:src="@{/images/footer/payment-icon/1.png}"
-									 alt="" width="52"></li>
-								<li class="card-item"><img
-									th:src="@{/images/footer/payment-icon/2.png}"
-									 alt="" width="52"></li>
-								<li class="card-item"><img
-									th:src="@{/images/footer/payment-icon/3.png}"
-									 alt="" width="52"></li>
-								<li class="card-item"><img
-									th:src="@{/images/footer/payment-icon/4.png}"
-									 alt="" width="52"></li>
-								<li class="card-item"><img
-									th:src="@{/images/footer/payment-icon/5.png}"
-									 alt="" width="52"></li>
-							</ul>
-						</div>
-						<!-- /.payment-methods -->
-					</div>
-				</div>
-				<!-- /.container -->
-			</div>
-			<!-- /.copyright-bar -->
-		</footer>
-		<!-- #colophon -->
+        <div class="copyright-bar">
+            <div class="container">
+                <div class="pull-left flip copyright">
+                    &copy; <a href="./">EventFactory</a> - All Rights Reserved
+                </div>
+                <div class="pull-right flip payment">
+                    <div class="footer-payment-logo">
+                        <ul class="cash-card card-inline">
+                            <li class="card-item"><img
+                                    th:src="@{/images/footer/payment-icon/1.png}"
+                                    alt="" width="52"></li>
+                            <li class="card-item"><img
+                                    th:src="@{/images/footer/payment-icon/2.png}"
+                                    alt="" width="52"></li>
+                            <li class="card-item"><img
+                                    th:src="@{/images/footer/payment-icon/3.png}"
+                                    alt="" width="52"></li>
+                            <li class="card-item"><img
+                                    th:src="@{/images/footer/payment-icon/4.png}"
+                                    alt="" width="52"></li>
+                            <li class="card-item"><img
+                                    th:src="@{/images/footer/payment-icon/5.png}"
+                                    alt="" width="52"></li>
+                        </ul>
+                    </div>
+                    <!-- /.payment-methods -->
+                </div>
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /.copyright-bar -->
+    </footer>
+    <!-- #colophon -->
 
-		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
-		<!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
-
-
-		<script type="text/javascript" th:src="@{/js/jquery-ui.js}"></script>
-		<script type="text/javascript" th:src="@{/js/jquery-ui.min.js}"></script>
+    <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
 
 
-		<script type="text/javascript" th:src="@{/js/tether.min.js}"></script>
-		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-		<script type="text/javascript"
-			th:src="@{/js/bootstrap-hover-dropdown.min.js}"></script>
-		<script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
-		<script type="text/javascript" th:src="@{/js/echo.min.js}"></script>
-		<script type="text/javascript" th:src="@{/js/wow.min.js}"></script>
-		<script type="text/javascript" th:src="@{/js/jquery.easing.min.js}"></script>
-		<script type="text/javascript" th:src="@{/js/jquery.waypoints.min.js}"></script>
-		<script type="text/javascript" th:src="@{/js/electro.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-ui.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-ui.min.js}"></script>
 
 
-		<script type="text/javascript">
+    <script type="text/javascript" th:src="@{/js/tether.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript"
+            th:src="@{/js/bootstrap-hover-dropdown.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/echo.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/wow.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.easing.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.waypoints.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/electro.js}"></script>
 
 
-
-			function removeRow(input) {
-				var current_total = Number(document
-						.getElementById("inside-cart-total").innerHTML);
-
-				document.getElementById("inside-cart-total").innerHTML = current_total
-						- (Number(document
-								.getElementById('quantity_in_cart_xxx_'
-										+ input.id).innerHTML) * Number(document
-								.getElementById('amount_in_cart_xxx_'
-										+ input.id).innerHTML));
-				
-				document.getElementById('cart_fucking').removeChild(
-						input.parentNode);
-				
-				var cartJson;
-				var cartRaw = localStorage.getItem('cartx');
-				if (cartRaw != null) {
-					cartJson = JSON.parse(cartRaw);
-				}
-				
-				var newTotal = 0;
-				var i;
-				var cartJsonNew = [];
-				for (i = 0; i < cartJson.length; i++) { 
-					if(cartJson[i].id != input.id){
-						cartJsonNew.append(cartJson[i]);
-						newTotal += cartJson[i].price;
-					}
-				}
-				localStorage.setItem('cartx', JSON.stringify(cartJsonNew));
-				localStorage.setItem('amount', newTotal);
-			}
-
-			var form = document.getElementById("add_to_fucking_cart");
-
-		
-			var my_func = function(event) {
-				event.preventDefault();
-				
-				var flag = false;
-				var i;
-				var cartJson;
-				var cartRaw = localStorage.getItem('cartx');
-				if (cartRaw != null) {
-					cartJson = JSON.parse(cartRaw);
-					for (i = 0; i < cartJson.length; i++) { 
-						if(cartJson[i].id == form.product_id.value){
-							flag = true;
-						}
-					}
-				}
-				
-				if(flag){
-					
-				}else{
-				var node = document.createElement("LI");
-
-				node.className = 'mini_cart_item';
-				node.innerHTML = '<a id= "'
-						+ form.product_id.value
-						+ '" title="Remove this item" onclick="removeRow(this)" class="remove" href="javascript:void(0);">×</a><a href=""><img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="" alt="">'
-						+ form.product_name.value
-						+ '&nbsp;</a><span class="quantity" id="quantity_in_cart_xxx_'+ form.product_id.value +'">'
-						+ form.quantity.value
-						+ '</span> × <span class="amount" id="amount_in_cart_xxx_'+ form.product_id.value +'" >'
-						+ form.unit_price.value + '</span>';
-
-				document.getElementById("cart_fucking").appendChild(node);
-
-				var current_total = Number(document.getElementById("inside-cart-total").innerHTML);
-				var final_total = current_total
-						+ (Number(form.unit_price.value) * Number(form.quantity.value));
-				document.getElementById("inside-cart-total").innerHTML = final_total;
-
-				localStorage.setItem('amount', final_total);
-				
-				//cart stuff on new item add
-				var cartRaw = localStorage.getItem('cartx');
-				var cart;
-
-				if (cartRaw == null) {
-					cart = [];
-				} else {
-					cart = JSON.parse(cartRaw);
-				}
-
-				//console.log(cart);
-
-				item = {}
-				item["id"] = form.product_id.value;
-				item["name"] = form.product_name.value;
-				item["quantity"] = form.quantity.value;
-				item["price"] = form.unit_price.value;
-				item["vendor"] = form.vendor.value;
-
-				cart.push(item);
-				
-				console.log(cart);
-				localStorage.setItem('cartx', JSON.stringify(cart));
-				}
-
-			};
-
-			if (form != null) {
-				form.addEventListener("submit", my_func, true);
-			}
-		
-			
-			//initial population things
-		
-			function codeAddress() {
-
-				var cartJson;
-				var cartRaw = localStorage.getItem('cartx');
-				if (cartRaw != null) {
-					cartJson = JSON.parse(cartRaw);
-					
-					var i;
-					for (i = 0; i < cartJson.length; i++) { 
-						var cartItem = cartJson[i];
-						console.log(cartItem);
-						var node = document.createElement("LI");
-						node.className = 'mini_cart_item';
-						node.innerHTML = '<a id= "'
-								+ cartItem.id
-								+ '" title="Remove this item" onclick="removeRow(this)" class="remove" href="javascript:void(0);">×</a><a href=""><img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="" alt="">'
-								+ cartItem.name
-								+ '&nbsp;</a><span class="quantity" id="quantity_in_cart_xxx_'+ cartItem.id +'">'
-								+ cartItem.quantity
-								+ '</span> × <span class="amount" id="amount_in_cart_xxx_'+ cartItem.id +'" >'
-								+ cartItem.price + '</span>';
-
-						document.getElementById("cart_fucking").appendChild(node);
-						
-					}
-				} 
-
-				var total_amount = localStorage.getItem('amount');
-
-				if (total_amount != null) {
-					document.getElementById("inside-cart-total").innerHTML = total_amount;
-				} else {
-					document.getElementById("inside-cart-total").innerHTML = 0;
-				}
-
-				//alert('ok');
-			}
-			window.onload = codeAddress;
+    <script type="text/javascript">
 
 
-			var flag = false;
-            $( function() {
+        function removeRow(input) {
+            var current_total = Number(document
+                .getElementById("inside-cart-total").innerHTML);
 
+            document.getElementById("inside-cart-total").innerHTML = current_total
+                - (Number(document
+                    .getElementById('quantity_in_cart_xxx_'
+                        + input.id).innerHTML) * Number(document
+                    .getElementById('amount_in_cart_xxx_'
+                        + input.id).innerHTML));
 
-                $( "#datepicker" ).datepicker();
-                $( "#datepicker2" ).datepicker({
-                    showOn: "button",
-                    buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-                    buttonImageOnly: false,
-                    onSelect: function(formattedDate, date, inst) {
-                        flag = true;
-                        //alert(formattedDate);
-                        calculateDays();
-                    }
-                });
+            document.getElementById('cart_fucking').removeChild(
+                input.parentNode);
 
-
-
-                $( "#datepicker3" ).datepicker({
-                    showOn: "button",
-                    buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-                    buttonImageOnly: false,
-                    onSelect: function(formattedDate, date, inst) {
-                        flag = true;
-                       // alert(formattedDate);
-                        calculateDays();
-                    }
-                });
-
-
-            } );
-
-			function calculateDays() {
-	 var startDate = $( "#datepicker2" ).val();
-   	 var endDate = $( "#datepicker3" ).val();
-
-   	 if(startDate != "" && endDate != ""){
-   	     var totalDays = datediff(parseDate(startDate), parseDate(endDate)) +1;
-         alert(totalDays);
-         iniata(totalDays);
-	 }
-
-}
-
-            function parseDate(str) {
-                var mdy = str.split('/');
-                return new Date(mdy[2], mdy[0]-1, mdy[1]);
+            var cartJson;
+            var cartRaw = localStorage.getItem('cartx');
+            if (cartRaw != null) {
+                cartJson = JSON.parse(cartRaw);
             }
 
-            function datediff(first, second) {
-                // Take the difference between the dates and divide by milliseconds per day.
-                // Round to nearest whole number to deal with DST.
-                return Math.round((second-first)/(1000*60*60*24));
+            var newTotal = 0;
+            var i;
+            var cartJsonNew = [];
+            for (i = 0; i < cartJson.length; i++) {
+                if (cartJson[i].id != input.id) {
+                    cartJsonNew.append(cartJson[i]);
+                    newTotal += cartJson[i].price;
+                }
+            }
+            localStorage.setItem('cartx', JSON.stringify(cartJsonNew));
+            localStorage.setItem('amount', newTotal);
+        }
+
+        var form = document.getElementById("add_to_fucking_cart");
+
+
+        var my_func = function (event) {
+            event.preventDefault();
+
+            var flag = false;
+            var i;
+            var cartJson;
+            var cartRaw = localStorage.getItem('cartx');
+            if (cartRaw != null) {
+                cartJson = JSON.parse(cartRaw);
+                for (i = 0; i < cartJson.length; i++) {
+                    if (cartJson[i].id == form.product_id.value) {
+                        flag = true;
+                    }
+                }
             }
 
+            if (flag) {
 
-		</script>
+            } else {
+                var node = document.createElement("LI");
+
+                node.className = 'mini_cart_item';
+                node.innerHTML = '<a id= "'
+                    + form.product_id.value
+                    + '" title="Remove this item" onclick="removeRow(this)" class="remove" href="javascript:void(0);">×</a><a href=""><img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="" alt="">'
+                    + form.product_name.value
+                    + '&nbsp;</a><span class="quantity" id="quantity_in_cart_xxx_' + form.product_id.value + '">'
+                    + form.quantity.value
+                    + '</span> × <span class="amount" id="amount_in_cart_xxx_' + form.product_id.value + '" >'
+                    + form.unit_price.value + '</span>';
+
+                document.getElementById("cart_fucking").appendChild(node);
+
+                var current_total = Number(document.getElementById("inside-cart-total").innerHTML);
+                var final_total = current_total
+                    + (Number(form.unit_price.value) * Number(form.quantity.value));
+                document.getElementById("inside-cart-total").innerHTML = final_total;
+
+                localStorage.setItem('amount', final_total);
+
+                //cart stuff on new item add
+                var cartRaw = localStorage.getItem('cartx');
+                var cart;
+
+                if (cartRaw == null) {
+                    cart = [];
+                } else {
+                    cart = JSON.parse(cartRaw);
+                }
+
+                //console.log(cart);
+
+                item = {}
+                item["id"] = form.product_id.value;
+                item["name"] = form.product_name.value;
+                item["quantity"] = form.quantity.value;
+                item["price"] = form.unit_price.value;
+                item["vendor"] = form.vendor.value;
+
+                cart.push(item);
+
+                console.log(cart);
+                localStorage.setItem('cartx', JSON.stringify(cart));
+            }
+
+        };
+
+        if (form != null) {
+            form.addEventListener("submit", my_func, true);
+        }
 
 
-	</div>
-	<!-- #page -->
+        //initial population things
+
+        function codeAddress() {
+
+            var cartJson;
+            var cartRaw = localStorage.getItem('cartx');
+            if (cartRaw != null) {
+                cartJson = JSON.parse(cartRaw);
+
+                var i;
+                for (i = 0; i < cartJson.length; i++) {
+                    var cartItem = cartJson[i];
+                    console.log(cartItem);
+                    var node = document.createElement("LI");
+                    node.className = 'mini_cart_item';
+                    node.innerHTML = '<a id= "'
+                        + cartItem.id
+                        + '" title="Remove this item" onclick="removeRow(this)" class="remove" href="javascript:void(0);">×</a><a href=""><img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="" alt="">'
+                        + cartItem.name
+                        + '&nbsp;</a><span class="quantity" id="quantity_in_cart_xxx_' + cartItem.id + '">'
+                        + cartItem.quantity
+                        + '</span> × <span class="amount" id="amount_in_cart_xxx_' + cartItem.id + '" >'
+                        + cartItem.price + '</span>';
+
+                    document.getElementById("cart_fucking").appendChild(node);
+
+                }
+            }
+
+            var total_amount = localStorage.getItem('amount');
+
+            if (total_amount != null) {
+                document.getElementById("inside-cart-total").innerHTML = total_amount;
+            } else {
+                document.getElementById("inside-cart-total").innerHTML = 0;
+            }
+
+            //alert('ok');
+        }
+
+        window.onload = codeAddress;
 
 
+        var flag = false;
+        $(function () {
 
+
+            $("#datepicker").datepicker();
+            $("#datepicker2").datepicker({
+                showOn: "button",
+                buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                buttonImageOnly: false,
+                onSelect: function (formattedDate, date, inst) {
+                    flag = true;
+                    //alert(formattedDate);
+                    calculateDays();
+                }
+            });
+
+
+            $("#datepicker3").datepicker({
+                showOn: "button",
+                buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                buttonImageOnly: false,
+                onSelect: function (formattedDate, date, inst) {
+                    flag = true;
+                    // alert(formattedDate);
+                    calculateDays();
+                }
+            });
+
+
+        });
+
+        function calculateDays() {
+            var startDate = $("#datepicker2").val();
+            var endDate = $("#datepicker3").val();
+
+            if (startDate != "" && endDate != "") {
+                var totalDays = datediff(parseDate(startDate), parseDate(endDate)) + 1;
+
+                var leadTimeDiffDays = datediff(parseDate(getToday()), parseDate(startDate)) ;
+               // alert("till event: "+ leadTimeDiffDays);
+                iniata(totalDays, leadTimeDiffDays);
+            }
+
+        }
+
+        function parseDate(str) {
+            var mdy = str.split('/');
+            return new Date(mdy[2], mdy[0] - 1, mdy[1]);
+        }
+
+        function datediff(first, second) {
+            // Take the difference between the dates and divide by milliseconds per day.
+            // Round to nearest whole number to deal with DST.
+            return Math.round((second - first) / (1000 * 60 * 60 * 24));
+        }
+
+        function getToday() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+
+            today = mm + '/' + dd + '/' + yyyy;
+            return today;
+        }
+
+    </script>
+
+
+</div>
+<!-- #page -->
 
 
 </body>

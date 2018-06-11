@@ -289,12 +289,55 @@
         var deliveryCharge3down = /*[[${charges.deliveryChargeTire3LowerLimit}]]*/ 'default';
         var deliveryCharge3charge = /*[[${charges.deliveryChargeTire3}]]*/ 'default';
 
+        var leadTimeDiffDaysTire1 = /*[[${charges.extra_charge_tier_1_days}]]*/ 'default';
+        var leadTimeDiffDaysTire2 = /*[[${charges.extra_charge_tier_2_days}]]*/ 'default';
+        var leadTimeDiffDaysTire3 = /*[[${charges.extra_charge_tier_3_days}]]*/ 'default';
+
+        var leadTimeDiffPercentageTire1 = /*[[${charges.extra_charge_tier_1_charge_percentage}]]*/ 'default';
+        var leadTimeDiffPercentageTire2 = /*[[${charges.extra_charge_tier_2_charge_percentage}]]*/ 'default';
+        var leadTimeDiffPercentageTire3 = /*[[${charges.extra_charge_tier_3_charge_percentage}]]*/ 'default';
+
         /*]]>*/
     </script>
 
 	<script type="text/javascript">
-		function iniata(days) {
+		
+		function clearRows() {
+		    var tableRef = document.getElementById("mytable").getElementsByTagName('tbody')[0];
+            var x = tableRef.rows.length;
+            console.log("clearing rows");
+            console.log(x);
+            var i ;
+            for(i = 0; i < x; i++){
+                tableRef.deleteRow(i);
+            }
+            document.getElementById("sub-total").innerHTML = "";
+        }
+        function clearBDT(str){
+            return str.replace("BDT", "");
+		}
 
+		function getLeadTimeDiff(days){
+		    var toBeReturned = 0;
+		    if(days < leadTimeDiffDaysTire1){
+                toBeReturned = leadTimeDiffPercentageTire1;
+			}else if(leadTimeDiffDaysTire1 < days && days < leadTimeDiffDaysTire2){
+                toBeReturned = leadTimeDiffPercentageTire2;
+            }else{
+                toBeReturned = leadTimeDiffPercentageTire3;
+			}
+
+            toBeReturned += 100;
+			return toBeReturned;
+		}
+
+		function iniata(days, leadTimeDiffDays) {
+
+            var leadTimeDiff = getLeadTimeDiff(leadTimeDiffDays);
+
+			if(days>1){
+                clearRows();
+			}
 
 		    //console.log("vendor discount:" + vendorDiscount);
 			var cartJson;
@@ -310,17 +353,13 @@
 				var i;
 				for (i = 0; i < cartJson.length; i++) {
 
-				//	console.log('goging for it');
 					var cartItem = cartJson[i];
-				//	console.log(cartItem);
-
+				
 					var tableRef = document.getElementById("mytable")
 							.getElementsByTagName('tbody')[0];
 					var newRow = tableRef.insertRow(tableRef.rows.length - 1);
 
-					newRow.insertCell(0).appendChild(
-							document.createTextNode(cartItem.name + " x "
-									+ cartItem.quantity));
+					newRow.insertCell(0).appendChild(document.createTextNode(cartItem.name + " x "+ cartItem.quantity));
 
 					//vendor discount
 					var vendorId = cartItem.vendor;
@@ -341,22 +380,22 @@
                         var toBeDiscounted = (Number(vendorDiscount) / 100) * Number(cartItem.price);
                         var previousPrice = Number(cartItem.price);
                         afterDiscountPrice = previousPrice - toBeDiscounted;
-                        itemPrice =Number(cartItem.quantity) * afterDiscountPrice * days;
+                        itemPrice =Number(cartItem.quantity) * afterDiscountPrice * days * (leadTimeDiff /100);
 
                         itemPrice = itemPrice + ' BDT ( After'+ vendorDiscount+'%  Vendor Discount )'
                     }else{
                         afterDiscountPrice = Number(cartItem.price);
-                        itemPrice =Number(cartItem.quantity) * afterDiscountPrice * days;
+                        itemPrice =Number(cartItem.quantity) * afterDiscountPrice * days * (leadTimeDiff /100);
 
                         itemPrice = itemPrice + ' BDT'
                     }
 
 					newRow.insertCell(1).appendChild(document.createTextNode(itemPrice));
 					total += Number(cartItem.quantity) * afterDiscountPrice * days;
-					document.getElementById("sub-total").innerHTML = Number(document.getElementById("sub-total").innerHTML) + total;
+					document.getElementById("sub-total").innerHTML = Number(clearBDT(document.getElementById("sub-total").innerHTML)) + total;
 				}
 
-				var subTotal = Number(document.getElementById("sub-total").innerHTML);
+				var subTotal = Number(clearBDT(document.getElementById("sub-total").innerHTML));
 				var selectedServiceCharge = 0;
 
                 // if( subTotal <= Number(tire1up) && subTotal > Number() ){
@@ -399,8 +438,6 @@
                     }
                 }
 
-
-
                 document.getElementById("service-charge").innerHTML = (Number(selectedServiceCharge)/100) * subTotal;
                 document.getElementById("delivery-charge").innerHTML = (Number(selectedDeliveryCharge)/100) * subTotal;
 
@@ -419,7 +456,7 @@
 			}
 		}
 
-		window.onload = iniata(1);
+		window.onload = iniata(1, 1000);
 
 		codeAddress();
 

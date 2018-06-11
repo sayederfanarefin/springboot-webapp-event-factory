@@ -142,8 +142,7 @@ public class StoreController {
 
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		modelAndView.addObject("userx", userService.findUserByEmail(principal.getName()));
-		List<Charge> charges = chargeRepository.findAll();
-		modelAndView.addObject("charges", charges.get(0));
+		modelAndView.addObject("charges", chargeRepository.findById(new Long(1)));
 		return modelAndView;
 	}
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
