@@ -1,5 +1,6 @@
 package com.avnrsol.eventfactory.controller;
 
+import java.util.Date;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -73,8 +74,10 @@ public class OrderController {
 		o.setSubTotal(orderDto.getSubTotal());
 		o.setTotal(orderDto.getTotal());
 		o.setUser(u);
+		o.setStartDate(new Date(orderDto.getStartDate()));
+		o.setEndDate(new Date(orderDto.getEndDate()));
 
-		System.out.println("->->->->->->->->->->->->->->->->->->->->->" + orderDto.getOrderItem().size());
+		//System.out.println("->->->->->->->->->->->->->->->->->->->->->" + orderDto.getOrderItem().size());
 		for (int i = 0; i < orderDto.getOrderItem().size(); i++) {
 			OrderItemDto oidto = orderDto.getOrderItem().get(i);
 			OrderItem oi = new OrderItem();
@@ -83,7 +86,7 @@ public class OrderController {
 			oi.setOrder(o);
 			oi.setService(serviceoRepository.findServiceoById(oidto.getService().getId()));
 			o.addOrderItem(oi);
-			System.out.println("->->->->->->->->->->->->->");
+			//System.out.println("->->->->->->->->->->->->->");
 		}
 
 		Order oo = orderRepository.save(o);
