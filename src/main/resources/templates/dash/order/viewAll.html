@@ -82,16 +82,14 @@
                                                 </ul>
                                             </td>
                                         	<td>
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        Services: [List of ordered services go here]
-                                                    </li>
-                                                    <li>
-                                                        Quantities: [List of quantities go here]
-                                                    </li>
-                                                    <li>
-                                                        Vendors: [List of vendors go here]
-                                                    </li>
+                                                <ul class="list-unstyled" th:each="items : ${clientlist.orderItems}">
+
+
+                                                    <li th:text="@{Service Name: } + ${items.service.name}"></li>
+                                                    <li th:text="@{Quantity: } + ${items.quantity}"></li>
+                                                    <li th:text="@{Price: } + ${items.amount}"></li>
+                                                    <li th:text="@{Vendor Name: } + ${items.service.vendor.name}"></li>
+
                                                 </ul>
                                             </td>
                                         	<td>
