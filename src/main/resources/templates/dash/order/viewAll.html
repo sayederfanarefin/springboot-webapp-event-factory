@@ -96,12 +96,16 @@
                                             </td>
                                         	<td>
                                                 <ul class="list-unstyled">
-                                                    <li>
-                                                        Payment Type: Cash on Delivery
+                                                    <li th:text="@{Payment Type: } + ${clientlist.paymentType} ">
+
                                                     </li>
-                                                    <li>
-                                                        Discount: None
+
+
+                                                    <li th:text="@{Sub Total: } + ${clientlist.subTotal} ">
+
                                                     </li>
+
+
                                                     <li>
                                                         Delivery Fee: 100
                                                     </li>                                                    
@@ -114,9 +118,7 @@
                                                     <li>
                                                         Vendor payable: 21750
                                                     </li>
-                                                    <li>
-                                                        Subtotal: 24800
-                                                    </li>
+
                                                     <li>
                                                         <strong>Total: 25000</strong>
                                                     </li>
