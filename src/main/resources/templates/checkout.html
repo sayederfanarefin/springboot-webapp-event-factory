@@ -522,13 +522,21 @@
 			} 
 			
 			order["orderItem"] = orderItems;
-			
+
+                var startDate = $("#datepicker2").val();
+                var endDate = $("#datepicker3").val();
+
+                alert(startDate);
+
+			order["startDate"] =startDate;
+			order["endDate"] =endDate;
+
 			
 			//console.log(order);
 			
-			var testAjax = {};
-			testAjax["name"] = "test name erfan! inshallah it will work";
-			
+			// var testAjax = {};
+			// testAjax["name"] = "test name erfan! inshallah it will work";
+			//
 				$.ajax({
 					url : '/ads',
 					type : 'post',

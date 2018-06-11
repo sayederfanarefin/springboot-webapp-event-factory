@@ -46,7 +46,10 @@ public class Order {
 	public Long total;
 	
 	public String paymentType;
-	
+
+	public Date startDate;
+
+	public Date endDate;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_order")
@@ -173,6 +176,20 @@ public class Order {
 	public void addOrderItem(OrderItem orderItem) {
 		orderItems.add(orderItem);
 	}
-	
-	
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
 }
