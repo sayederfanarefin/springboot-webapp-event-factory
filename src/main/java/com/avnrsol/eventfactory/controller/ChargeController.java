@@ -39,9 +39,9 @@ public class ChargeController {
 	@RequestMapping(value="/add", method = RequestMethod.GET)
 	public ModelAndView registration(){
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("charge", new Charge()); 
+		//modelAndView.addObject("charge", new Charge());
 		modelAndView.addObject("title", "Charge Information > Add Charge");
-		
+		modelAndView.addObject("charge", chargeRepository.findById(new Long(1)));
 		modelAndView.setViewName("dash/charge/add");
 		return modelAndView;
 	}
@@ -67,48 +67,17 @@ public class ChargeController {
 			modelAndView.addObject("message", "Some thing went wrong. Please try again later.");
 			modelAndView.addObject("m",  1);
 		}
-		
-		
 		return modelAndView;
 	}
 	
 	
-//	@RequestMapping(value="/viewAll", method = RequestMethod.GET)
-//	public ModelAndView viewAll(@RequestParam("pageSize") Optional<Integer> pageSize,
-//            @RequestParam("page") Optional<Integer> page){
-//		
-//		
-//		
-//		ModelAndView modelAndView = new ModelAndView();
-//		Page<Charge> charges = chargeService.findAllCharge(0);
-//		
-//		modelAndView.setViewName("dash/charge/viewAll");
-//		
-//	//	modelAndView.addObject("charges", charges.getContent());
-//		modelAndView.addObject("title", "Service Information > All Services");
-//		
-//		
-//		
-//        int evalPageSize = pageSize.orElse(Constants.INITIAL_PAGE_SIZE);
-//       
-//        int evalPage = (page.orElse(0) < 1) ? Constants.INITIAL_PAGE : page.get() - 1;
-//       
-//        Page<Charge> chargelist = chargeRepository.findAll(new PageRequest(evalPage, evalPageSize));
-//    
-//        PagerModel pager = new PagerModel(chargelist.getTotalPages(),chargelist.getNumber(),Constants.BUTTONS_TO_SHOW);
-//       
-//        modelAndView.addObject("clientlist",chargelist);
-//       
-//        modelAndView.addObject("selectedPageSize", evalPageSize);
-//        
-//        modelAndView.addObject("pageSizes", Constants.PAGE_SIZES);
-//        modelAndView.addObject("baseUrl", "/dash/charge/viewAll");
-//      
-//        modelAndView.addObject("pager", pager);
-//        
-//        
-//        
-//		return modelAndView;
-//	}
+	@RequestMapping(value="/viewAll", method = RequestMethod.GET)
+	public ModelAndView viewAll(){
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("dash/charge/viewAll");
+		modelAndView.addObject("title", "Charge Information > All Charges");
+		modelAndView.addObject("charges", chargeRepository.findById(new Long(1)));
+		return modelAndView;
+	}
 	
 }

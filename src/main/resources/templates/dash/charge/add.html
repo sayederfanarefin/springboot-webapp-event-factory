@@ -39,7 +39,7 @@
 							<div class="card">
 
 								<div class="content">
-									<form th:action="@{/dash/charge/add}" th:object="${charge}"
+									<form th:action="@{/dash/charge/add}"
 										method="post" enctype="multipart/form-data">
 
 										<div class="row">
@@ -49,7 +49,8 @@
 													<label>Vendor Discount</label>
 													<input type="text"
 														class="form-control border-input"
-														 th:field="*{vendorDiscount}" placeholder="Vendor Discount">
+                                                           th:field="${charge.vendorDiscount}"
+														  placeholder="Vendor Discount">
 												</div>
 											</div>
 
@@ -70,7 +71,8 @@
 													<label>Service Charge Tire 1 Upper Limit</label>
 													<input type="text"
 														   class="form-control border-input"
-														    th:field="*{serviceChargeTire1UpperLimit}" placeholder="Service Charge Tire 1 Upper Limit">
+                                                           th:field="${charge.serviceChargeTire1UpperLimit}"
+														    placeholder="Service Charge Tire 1 Upper Limit">
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -78,7 +80,8 @@
 													<label>Service Charge Tire 1 Lower Limit</label>
 													<input type="text"
 														   class="form-control border-input"
-														   th:field="*{serviceChargeTire1LowerLimit}"  placeholder="Service Charge Tire 1 Lower Limit">
+                                                           th:field="${charge.serviceChargeTire1LowerLimit}"
+														  placeholder="Service Charge Tire 1 Lower Limit">
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -86,7 +89,8 @@
 													<label>Service Charge Tire 1 </label>
 													<input type="text"
 														   class="form-control border-input"
-														    th:field="*{serviceChargeTire1}" placeholder="Tire 1 Service Charge">
+                                                           th:field="${charge.serviceChargeTire1LowerLimit}"
+														    th:field="${charge.serviceChargeTire1}" placeholder="Tire 1 Service Charge">
 												</div>
 											</div>
 
@@ -99,7 +103,7 @@
 													<label>Service Charge Tire 2 Upper Limit</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Service Charge Tire 2 Upper Limit" th:field="*{serviceChargeTire2UpperLimit}">
+														   placeholder="Service Charge Tire 2 Upper Limit" th:field="${charge.serviceChargeTire2UpperLimit}">
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -107,7 +111,7 @@
 													<label>Service Charge Tire 2 Lower Limit</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Service Charge Tire 2 Lower Limit" th:field="*{serviceChargeTire2LowerLimit}">
+														   placeholder="Service Charge Tire 2 Lower Limit" th:field="${charge.serviceChargeTire2LowerLimit}">
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -115,7 +119,7 @@
 													<label>Service Charge Tire 2</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Tire 2 Service Charge" th:field="*{serviceChargeTire2}">
+														   placeholder="Tire 2 Service Charge" th:field="${charge.serviceChargeTire2}">
 												</div>
 											</div>
 
@@ -128,7 +132,7 @@
 													<label>Service Charge Tire 3 Upper Limit</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Service Charge Tire 3 Upper Limit" th:field="*{serviceChargeTire3UpperLimit}">
+														   placeholder="Service Charge Tire 3 Upper Limit" th:field="${charge.serviceChargeTire3UpperLimit}">
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -136,7 +140,7 @@
 													<label>Service Charge Tire 3 Lower Limit</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Service Charge Tire 3 Lower Limit" th:field="*{serviceChargeTire3LowerLimit}">
+														   placeholder="Service Charge Tire 3 Lower Limit" th:field="${charge.serviceChargeTire3LowerLimit}">
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -144,7 +148,7 @@
 													<label>Service Charge Tire 3</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Tire 3 Service Charge" th:field="*{serviceChargeTire3}">
+														   placeholder="Tire 3 Service Charge" th:field="${charge.serviceChargeTire3}">
 												</div>
 											</div>
 
@@ -166,7 +170,7 @@
 													<label>Delivery Charge Tire 1 Upper Limit</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Delivery Charge Tire 1 Upper Limit" th:field="*{deliveryChargeTire1UpperLimit}">
+														   placeholder="Delivery Charge Tire 1 Upper Limit" th:field="${charge.deliveryChargeTire1UpperLimit}">
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -174,7 +178,7 @@
 													<label>Delivery Charge Tire 1 Lower Limit</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Delivery Charge Tire 1 Lower Limit" th:field="*{deliveryChargeTire1LowerLimit}">
+														   placeholder="Delivery Charge Tire 1 Lower Limit" th:field="${charge.deliveryChargeTire1LowerLimit}">
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -182,7 +186,7 @@
 													<label>Delivery Charge Tire 1 </label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Tire 1 Delivery Charge" th:field="*{deliveryChargeTire1}">
+														   placeholder="Tire 1 Delivery Charge" th:field="${charge.deliveryChargeTire1}">
 												</div>
 											</div>
 
@@ -195,7 +199,7 @@
 													<label>Delivery Charge Tire 2 Upper Limit</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Delivery Charge Tire 2 Upper Limit" th:field="*{deliveryChargeTire2UpperLimit}">
+														   placeholder="Delivery Charge Tire 2 Upper Limit" th:field="${charge.deliveryChargeTire2UpperLimit}">
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -203,7 +207,7 @@
 													<label>Delivery Charge Tire 2 Lower Limit</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Delivery Charge Tire 2 Lower Limit" th:field="*{deliveryChargeTire2LowerLimit}">
+														   placeholder="Delivery Charge Tire 2 Lower Limit" th:field="${charge.deliveryChargeTire2LowerLimit}">
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -211,7 +215,7 @@
 													<label>Delivery Charge Tire 2</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Tire 2 Delivery Charge" th:field="*{deliveryChargeTire2}">
+														   placeholder="Tire 2 Delivery Charge" th:field="${charge.deliveryChargeTire2}">
 												</div>
 											</div>
 
@@ -224,7 +228,7 @@
 													<label>Delivery Charge Tire 3 Upper Limit</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Delivery Charge Tire 3 Upper Limit" th:field="*{deliveryChargeTire3UpperLimit}">
+														   placeholder="Delivery Charge Tire 3 Upper Limit" th:field="${charge.deliveryChargeTire3UpperLimit}">
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -232,7 +236,7 @@
 													<label>Delivery Charge Tire 3 Lower Limit</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Delivery Charge Tire 3 Lower Limit" th:field="*{deliveryChargeTire3LowerLimit}">
+														   placeholder="Delivery Charge Tire 3 Lower Limit" th:field="${charge.deliveryChargeTire3LowerLimit}">
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -240,7 +244,7 @@
 													<label>Delivery Charge Tire 3</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Tire 3 Delivery Charge" th:field="*{deliveryChargeTire3}">
+														   placeholder="Tire 3 Delivery Charge" th:field="${charge.deliveryChargeTire3}">
 												</div>
 											</div>
 
@@ -262,7 +266,7 @@
 													<label>Lead Time Price Difference Tire 1 Limit</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Service Charge Tire 1 Limit" th:field="*{extra_charge_tier_1_days}">
+														   placeholder="Service Charge Tire 1 Limit" th:field="${charge.extra_charge_tier_1_days}">
 												</div>
 											</div>
 
@@ -271,7 +275,7 @@
 													<label>Lead Time Price Difference Charge Tire 1</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Tire 1 Service Charge" th:field="*{extra_charge_tier_1_charge_percentage}">
+														   placeholder="Tire 1 Service Charge" th:field="${charge.extra_charge_tier_1_charge_percentage}">
 												</div>
 											</div>
 
@@ -283,7 +287,7 @@
 													<label>Lead Time Price Difference Tire 2 Limit</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Service Charge Tire 2 Limit" th:field="*{extra_charge_tier_2_days}">
+														   placeholder="Service Charge Tire 2 Limit" th:field="${charge.extra_charge_tier_2_days}">
 												</div>
 											</div>
 
@@ -292,7 +296,7 @@
 													<label>Lead Time Price Difference Charge Tire 2</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Tire 2 Service Charge" th:field="*{extra_charge_tier_2_charge_percentage}">
+														   placeholder="Tire 2 Service Charge" th:field="${charge.extra_charge_tier_2_charge_percentage}">
 												</div>
 											</div>
 
@@ -304,7 +308,7 @@
 													<label>Lead Time Price Difference Tire 3 Limit</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Service Charge Tire 3 Limit" th:field="*{extra_charge_tier_3_days}">
+														   placeholder="Service Charge Tire 3 Limit" th:field="${charge.extra_charge_tier_3_days}">
 												</div>
 											</div>
 
@@ -313,7 +317,7 @@
 													<label>Lead Time Price Difference Charge Tire 3</label>
 													<input type="text"
 														   class="form-control border-input"
-														   placeholder="Tire 3 Service Charge" th:field="*{extra_charge_tier_3_charge_percentage}">
+														   placeholder="Tire 3 Service Charge" th:field="${charge.extra_charge_tier_3_charge_percentage}">
 												</div>
 											</div>
 
@@ -346,7 +350,7 @@
 
 										<div class="text-center">
 											<button type="submit" value="Submit"
-												class="btn btn-info btn-fill btn-wd">Create</button>
+												class="btn btn-info btn-fill btn-wd">Update</button>
 										</div>
 										<div class="clearfix"></div>
 									</form>

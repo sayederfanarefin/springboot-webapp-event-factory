@@ -391,7 +391,7 @@
                     }
 
 					newRow.insertCell(1).appendChild(document.createTextNode(itemPrice));
-					total += Number(cartItem.quantity) * afterDiscountPrice * days;
+					total += Number(cartItem.quantity) * afterDiscountPrice * days * (leadTimeDiff /100);
 					document.getElementById("sub-total").innerHTML = Number(clearBDT(document.getElementById("sub-total").innerHTML)) + total;
 				}
 
