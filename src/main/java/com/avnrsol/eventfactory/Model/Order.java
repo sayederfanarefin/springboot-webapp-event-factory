@@ -68,6 +68,9 @@ public class Order {
 	public List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
 
+	public boolean status;
+
+
 	public Long getId() {
 		return id;
 	}
@@ -211,5 +214,13 @@ public class Order {
 
 	public void setDeliveryCharge(Long deliveryCharge) {
 		this.deliveryCharge = deliveryCharge;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 }
