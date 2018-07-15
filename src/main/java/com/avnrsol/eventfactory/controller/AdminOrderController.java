@@ -38,10 +38,7 @@ public class AdminOrderController {
 	
 	@Autowired
 	private OrderRepository OrderRepository;
-	
-	
 
-	
 	@RequestMapping(value="/viewAll", method = RequestMethod.GET)
 	public ModelAndView viewAll(@RequestParam("pageSize") Optional<Integer> pageSize,
             @RequestParam("page") Optional<Integer> page){

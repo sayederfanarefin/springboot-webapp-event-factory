@@ -48,7 +48,7 @@ public class StoreController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView index(@CookieValue(value = "test_cookie", defaultValue = "hello") String fooCookie) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("home");
+		modelAndView.setViewName("commingsoon");
 		modelAndView.addObject("clientlist", serviceCategoryRepository.findAll());
 		modelAndView.addObject("searchCriteria", new SearchCriteria() );
 		modelAndView.addObject("vendors", vendorService.findAllVendor(0));
