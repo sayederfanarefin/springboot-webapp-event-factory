@@ -15,4 +15,5 @@ public interface ServiceoRepository extends JpaRepository<Serviceo, Long>{
     List<Serviceo> findServiceoByVendor_Id(Long vendorId);
     List<Serviceo> findTop4ServiceoByServiceCategory_Id(Long serviceCategoryId);
     List<Serviceo> findByNameContaining(String search);
+    Serviceo findServiceoByVendor_IdAndServiceCategory_IdAndName(Long vendorId, Long serviceCategoryId, String name);
 }

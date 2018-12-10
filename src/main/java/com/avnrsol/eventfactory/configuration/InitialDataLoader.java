@@ -1,10 +1,7 @@
 package com.avnrsol.eventfactory.configuration;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import javax.transaction.Transactional;
 
@@ -132,17 +129,27 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		
 		Image image = createImageIfNotFound("default image", "used for testing", "a.jpg");
 		
-		ServiceCategory serviceCategory  =  createServiceCategoryIfNotFound("default image", "used for testing",image);
-		
-		Vendor vendor = createVendorIfNotFound("avnrsol");
-		//Serviceo service = createServiceIfNotFound("service sdfsdf", "sdfsdfsdf dsfsdfsdf dsfsdf", image, serviceCategory, vendor);
+		ServiceCategory serviceCategory1  =  createServiceCategoryIfNotFound("Category 1", "used for testing",image);
+		ServiceCategory serviceCategory2  =  createServiceCategoryIfNotFound("Category 2", "used for testing",image);
+		ServiceCategory serviceCategory3  =  createServiceCategoryIfNotFound("Category 3", "used for testing",image);
+		ServiceCategory serviceCategory4  =  createServiceCategoryIfNotFound("Category 4", "used for testing",image);
+		ServiceCategory serviceCategory5  =  createServiceCategoryIfNotFound("Category 5", "used for testing",image);
+
+		Vendor vendor1 = createVendorIfNotFound("Vendor 1", "vendor1@sayederfanarefin.info", "1123123", "Dhaka", "Bangladesh");
+		Vendor vendor2 = createVendorIfNotFound("Vendor 2", "vendor2@sayederfanarefin.info", "1123123", "Rajshahi", "Bangladesh");
+		Vendor vendor3 = createVendorIfNotFound("Vendor 3", "vendor3@sayederfanarefin.info", "1123123", "Rangpur", "Bangladesh");
+		Vendor vendor4 = createVendorIfNotFound("Vendor 4", "vendor4@sayederfanarefin.info", "1123123", "Dhaka", "Bangladesh");
+		Vendor vendor5 = createVendorIfNotFound("Vendor 5", "vendor5@sayederfanarefin.info", "1123123", "Sylhet", "Bangladesh");
+
+
+		Serviceo service1 = createServiceIfNotFound("service 1", generateRandomWords(100), image, serviceCategory1, vendor1, generateRandomPrice());
 		
 		
 		
 	}
 
 	@Transactional
-	private final Image createImageIfNotFound(final String name, final String description, String url) {
+	 Image createImageIfNotFound(final String name, final String description, String url) {
 		
 		Image image = imageRepository.findImageByUrl(url);
 		if(image == null) {
@@ -155,50 +162,55 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	
 	
 	@Transactional
-	private final Serviceo createServiceIfNotFound(final String name, final String description, final Image image,
-			ServiceCategory serviceCategory, Vendor vendor) {
-		
-		
-		Serviceo service  = new Serviceo();
-		service.setDescription("Bla bla bla");
-		service.setName("bla");
-		service.addImage(image);
-		service.setAvailable(true);
-		service.setServiceCategory(serviceCategory);
-		vendor.addService(service);
-		service.setVendor(vendor);
-		service = serviceRepository.save(service);
+	 Serviceo createServiceIfNotFound(final String name, final String description, final Image image,
+			ServiceCategory serviceCategory, Vendor vendor, double price) {
+		Serviceo service = serviceRepository.findServiceoByVendor_IdAndServiceCategory_IdAndName(vendor.getId(), serviceCategory.getId(), name);
+
+		if(service == null){
+			service  = new Serviceo();
+			service.setDescription(description);
+			service.setName(name);
+			service.addImage(image);
+			service.setAvailable(true);
+			service.setServiceCategory(serviceCategory);
+			vendor.addService(service);
+			service.setVendor(vendor);
+			service.setPrice(price);
+			service = serviceRepository.save(service);
+
+		}
+
 		
 		return service;	
 	}
 	
 	
 	@Transactional
-	private final Vendor createVendorIfNotFound(final String name) {
+	 Vendor createVendorIfNotFound(final String name, String email, String phone , final String city, final String country) {
 		
 		
 		Vendor vendor = vendorRepository.findByName(name);
-		if(vendor ==null) {
+		if(vendor == null) {
 			vendor = new Vendor();
 			vendor.setName(name);
-			vendor.setCity("Dhaka");
-			vendor.setCountry("Bangladesh");
-			vendor.setEmail("asfdas@sdf.o");
-			vendor.setPhone("34534534543543");
+			vendor.setCity(city);
+			vendor.setCountry(country);
+			vendor.setEmail(email);
+			vendor.setPhone(phone);
 			vendorRepository.save(vendor);
 		}
 			return vendor;	
 	}
 	
 	@Transactional
-	private final ServiceCategory createServiceCategoryIfNotFound(final String name, final String description, final Image image) {
+	 ServiceCategory createServiceCategoryIfNotFound(final String name, final String description, final Image image) {
 		
 		
 		ServiceCategory serviceCategory  = serviceCategoryRepository.findByName(name);
 		if(serviceCategory ==null) {
 			serviceCategory = new ServiceCategory();
-			serviceCategory.setDescription("Bla bla bla");
-			serviceCategory.setName("bla");
+			serviceCategory.setDescription(description);
+			serviceCategory.setName(name);
 			serviceCategory.addImage(image);
 			serviceCategory = serviceCategoryRepository.save(serviceCategory);
 		}
@@ -207,7 +219,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	
 	
 	@Transactional
-	private final Privilege createPrivilegeIfNotFound(final String name) {
+	  Privilege createPrivilegeIfNotFound(final String name) {
 		Privilege privilege = privilegeRepository.findByName(name);
 		if (privilege == null) {
 			privilege = new Privilege(name);
@@ -219,7 +231,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	}
 
 	@Transactional
-	private final Role createRoleIfNotFound(final String name, final List<Privilege> privileges) {
+	  Role createRoleIfNotFound(final String name, final List<Privilege> privileges) {
 		Role role = roleRepository.findByName(name);
 		if (role == null) {
 			role = new Role(name);
@@ -257,8 +269,30 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 			System.out.println(e.getStackTrace());
 		}
 	}
-	
-	
-	
+
+	public static String generateRandomWords(int numberOfWords)
+	{
+		String[] randomStrings = new String[numberOfWords];
+		Random random = new Random();
+		for(int i = 0; i < numberOfWords; i++)
+		{
+			char[] word = new char[random.nextInt(8)+3]; // words of length 3 through 10. (1 and 2 letter words are boring.)
+			for(int j = 0; j < word.length; j++)
+			{
+				word[j] = (char)('a' + random.nextInt(26));
+			}
+			randomStrings[i] = new String(word);
+		}
+
+		return String.join(" ", randomStrings);
+
+	}
+	public static double generateRandomPrice(){
+		double rangeMin = 10.01;
+		double rangeMax = 10000;
+		Random r = new Random();
+		double randomValue = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+		return randomValue;
+	}
 
 }
