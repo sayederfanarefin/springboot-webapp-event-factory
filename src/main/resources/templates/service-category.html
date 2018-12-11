@@ -31,13 +31,14 @@
                                     <h2 style="padding-top:50px"" class="h1" th:text="${category.name}">Laptops</h2>
                                 </header>
 
-                                <div class="woocommerce columns-6">
+                                <div class="woocommerce columns-4">
                                     <ul class="product-loop-categories">
 
                                         <li class="product-category product" th:each="category : ${category.Services}">
                                             <a th:href="@{/service?id=} + ${category.id}">
-                                                <img th:src="@{/service?id=} + ${category.images[0].url}" class="img-responsive" alt="">
+                                                <img th:src="${category.images[0].url}" class="img-responsive" alt="">
                                                 <h3  th:text="${category.name}">Mac Computers</h3>
+                                                <p  th:text="@{Vendor: } + ${category.vendor.name}">Apple</p>
                                             </a>
                                         </li><!-- /.item -->
 
