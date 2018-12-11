@@ -24,7 +24,7 @@ import java.util.Iterator;
 
 @Controller
 @RequestMapping(value= "/dash/admin")
-public class DashBoardAdminController {
+public class AdminDashBoardController {
 	
 	@Autowired
 	private UserService userService;

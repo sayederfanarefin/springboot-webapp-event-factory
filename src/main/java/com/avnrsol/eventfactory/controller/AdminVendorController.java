@@ -28,7 +28,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping(value= "/dash/vendor")
-public class VendorController {
+public class AdminVendorController {
 	
 	
 

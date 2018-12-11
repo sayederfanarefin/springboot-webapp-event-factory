@@ -29,7 +29,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping(value= "/dash/serviceo")
-public class ServiceController {
+public class AdminServiceController {
 	
     
     

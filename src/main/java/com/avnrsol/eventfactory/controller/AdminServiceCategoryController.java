@@ -28,7 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value= "/dash/serviceCategory")
-public class ServiceCategoryController {
+public class AdminServiceCategoryController {
 	
 	@Autowired
 	ImageService imageService;

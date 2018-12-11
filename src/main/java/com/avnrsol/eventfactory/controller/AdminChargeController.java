@@ -28,7 +28,7 @@ import com.avnrsol.eventfactory.service.ImageService;
 
 @Controller
 @RequestMapping(value= "/dash/charge")
-public class ChargeController {
+public class AdminChargeController {
 	
 	
 	@Autowired
