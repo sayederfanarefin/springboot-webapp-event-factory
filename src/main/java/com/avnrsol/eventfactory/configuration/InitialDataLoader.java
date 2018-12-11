@@ -149,7 +149,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
 				String imageNameCategory = serviceCats[new Random().nextInt(serviceCats.length)] + " Image";
 
-				Image imageCategory = createImageIfNotFound(imageNameCategory, generateRandomWords(100), DOWNLOAD_FOLDER +"/a.jpg");
+				Image imageCategory = createImageIfNotFound(imageNameCategory, generateRandomWords(100), "/images/palceholder.jpg");
 
 				ServiceCategory serviceCategory  =  createServiceCategoryIfNotFound(serviceCategoryName, generateRandomWords(100), imageCategory);
 				for (int iii=0; iii < seviceCount; iii ++){
@@ -158,7 +158,8 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 					String serviceName = "Service "+ String.valueOf(iii);
 					String imageName = "Service "+ String.valueOf(iii) + " Image";
 
-					Image image = createImageIfNotFound(imageName, generateRandomWords(100), DOWNLOAD_FOLDER +"a.jpg");
+					String palceholder = "/images/palceholder.jpg";
+					Image image = createImageIfNotFound(imageName, generateRandomWords(100), palceholder);
 					createServiceIfNotFound(serviceName, generateRandomWords(500), image, serviceCategory, vendor, generateRandomPrice());
 				}
 			}
