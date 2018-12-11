@@ -6,6 +6,7 @@ import java.util.*;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -52,8 +53,13 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
 	@Autowired
 	private PrivilegeRepository privilegeRepository;
-	
-	
+	int serviceCatCount = 2;
+	int vendorCount = 2;
+	int seviceCount = 5;
+
+
+	@Value("${file.download.base}")
+	private String DOWNLOAD_FOLDER;
 
 	// API
 
@@ -127,35 +133,46 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 				new ArrayList<Role>(Arrays.asList(employeeRole)));
 		
 		
-		Image image = createImageIfNotFound("default image", "used for testing", "a.jpg");
-		
-		ServiceCategory serviceCategory1  =  createServiceCategoryIfNotFound("Category 1", "used for testing",image);
-		ServiceCategory serviceCategory2  =  createServiceCategoryIfNotFound("Category 2", "used for testing",image);
-		ServiceCategory serviceCategory3  =  createServiceCategoryIfNotFound("Category 3", "used for testing",image);
-		ServiceCategory serviceCategory4  =  createServiceCategoryIfNotFound("Category 4", "used for testing",image);
-		ServiceCategory serviceCategory5  =  createServiceCategoryIfNotFound("Category 5", "used for testing",image);
 
-		Vendor vendor1 = createVendorIfNotFound("Vendor 1", "vendor1@sayederfanarefin.info", "1123123", "Dhaka", "Bangladesh");
-		Vendor vendor2 = createVendorIfNotFound("Vendor 2", "vendor2@sayederfanarefin.info", "1123123", "Rajshahi", "Bangladesh");
-		Vendor vendor3 = createVendorIfNotFound("Vendor 3", "vendor3@sayederfanarefin.info", "1123123", "Rangpur", "Bangladesh");
-		Vendor vendor4 = createVendorIfNotFound("Vendor 4", "vendor4@sayederfanarefin.info", "1123123", "Dhaka", "Bangladesh");
-		Vendor vendor5 = createVendorIfNotFound("Vendor 5", "vendor5@sayederfanarefin.info", "1123123", "Sylhet", "Bangladesh");
+		String[] serviceCats = new String[serviceCatCount];
+
+		for (int x =0; x < serviceCatCount; x++){
+			serviceCats[x] = "Category "+ String.valueOf(x);
+		}
+
+		for(int i=0; i< vendorCount; i++){
+			String vendorName = "Vendor " + String.valueOf(i);
+			String vendorEmail = "vendor-" + String.valueOf(i) + "@sayederfanarefin.info";
+			Vendor vendor = createVendorIfNotFound(vendorName, vendorEmail, "1123123", "Sylhet", "Bangladesh");
+			for (int ii = 0; ii < serviceCatCount; ii++){
+				String serviceCategoryName = serviceCats[new Random().nextInt(serviceCats.length)];
+
+				String imageNameCategory = serviceCats[new Random().nextInt(serviceCats.length)] + " Image";
+
+				Image imageCategory = createImageIfNotFound(imageNameCategory, generateRandomWords(100), DOWNLOAD_FOLDER +"/a.jpg");
+
+				ServiceCategory serviceCategory  =  createServiceCategoryIfNotFound(serviceCategoryName, generateRandomWords(100), imageCategory);
+				for (int iii=0; iii < seviceCount; iii ++){
 
 
-		Serviceo service1 = createServiceIfNotFound("service 1", generateRandomWords(100), image, serviceCategory1, vendor1, generateRandomPrice());
-		
-		
-		
+					String serviceName = "Service "+ String.valueOf(iii);
+					String imageName = "Service "+ String.valueOf(iii) + " Image";
+
+					Image image = createImageIfNotFound(imageName, generateRandomWords(100), DOWNLOAD_FOLDER +"a.jpg");
+					createServiceIfNotFound(serviceName, generateRandomWords(500), image, serviceCategory, vendor, generateRandomPrice());
+				}
+			}
+		}
 	}
 
 	@Transactional
 	 Image createImageIfNotFound(final String name, final String description, String url) {
 		
-		Image image = imageRepository.findImageByUrl(url);
-		if(image == null) {
+		Image image ; //= imageRepository.findImageByUrl(url);
+		//if(image == null) {
 			image 	= new Image(name, description , url);
 			image = imageRepository.save(image);
-		}
+		//}
 	
 		return image;
 	}
@@ -165,7 +182,6 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	 Serviceo createServiceIfNotFound(final String name, final String description, final Image image,
 			ServiceCategory serviceCategory, Vendor vendor, double price) {
 		Serviceo service = serviceRepository.findServiceoByVendor_IdAndServiceCategory_IdAndName(vendor.getId(), serviceCategory.getId(), name);
-
 		if(service == null){
 			service  = new Serviceo();
 			service.setDescription(description);
@@ -177,18 +193,13 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 			service.setVendor(vendor);
 			service.setPrice(price);
 			service = serviceRepository.save(service);
-
 		}
-
-		
 		return service;	
 	}
 	
 	
 	@Transactional
 	 Vendor createVendorIfNotFound(final String name, String email, String phone , final String city, final String country) {
-		
-		
 		Vendor vendor = vendorRepository.findByName(name);
 		if(vendor == null) {
 			vendor = new Vendor();
@@ -204,8 +215,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	
 	@Transactional
 	 ServiceCategory createServiceCategoryIfNotFound(final String name, final String description, final Image image) {
-		
-		
+
 		ServiceCategory serviceCategory  = serviceCategoryRepository.findByName(name);
 		if(serviceCategory ==null) {
 			serviceCategory = new ServiceCategory();

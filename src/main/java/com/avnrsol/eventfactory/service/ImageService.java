@@ -104,16 +104,10 @@ public class ImageService implements IImageService {
 	
 	@Override
 	public Image saveUploadedFile(MultipartFile file) throws IOException {
-
-			
 			String fileName = storageService.store(file);
-			
-			 Resource fileo = storageService.loadAsResource(fileName);
-			 
-			 System.out.println(fileo.getURL().toString());
-			 
-			 String url = DOWNLOAD_FOLDER+"/"+fileo.getFilename().toString();
-			
+			Resource fileo = storageService.loadAsResource(fileName);
+			System.out.println(fileo.getURL().toString());
+			String url = DOWNLOAD_FOLDER+"/"+fileo.getFilename().toString();
 			return addImage( new Image("a", "a", url));
 	}
 	
@@ -127,7 +121,6 @@ public class ImageService implements IImageService {
         }
         String saltStr = salt.toString();
         return URLEncoder.encode(saltStr);
-
     }
 
 }

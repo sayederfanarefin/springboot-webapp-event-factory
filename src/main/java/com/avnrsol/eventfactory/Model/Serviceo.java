@@ -1,5 +1,6 @@
 package com.avnrsol.eventfactory.Model;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -160,22 +161,22 @@ public class Serviceo {
 
 
 	public double getPrice() {
-		return price;
+		return pricePrettyfier(price);
 	}
 
 
 	public void setPrice(double price) {
-		this.price = price;
+		this.price = pricePrettyfier(price);
 	}
 
 
 	public double getDiscount() {
-		return discount;
+		return pricePrettyfier(discount);
 	}
 
 
 	public void setDiscount(double discount) {
-		this.discount = discount;
+		this.discount = pricePrettyfier(discount);
 	}
 
 
@@ -195,4 +196,10 @@ public class Serviceo {
 	public void setBooking(List<Booking> booking) {
 		this.booking = booking;
 	}
+
+	private double pricePrettyfier(double uglyPrice){
+		DecimalFormat df2 = new DecimalFormat(".##");
+		return  Double.valueOf(df2.format(uglyPrice));
+	}
 }
+
