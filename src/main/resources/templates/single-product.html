@@ -204,7 +204,7 @@
 													 rel="tag" th:text="${related.serviceCategory.name}"></a></span> <a th:href="@{/service?id=} + ${related.id}">
 													<h3 th:text="${related.name}"></h3>
 													<div class="product-thumbnail">
-														<img th:src="${related.images[0].url}" th:alt="${related.images[0].name}">
+														<img th:src="@{/} +${related.images[0].url}" th:alt="${related.images[0].name}">
 													</div>
 												</a>
 
