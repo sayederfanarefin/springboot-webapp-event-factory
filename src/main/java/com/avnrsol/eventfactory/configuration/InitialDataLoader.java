@@ -124,12 +124,14 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		final Role employeeRole = createRoleIfNotFound(Constants.USER, employeePrivileges);
 
 		createUserIfNotFound("superadmin@avnrsol.com", "Super Admin avnrsol", "avnrsol", "test",
-				new ArrayList<Role>(Arrays.asList(superAdminRole)));
+				"Dhaka, Bangladesh", "Boson 42 Apps","01521107480", "Sayed Erfan Arefin", "+8801521107480", new ArrayList<Role>(Arrays.asList(superAdminRole)));
 		
 		
 		createUserIfNotFound("admin@avnrsol.com", "Just Admin avnrsol", "avnrsol", "test",
+				"Dhaka, Bangladesh", "Boson 42 Apps","01521107480", "Sayed Erfan Arefin", "+8801521107480",
 				new ArrayList<Role>(Arrays.asList(adminRole)));
 		createUserIfNotFound("user@avnrsol.com", "User avnrsol", "avnrsol", "test",
+				"Dhaka, Bangladesh", "Boson 42 Apps","01521107480", "Sayed Erfan Arefin", "+8801521107480",
 				new ArrayList<Role>(Arrays.asList(employeeRole)));
 		
 		
@@ -257,8 +259,18 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	
 
 	@Transactional
-	private final void createUserIfNotFound(final String email, final String firstName, final String lastName,
-			final String password, final Collection<Role> roles) {
+	private final void createUserIfNotFound(
+			final String email,
+			final String firstName,
+			final String lastName,
+			final String password,
+			final String address,
+			final String companyName,
+			final String phone,
+			final String contactPersonName,
+			final String contactPersonNumber,
+			final Collection<Role> roles
+	) {
 
 		System.out.println("---------------adding user init--------------");
 		try {
@@ -268,8 +280,14 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
 				user.setPassword(passwordEncoder.encode(password));
 				user.setEmail(email);
-			
+				user.setFirstName(firstName);
+				user.setLastName(lastName);
 				user.setRoles(roles);
+				user.setAddress(address);
+				user.setCompanyName(companyName);
+				user.setPhone(phone);
+				user.setContactPersonName(contactPersonName);
+				user.setContactPersonNumber(contactPersonNumber);
 				
 				user = userRepository.save(user);
 				
