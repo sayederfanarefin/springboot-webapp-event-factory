@@ -27,7 +27,7 @@ import com.avnrsol.eventfactory.service.interfaces.IServiceCategoryService;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping(value= "/dash/serviceCategory")
+@RequestMapping(value= "/dashboard/serviceCategory")
 public class AdminServiceCategoryController {
 	
 	@Autowired
@@ -117,7 +117,7 @@ public class AdminServiceCategoryController {
         modelAndView.addObject("selectedPageSize", evalPageSize);
         
         modelAndView.addObject("pageSizes", Constants.PAGE_SIZES);
-        modelAndView.addObject("baseUrl", "/dash/serviceCategory/viewAll");
+        modelAndView.addObject("baseUrl", "/dashboard/serviceCategory/viewAll");
       
         modelAndView.addObject("pager", pager);
         
@@ -185,7 +185,7 @@ public class AdminServiceCategoryController {
 
 		serviceCategoryService.delete(serviceCategoryService.findById(id));
 
-		modelAndView.setViewName("redirect:/dash/serviceCategory/viewAll");
+		modelAndView.setViewName("redirect:/dashboard/serviceCategory/viewAll");
 		redir.addFlashAttribute("message","Service Category Deleted!");
 		redir.addFlashAttribute("m","0");
 		return modelAndView;

@@ -27,7 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
-@RequestMapping(value= "/dash/vendor")
+@RequestMapping(value= "/dashboard/vendor")
 public class AdminVendorController {
 	
 	
@@ -118,7 +118,7 @@ public class AdminVendorController {
         modelAndView.addObject("selectedPageSize", evalPageSize);
         
         modelAndView.addObject("pageSizes", Constants.PAGE_SIZES);
-        modelAndView.addObject("baseUrl", "/dash/vendor/viewAll");
+        modelAndView.addObject("baseUrl", "/dashboard/vendor/viewAll");
       
         modelAndView.addObject("pager", pager);
         
@@ -183,7 +183,7 @@ public class AdminVendorController {
 
 		vendorService.delete(vendorService.findById(id));
 
-		modelAndView.setViewName("redirect:/dash/vendor/viewAll");
+		modelAndView.setViewName("redirect:/dashboard/vendor/viewAll");
 		redir.addFlashAttribute("message","Vendor Deleted!");
 		redir.addFlashAttribute("m","0");
 		return modelAndView;

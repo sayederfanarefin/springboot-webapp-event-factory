@@ -23,7 +23,7 @@ import java.security.Principal;
 import java.util.Iterator;
 
 @Controller
-@RequestMapping(value= "/dash/admin")
+@RequestMapping(value= "/dashboard/admin")
 public class AdminDashBoardController {
 	
 	@Autowired

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping(value= "/dash/my-account")
+@RequestMapping(value= "/dashboard/my-account")
 public class AdminUserController {
 	
 	
@@ -43,7 +43,7 @@ public class AdminUserController {
 //	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 //	public ModelAndView updateEntity( Serviceo service, @RequestParam("file") MultipartFile file) {
 //		ModelAndView modelAndView = new ModelAndView();
-//		//modelAndView.setViewName("redirect:/dash/serviceo/viewAll");
+//		//modelAndView.setViewName("redirect:/dashboard/serviceo/viewAll");
 //
 //		modelAndView.setViewName("dash/serviceo/edit");
 //

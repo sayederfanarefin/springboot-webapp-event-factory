@@ -104,9 +104,9 @@ System.out.println("=>->=>->=>->=>->=>->=>->=>->=>->=>->=>->=>->=>->=>->=>->=>->
         System.out.println("->->->->->->->->->->->->->->->-> redirect method");
 
         if (sb.equals(Constants.SUPER_ADMIN)) {
-            return new RedirectView("/dash/superAdmin/");
+            return new RedirectView("/dashboard/superAdmin/");
         } else if (sb.equals(Constants.ADMIN)) {
-            return new RedirectView("/dash/admin/");
+            return new RedirectView("/dashboard/admin/");
         } else {
             return new RedirectView("/myAccount/");
         }

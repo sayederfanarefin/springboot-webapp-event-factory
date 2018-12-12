@@ -25,7 +25,7 @@ import com.avnrsol.eventfactory.service.ImageService;
 import com.avnrsol.eventfactory.service.interfaces.IOrderService;
 
 @Controller
-@RequestMapping(value= "/dash/order")
+@RequestMapping(value= "/dashboard/order")
 public class AdminOrderController {
 	
 	@Autowired
@@ -68,7 +68,7 @@ public class AdminOrderController {
         modelAndView.addObject("selectedPageSize", evalPageSize);
         
         modelAndView.addObject("pageSizes", Constants.PAGE_SIZES);
-        modelAndView.addObject("baseUrl", "/dash/order/viewAll");
+        modelAndView.addObject("baseUrl", "/dashboard/order/viewAll");
       
         modelAndView.addObject("pager", pager);
         

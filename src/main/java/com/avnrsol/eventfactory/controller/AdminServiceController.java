@@ -28,7 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping(value= "/dash/serviceo")
+@RequestMapping(value= "/dashboard/serviceo")
 public class AdminServiceController {
 	
     
@@ -126,7 +126,7 @@ public class AdminServiceController {
         modelAndView.addObject("selectedPageSize", evalPageSize);
         
         modelAndView.addObject("pageSizes", Constants.PAGE_SIZES);
-        modelAndView.addObject("baseUrl", "/dash/serviceo/viewAll");
+        modelAndView.addObject("baseUrl", "/dashboard/serviceo/viewAll");
       
         modelAndView.addObject("pager", pager);
         
@@ -152,7 +152,7 @@ public class AdminServiceController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public ModelAndView updateEntity( Serviceo service, @RequestParam("file") MultipartFile file) {
 		ModelAndView modelAndView = new ModelAndView();
-		//modelAndView.setViewName("redirect:/dash/serviceo/viewAll");
+		//modelAndView.setViewName("redirect:/dashboard/serviceo/viewAll");
 
 		modelAndView.setViewName("dash/serviceo/edit");
 
@@ -203,7 +203,7 @@ public class AdminServiceController {
 
 		serviceoService.delete(serviceoService.findById(id));
 
-		modelAndView.setViewName("redirect:/dash/serviceo/viewAll");
+		modelAndView.setViewName("redirect:/dashboard/serviceo/viewAll");
 
 		redir.addFlashAttribute("message","Service Deleted!");
 		redir.addFlashAttribute("m","0");

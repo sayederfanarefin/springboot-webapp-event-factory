@@ -51,11 +51,11 @@
 
 					<div th:each="img,iter : ${serv.images}">
 						<a href="" th:if="*{iter.index == 0}" class="zoom" title="" data-rel="prettyPhoto[product-gallery]">
-							<img class="wp-post-image" th:data-echo="${img.url}" th:src="${img.url}" th:alt="${img.name}">
+							<img class="wp-post-image" th:data-echo="${img.url}" th:src="@{/} + ${img.url}" th:alt="${img.name}">
 						</a>
 
 						<a href="" th:if="*{iter.index > 0}" class="" title="">
-							<img class="wp-post-image" th:src="${img.url}" th:alt="${img.name}">
+							<img class="wp-post-image" th:src="@{/} + ${img.url}" th:alt="${img.name}">
 						</a>
 					</div>
 

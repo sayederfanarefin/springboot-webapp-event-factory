@@ -27,7 +27,7 @@ import com.avnrsol.eventfactory.configuration.Constants;
 import com.avnrsol.eventfactory.service.ImageService;
 
 @Controller
-@RequestMapping(value= "/dash/charges")
+@RequestMapping(value= "/dashboard/charges")
 public class AdminChargeController {
 	
 	

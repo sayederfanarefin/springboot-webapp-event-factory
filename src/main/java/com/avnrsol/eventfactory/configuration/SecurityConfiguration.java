@@ -70,7 +70,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/").permitAll()
 				.antMatchers("/login").permitAll()
 				.antMatchers("/registration").permitAll()
-			//	.antMatchers("/dash/**").access("hasRole('ADMIN')")
+			//	.antMatchers("/dashboard/**").access("hasRole('ADMIN')")
 				.anyRequest().authenticated()
 				.and().csrf().disable()
 				

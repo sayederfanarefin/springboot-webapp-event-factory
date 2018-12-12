@@ -12,7 +12,7 @@ import com.avnrsol.eventfactory.Model.User;
 import com.avnrsol.eventfactory.service.UserService;
 
 @Controller
-@RequestMapping(value= "/dash/customer")
+@RequestMapping(value= "/dashboard/customer")
 public class DashBoardCustomerController {
 	
 	@Autowired
